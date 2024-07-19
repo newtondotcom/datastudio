@@ -37,7 +37,7 @@
 	let open = false;
 	let value = '';
 
-	$: selectedValue = frameworks.find((f) => f.value === value)?.label ?? 'Select a framework...';
+	$: selectedValue = frameworks.find((f) => f.value === value)?.label ?? 'Select a type';
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -91,14 +91,14 @@
 						<Sheet.Header>
 							<Sheet.Title>Create a type</Sheet.Title>
 							<Sheet.Description>
-								This action cannot be undone. This will permanently delete your account and remove
-								your data from our servers.
+								You can create a new type by providing a name and selecting the type of the new
+								type.
 							</Sheet.Description>
 						</Sheet.Header>
 						<div class="grid gap-4 py-4">
 							<div class="grid grid-cols-4 items-center gap-4">
 								<Label for="name" class="text-right">Type Name</Label>
-								<Input id="name" value="Pedro Duarte" class="col-span-3" />
+								<Input id="name" value="Long" class="col-span-3" />
 							</div>
 							<div class="items-top flex space-x-2">
 								<Checkbox id="terms1" />
@@ -118,7 +118,14 @@
 						</div>
 						<Sheet.Footer>
 							<Sheet.Close asChild let:builder>
-								<Button builders={[builder]} type="submit">Save changes</Button>
+								<Button
+									on:click={() => {
+										console.log('clicked');
+										closeAndFocusTrigger(ids.trigger);
+									}}
+									builders={[builder]}
+									variant="outline">Submit</Button
+								>
 							</Sheet.Close>
 						</Sheet.Footer>
 					</Sheet.Content>

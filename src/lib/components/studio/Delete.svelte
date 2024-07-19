@@ -6,7 +6,7 @@
 
 <AlertDialog.Root>
 	<AlertDialog.Trigger asChild let:builder>
-		<Button builders={[builder]}><Trash2 /></Button>
+		<Button class="mx-1" builders={[builder]}><Trash2 /></Button>
 	</AlertDialog.Trigger>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
