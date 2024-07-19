@@ -10,7 +10,6 @@
 			<Select.Value placeholder="Value" />
 		</Select.Trigger>
 		<Select.Content>
-			<Select.Item value="0">0</Select.Item>
 			<Select.Item value="1">1</Select.Item>
 			<Select.Item value="n">n</Select.Item>
 		</Select.Content>
