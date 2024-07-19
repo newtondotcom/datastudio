@@ -1,2 +1,3 @@
-bun format
+bun pretty-quick --staged
+#bun format
 #bun lint
