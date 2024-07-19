@@ -1,6 +1,8 @@
+<script>
+	import '../app.css';
+</script>
 
-
-<div class="w-screen h-screen flex flex-col justify-center align-middle items-center text-center">
+<div class="flex h-screen w-screen flex-col items-center justify-center text-center align-middle">
 	<slot></slot>
 </div>
-<slot></slot><slot></slot><script>import "../app.css";</script>
+<slot></slot><slot></slot>
