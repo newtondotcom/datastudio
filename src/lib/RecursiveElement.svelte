@@ -7,6 +7,7 @@
 	import Multiplicity from '$lib/components/studio/Multiplicity.svelte';
 	import Rename from '$lib/components/studio/Rename.svelte';
 	import { cn } from './utils';
+	import Add from './components/studio/Add.svelte';
 
 	export let indent: number = 0;
 	export let structure: Element[] = [];
@@ -53,6 +54,7 @@
 			<Multiplicity />
 		</div>
 		<div class="flex flex-row">
+			<Add />
 			<Rename />
 			<Delete />
 		</div>
