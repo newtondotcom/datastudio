@@ -37,5 +37,10 @@
     "typescript-eslint": "^8.0.0-alpha.20",
     "vite": "^5.0.3"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "bits-ui": "^0.21.12",
+    "cmdk-sv": "^0.0.18",
+    "lucide-svelte": "^0.411.0"
+  }
 }
