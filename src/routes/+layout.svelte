@@ -12,10 +12,12 @@
 		>
 			DataStudio
 		</h1>
-		<p class="mt-4 max-w-lg text-center text-base font-normal text-neutral-600">
-			Spotlight effect is a great way to draw attention to a specific part of the page. Here, we are
-			drawing the attention towards the text section of the page. I don't know why but I'm running
-			out of copy.
+		<p class="mt-4 max-w-3xl text-center text-base font-normal text-neutral-600">
+			<b>DataStudio</b> is an Integrated Development Environment (IDE) specifically designed for data
+			engineers and scientists working with large and complex data schemas. With DataStudio, you can
+			easily create, visualize, and manipulate your data schemas, as well as export them in various formats
+			for use in different environments and tools. It can also generate a test dataset based on the criteria
+			of the schema.
 		</p>
 		<div class="mt-4 flex w-full flex-wrap justify-center space-x-4">
 			<Button>Import a structure</Button>
@@ -24,6 +26,7 @@
 			<Button>Export to UML Diagram</Button>
 			<Button>Export to PySpark</Button>
 			<Button>Export to Scala</Button>
+			<Button>Generate test data</Button>
 		</div>
 	</div>
 </header>
