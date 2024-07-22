@@ -2,246 +2,57 @@
 	import RecursiveElement from '$lib/RecursiveElement.svelte';
 	import type { Element } from '../ambient';
 
-	const elements: Element[] = [
-		{
-			id: '1',
-			name: 'Person',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: null
-		},
-		{
-			id: '1.1',
-			name: 'Name',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1'
-		},
-		{
-			id: '1.1.1',
-			name: 'First Name',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.1'
-		},
-		{
-			id: '1.1.2',
-			name: 'Last Name',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.1'
-		},
-		{
-			id: '1.2',
-			name: 'Address',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1'
-		},
-		{
-			id: '1.2.1',
-			name: 'Street',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.2'
-		},
-		{
-			id: '1.2.2',
-			name: 'City',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.2'
-		},
-		{
-			id: '1.2.3',
-			name: 'State',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.2'
-		},
-		{
-			id: '1.2.4',
-			name: 'Postal Code',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.2'
-		},
-		{
-			id: '1.3',
-			name: 'Contact',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1'
-		},
-		{
-			id: '1.3.1',
-			name: 'Email',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.3'
-		},
-		{
-			id: '1.3.2',
-			name: 'Phone',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.3'
-		},
-		{
-			id: '1.4',
-			name: 'Family',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1'
-		},
-		{
-			id: '1.4.1',
-			name: 'Spouse',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1.4'
-		},
-		{
-			id: '1.4.1.1',
-			name: 'First Name',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.4.1'
-		},
-		{
-			id: '1.4.1.2',
-			name: 'Last Name',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.4.1'
-		},
-		{
-			id: '1.4.2',
-			name: 'Children',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1.4'
-		},
-		{
-			id: '1.4.2.1',
-			name: 'Child 1',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1.4.2'
-		},
-		{
-			id: '1.4.2.1.1',
-			name: 'First Name',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.4.2.1'
-		},
-		{
-			id: '1.4.2.1.2',
-			name: 'Last Name',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.4.2.1'
-		},
-		{
-			id: '1.4.2.1.3',
-			name: 'Age',
-			type: 'number',
-			multiplicity: 1,
-			id_parent: '1.4.2.1'
-		},
-		{
-			id: '1.4.2.2',
-			name: 'Child 2',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1.4.2'
-		},
-		{
-			id: '1.4.2.2.1',
-			name: 'First Name',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.4.2.2'
-		},
-		{
-			id: '1.4.2.2.2',
-			name: 'Last Name',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.4.2.2'
-		},
-		{
-			id: '1.4.2.2.3',
-			name: 'Age',
-			type: 'number',
-			multiplicity: 1,
-			id_parent: '1.4.2.2'
-		},
-		{
-			id: '1.5',
-			name: 'Occupation',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1'
-		},
-		{
-			id: '1.5.1',
-			name: 'Job Title',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.5'
-		},
-		{
-			id: '1.5.2',
-			name: 'Company',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1.5'
-		},
-		{
-			id: '1.5.2.1',
-			name: 'Company Name',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.5.2'
-		},
-		{
-			id: '1.5.2.2',
-			name: 'Company Address',
-			type: 'struc',
-			multiplicity: 1,
-			id_parent: '1.5.2'
-		},
-		{
-			id: '1.5.2.2.1',
-			name: 'Street',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.5.2.2'
-		},
-		{
-			id: '1.5.2.2.2',
-			name: 'City',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.5.2.2'
-		},
-		{
-			id: '1.5.2.2.3',
-			name: 'State',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.5.2.2'
-		},
-		{
-			id: '1.5.2.2.4',
-			name: 'Postal Code',
-			type: 'string',
-			multiplicity: 1,
-			id_parent: '1.5.2.2'
-		}
-	];
+	import { createOrigin } from '$lib/functions';
+
+	import { Button } from '$lib/components/ui/button/index.js';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
+	import { Input } from '$lib/components/ui/input/index.js';
+	import { Label } from '$lib/components/ui/label/index.js';
+	import { Plus } from 'lucide-svelte';
+
+	import { structure, types } from '$lib/store';
+	let structure_local: Element[];
+	let types_local: Type[];
+	structure.subscribe((value) => {
+		structure_local = value;
+		console.log(value);
+	});
+	types.subscribe((value) => {
+		types_local = value;
+	});
+
+	let name: string;
+	let type: string;
 </script>
 
-<RecursiveElement indent={0} structure={elements} id={elements[0].id} />
+{#if structure_local.length > 0}
+	<RecursiveElement indent={0} id={structure_local[0].id} />
+{/if}
+<Dialog.Root>
+	<Dialog.Trigger>
+		<Button class="mt-4">Create a new origin<Plus /></Button>
+	</Dialog.Trigger>
+	<Dialog.Content class="sm:max-w-[425px]">
+		<Dialog.Header>
+			<Dialog.Title>Edit profile</Dialog.Title>
+			<Dialog.Description>
+				Make changes to your profile here. Click save when you're done.
+			</Dialog.Description>
+		</Dialog.Header>
+		<div class="grid gap-4 py-4">
+			<div class="grid grid-cols-4 items-center gap-4">
+				<Label for="name" class="text-right">Name</Label>
+				<Input bind:value={name} id="name" class="col-span-3" />
+			</div>
+			<div class="grid grid-cols-4 items-center gap-4">
+				<Label for="type" class="text-right">Type</Label>
+				<Input bind:value={type} id="type" class="col-span-3" />
+			</div>
+		</div>
+		<Dialog.Footer>
+			<Dialog.Close>
+				<Button type="submit" on:click={createOrigin(name, type)}>Save changes</Button>
+			</Dialog.Close>
+		</Dialog.Footer>
+	</Dialog.Content>
+</Dialog.Root>
