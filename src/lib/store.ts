@@ -9,7 +9,7 @@ structure.set([
 		id: 'c8hs80nis',
 		id_parent: null,
 		name: 'name',
-		type: 'type',
+		type: 'struc',
 		multiplicity: 0,
 		color: 'orange-950',
 		indent: 0
@@ -17,8 +17,8 @@ structure.set([
 	{
 		id: 'uhhmwwa8o',
 		name: 'edit',
-		type: 'string',
-		multiplicity: 0,
+		type: 'integer',
+		multiplicity: 2,
 		id_parent: 'c8hs80nis',
 		color: 'orange-800',
 		indent: 1
@@ -28,6 +28,10 @@ structure.set([
 types.set([
 	{
 		name: 'string',
+		abstract: false
+	},
+	{
+		name: 'integer',
 		abstract: false
 	}
 ]);

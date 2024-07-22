@@ -12,16 +12,26 @@
 	let structure_local: Element[];
 	structure.subscribe((value: Element[]) => {
 		structure_local = value;
+
+		// The element just got deleted
+		if (!value.find((el) => el.id === id)) {
+			return;
+		}
+
 		const el = value.find((el) => el.id === id);
 		const multiplicity = el.multiplicity;
 		valueDisplayed = {
 			label: multiplicity.toString(),
 			value: multiplicity.toString()
 		};
+		if (valueDisplayed.label == '2') {
+			valueDisplayed.label == 'n';
+		}
 	});
 
 	async function setMultiplicity(event: any) {
 		multiplicity = parseInt(event.value);
+		console.log('multp has changed', multiplicity);
 		await changeMultiplicity(id, multiplicity);
 	}
 </script>
@@ -38,7 +48,7 @@
 			<Select.Value />
 		</Select.Trigger>
 		<Select.Content>
-			<Select.Item value="1" label="0">0</Select.Item>
+			<Select.Item value="0" label="0">0</Select.Item>
 			<Select.Item value="1" label="1">1</Select.Item>
 			<Select.Item value="2" label="n">n</Select.Item>
 		</Select.Content>
