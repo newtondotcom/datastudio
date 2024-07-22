@@ -10,7 +10,7 @@
 	import Add from './components/studio/Add.svelte';
 
 	export let indent: number = 0;
-	export let id: string = '';
+	export let id: string;
 
 	import { structure } from '$lib/store';
 	let structure_local: Element[];
@@ -36,7 +36,7 @@
 <div class={cn('w-full rounded-lg border-2 px-4 py-2', 'border-' + color)}>
 	<div class="flex w-full flex-row items-center justify-between">
 		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + color)}>
-			<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg text-3xl">
+			<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg px-2 text-3xl">
 				{name}
 				{#if open}
 					<ChevronDown size={40} />
@@ -44,7 +44,7 @@
 					<ChevronUp size={40} />
 				{/if}
 			</button>
-			<Multiplicity />
+			<Multiplicity {id} />
 		</div>
 		<div class="flex flex-row">
 			<Add id_parent={parent_id} indent_parent={parent_indent} />
@@ -61,10 +61,10 @@
 						{#if child.type == 'struc'}
 							<svelte:self indent={indent + 1} id={child.id} />
 						{:else}
-							<div class="flex w-full flex-row px-2">
+							<div class="flex w-full flex-row rounded-xl bg-neutral-100 px-2 py-2">
 								<Input value={child.name} type="email" placeholder="Name" class="max-w-xs" />
-								<Type />
-								<Multiplicity />
+								<Type id={child.id} />
+								<Multiplicity id={child.id} />
 								<Delete />
 							</div>
 						{/if}
