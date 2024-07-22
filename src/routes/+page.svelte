@@ -12,21 +12,26 @@
 
 	import { structure, types } from '$lib/store';
 	let structure_local: Element[];
-	let types_local: Type[];
+	let origins: Element[];
 	structure.subscribe((value) => {
 		structure_local = value;
+		origins = value.filter((el: Element) => el.indent === 0);
 		console.log(value);
 	});
+	let types_local: Type[];
 	types.subscribe((value) => {
 		types_local = value;
+		console.log(value);
 	});
 
 	let name: string;
 	let type: string;
 </script>
 
-{#if structure_local.length > 0}
-	<RecursiveElement indent={0} id={structure_local[0].id} />
+{#if origins.length > 0}
+	{#each origins as origin}
+		<RecursiveElement indent={0} id={origin.id} />
+	{/each}
 {/if}
 <Dialog.Root>
 	<Dialog.Trigger>
