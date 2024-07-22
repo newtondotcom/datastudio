@@ -10,41 +10,34 @@
 	import Add from './components/studio/Add.svelte';
 
 	export let indent: number = 0;
-	export let structure: Element[] = [];
 	export let id: string = '';
 
-	let parent: Element = structure.find((el) => el.id === id);
-	let name = parent.name;
-	let children = structure.filter((el) => el.id_parent === id);
+	import { structure } from '$lib/store';
+	let structure_local: Element[];
+	let children: Element[];
+	structure.subscribe((value) => {
+		structure_local = value;
+		children = value.filter((el) => el.id_parent === id);
+	});
 
-	enum Colors {
-		blue,
-		purple,
-		orange,
-		green,
-		rose
-	}
+	let parent: Element = structure_local.find((el) => el.id === id);
+	let name = parent.name;
+	let color = parent.color;
+	let parent_id = parent.id;
+	let parent_indent = parent.indent;
 
 	let open = true;
 
 	function toggleOpen() {
 		open = !open;
 	}
-
-	function computeBgColor() {
-		let teint = 9 - indent;
-		if (teint < 0) {
-			teint = 0;
-		}
-		return 'blue-' + teint.toString() + '00';
-	}
 </script>
 
-<div class={cn('w-full rounded-lg border-2 px-4 py-2', 'border-' + computeBgColor())}>
+<div class={cn('w-full rounded-lg border-2 px-4 py-2', 'border-' + color)}>
 	<div class="flex w-full flex-row items-center justify-between">
-		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + computeBgColor())}>
+		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + color)}>
 			<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg text-3xl">
-				{name} - {id}
+				{name}
 				{#if open}
 					<ChevronDown size={40} />
 				{:else}
@@ -54,9 +47,9 @@
 			<Multiplicity />
 		</div>
 		<div class="flex flex-row">
-			<Add />
-			<Rename />
+			<Add id_parent={parent_id} indent_parent={parent_indent} />
 			<Delete />
+			<Rename />
 		</div>
 	</div>
 
@@ -66,7 +59,7 @@
 				{#each children as child}
 					<li class="mx-1 my-1 flex flex-row rounded-lg py-2 text-2xl">
 						{#if child.type == 'struc'}
-							<svelte:self indent={indent + 1} {structure} id={child.id} />
+							<svelte:self indent={indent + 1} id={child.id} />
 						{:else}
 							<div class="flex w-full flex-row px-2">
 								<Input value={child.name} type="email" placeholder="Name" class="max-w-xs" />
