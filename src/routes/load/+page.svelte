@@ -1,5 +1,5 @@
 <!-- Blue -->
-<div class="bg-blue-900">bg-blue-900</div>
+<div class="bg-blue-950">bg-blue-950</div>
 <div class="bg-blue-800">bg-blue-800</div>
 <div class="bg-blue-700">bg-blue-700</div>
 <div class="bg-blue-600">bg-blue-600</div>
@@ -10,7 +10,7 @@
 <div class="bg-blue-100">bg-blue-100</div>
 
 <!-- Purple -->
-<div class="bg-purple-900">bg-purple-900</div>
+<div class="bg-purple-950">bg-purple-950</div>
 <div class="bg-purple-800">bg-purple-800</div>
 <div class="bg-purple-700">bg-purple-700</div>
 <div class="bg-purple-600">bg-purple-600</div>
@@ -21,7 +21,7 @@
 <div class="bg-purple-100">bg-purple-100</div>
 
 <!-- Orange -->
-<div class="bg-orange-900">bg-orange-900</div>
+<div class="bg-orange-950">bg-orange-950</div>
 <div class="bg-orange-800">bg-orange-800</div>
 <div class="bg-orange-700">bg-orange-700</div>
 <div class="bg-orange-600">bg-orange-600</div>
@@ -32,7 +32,7 @@
 <div class="bg-orange-100">bg-orange-100</div>
 
 <!-- Green -->
-<div class="bg-green-900">bg-green-900</div>
+<div class="bg-green-950">bg-green-950</div>
 <div class="bg-green-800">bg-green-800</div>
 <div class="bg-green-700">bg-green-700</div>
 <div class="bg-green-600">bg-green-600</div>
@@ -43,7 +43,7 @@
 <div class="bg-green-100">bg-green-100</div>
 
 <!-- Rose -->
-<div class="bg-rose-900">bg-rose-900</div>
+<div class="bg-rose-950">bg-rose-950</div>
 <div class="bg-rose-800">bg-rose-800</div>
 <div class="bg-rose-700">bg-rose-700</div>
 <div class="bg-rose-600">bg-rose-600</div>
@@ -55,7 +55,7 @@
 <div class="bg-rose-000">bg-rose-000</div>
 
 <!-- Blue -->
-<div class="border-blue-900">border-blue-900</div>
+<div class="border-blue-950">border-blue-950</div>
 <div class="border-blue-800">border-blue-800</div>
 <div class="border-blue-700">border-blue-700</div>
 <div class="border-blue-600">border-blue-600</div>
@@ -66,7 +66,7 @@
 <div class="border-blue-100">border-blue-100</div>
 
 <!-- Purple -->
-<div class="border-purple-900">border-purple-900</div>
+<div class="border-purple-950">border-purple-950</div>
 <div class="border-purple-800">border-purple-800</div>
 <div class="border-purple-700">border-purple-700</div>
 <div class="border-purple-600">border-purple-600</div>
@@ -77,7 +77,7 @@
 <div class="border-purple-100">border-purple-100</div>
 
 <!-- Orange -->
-<div class="border-orange-900">border-orange-900</div>
+<div class="border-orange-950">border-orange-950</div>
 <div class="border-orange-800">border-orange-800</div>
 <div class="border-orange-700">border-orange-700</div>
 <div class="border-orange-600">border-orange-600</div>
@@ -88,7 +88,7 @@
 <div class="border-orange-100">border-orange-100</div>
 
 <!-- Green -->
-<div class="border-green-900">border-green-900</div>
+<div class="border-green-950">border-green-950</div>
 <div class="border-green-800">border-green-800</div>
 <div class="border-green-700">border-green-700</div>
 <div class="border-green-600">border-green-600</div>
@@ -99,7 +99,7 @@
 <div class="border-green-100">border-green-100</div>
 
 <!-- Rose -->
-<div class="border-rose-900">border-rose-900</div>
+<div class="border-rose-950">border-rose-950</div>
 <div class="border-rose-800">border-rose-800</div>
 <div class="border-rose-700">border-rose-700</div>
 <div class="border-rose-600">border-rose-600</div>
