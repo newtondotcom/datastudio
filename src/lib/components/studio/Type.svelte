@@ -11,33 +11,48 @@
 	import { tick } from 'svelte';
 	import { Checkbox } from '$lib/components/ui/checkbox';
 
-	const frameworks = [
-		{
-			value: 'string',
-			label: 'String'
-		},
-		{
-			value: 'integer',
-			label: 'Integer'
-		},
-		{
-			value: 'float',
-			label: 'Float'
-		},
-		{
-			value: 'boolean',
-			label: 'Boolean'
-		},
-		{
-			value: 'data',
-			label: 'Date'
-		}
-	];
+	export let id: string;
 
 	let open = false;
-	let value = '';
+	let selectedValue: string;
+	let search: string;
+	let name: string;
+	let abstract: boolean;
 
-	$: selectedValue = frameworks.find((f) => f.value === value)?.label ?? 'Select a type';
+	import { types, structure } from '$lib/store';
+	import { capitalizeFirstLetter, changeType } from '$lib/functions';
+	let types_select: { value: string; label: string }[];
+	let types_local: Type[];
+	types.subscribe((value: Type[]) => {
+		types_local = value;
+		types_select = value.map((type: Type) => {
+			return {
+				value: type.name,
+				label: capitalizeFirstLetter(type.name)
+			};
+		});
+	});
+	let structure_local: Element[];
+	structure.subscribe((value: Element[]) => {
+		structure_local = value;
+
+		// The element just got deleted
+		if (!value.find((el) => el.id === id)) {
+			return;
+		}
+
+		const el = value.find((el) => el.id === id);
+		if (!el) {
+			return;
+		} else {
+			selectedValue = el.type;
+		}
+	});
+
+	$: search =
+		selectedValue !== ''
+			? capitalizeFirstLetter(selectedValue)
+			: (types_local.find((f) => f.value === search)?.label ?? 'Select a type');
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -47,6 +62,10 @@
 		tick().then(() => {
 			document.getElementById(triggerId)?.focus();
 		});
+	}
+
+	async function setType(name: string, abstract: boolean) {
+		await changeType(id, name, !abstract);
 	}
 </script>
 
@@ -59,24 +78,26 @@
 			aria-expanded={open}
 			class="w-[200px] justify-between"
 		>
-			{selectedValue}
+			{search}
 			<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 		</Button>
 	</Popover.Trigger>
 	<Popover.Content class="w-[200px] p-0">
 		<Command.Root>
-			<Command.Input placeholder="Search framework..." />
+			<Command.Input placeholder="Search a type..." />
 			<Command.Empty>No framework found.</Command.Empty>
 			<Command.Group>
-				{#each frameworks as framework}
+				{#each types_select as framework}
 					<Command.Item
 						value={framework.value}
-						onSelect={(currentValue) => {
-							value = currentValue;
+						onSelect={async (currentValue) => {
+							await setType(currentValue, false);
 							closeAndFocusTrigger(ids.trigger);
 						}}
 					>
-						<Check class={cn('mr-2 h-4 w-4', value !== framework.value && 'text-transparent')} />
+						<Check
+							class={cn('mr-2 h-4 w-4', selectedValue !== framework.value && 'text-transparent')}
+						/>
 						{framework.label}
 					</Command.Item>
 				{/each}
@@ -98,10 +119,10 @@
 						<div class="grid gap-4 py-4">
 							<div class="grid grid-cols-4 items-center gap-4">
 								<Label for="name" class="text-right">Type Name</Label>
-								<Input id="name" value="Long" class="col-span-3" />
+								<Input bind:value={name} id="name" class="col-span-3" />
 							</div>
 							<div class="items-top flex space-x-2">
-								<Checkbox id="terms1" />
+								<Checkbox bind:checked={abstract} id="terms1" />
 								<div class="grid gap-1.5 leading-none">
 									<Label
 										for="terms1"
@@ -119,8 +140,8 @@
 						<Sheet.Footer>
 							<Sheet.Close asChild let:builder>
 								<Button
-									on:click={() => {
-										console.log('clicked');
+									on:click={async () => {
+										await setType(name, abstract);
 										closeAndFocusTrigger(ids.trigger);
 									}}
 									builders={[builder]}
