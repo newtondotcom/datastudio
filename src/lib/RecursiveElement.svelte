@@ -12,12 +12,16 @@
 	export let indent: number = 0;
 	export let id: string;
 
-	import { structure } from '$lib/store';
+	import { structure, types } from '$lib/store';
 	let structure_local: Element[];
 	let children: Element[];
 	structure.subscribe((value) => {
 		structure_local = value;
 		children = value.filter((el) => el.id_parent === id);
+	});
+	let types_local: Type[];
+	types.subscribe((value: Type[]) => {
+		types_local = value;
 	});
 
 	let parent: Element = structure_local.find((el) => el.id === id);
@@ -33,7 +37,7 @@
 	}
 </script>
 
-<div class={cn('w-full rounded-lg border-2 px-4 py-2', 'border-' + color)}>
+<div class={cn('my-4 w-full rounded-lg border-2 px-4 py-2', 'border-' + color)}>
 	<div class="flex w-full flex-row items-center justify-between">
 		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + color)}>
 			<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg px-2 text-3xl">
@@ -48,7 +52,7 @@
 		</div>
 		<div class="flex flex-row">
 			<Add id_parent={parent_id} indent_parent={parent_indent} />
-			<Delete />
+			<Delete id={parent_id} />
 			<Rename />
 		</div>
 	</div>
@@ -58,14 +62,14 @@
 			<div class="overflow-hidden transition-all duration-300 ease-in-out">
 				{#each children as child}
 					<li class="mx-1 my-1 flex flex-row rounded-lg py-2 text-2xl">
-						{#if child.type == 'struc'}
+						{#if types_local.find((el) => el.name === child.type)?.abstract}
 							<svelte:self indent={indent + 1} id={child.id} />
 						{:else}
 							<div class="flex w-full flex-row rounded-xl bg-neutral-100 px-2 py-2">
 								<Input value={child.name} type="email" placeholder="Name" class="max-w-xs" />
 								<Type id={child.id} />
 								<Multiplicity id={child.id} />
-								<Delete />
+								<Delete id={child.id} />
 							</div>
 						{/if}
 					</li>
