@@ -25,10 +25,11 @@
 	});
 
 	let parent: Element = structure_local.find((el) => el.id === id);
-	let name = parent.name;
-	let color = parent.color;
-	let parent_id = parent.id;
-	let parent_indent = parent.indent;
+	let name = parent?.name;
+	let type = parent?.type;
+	let color = parent?.color;
+	let parent_id: string = parent.id;
+	let parent_indent = parent?.indent | 0;
 
 	let open = true;
 
@@ -41,7 +42,7 @@
 	<div class="flex w-full flex-row items-center justify-between">
 		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + color)}>
 			<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg px-2 text-3xl">
-				{name}
+				{name} | {type}
 				{#if open}
 					<ChevronDown size={40} />
 				{:else}
@@ -63,7 +64,14 @@
 				{#each children as child}
 					<li class="mx-1 my-1 flex flex-row rounded-lg py-2 text-2xl">
 						{#if types_local.find((el) => el.name === child.type)?.abstract}
-							<svelte:self indent={indent + 1} id={child.id} />
+							{#if types_local.find((el) => el.name === child.type)?.id_referenced == child.id}
+								<svelte:self indent={indent + 1} id={child.id} />
+							{:else}
+								<svelte:self
+									indent={indent + 1}
+									id={types_local.find((el) => el.name === child.type)?.id_referenced}
+								/>
+							{/if}
 						{:else}
 							<div class="flex w-full flex-row rounded-xl bg-neutral-100 px-2 py-2">
 								<Input value={child.name} type="email" placeholder="Name" class="max-w-xs" />
