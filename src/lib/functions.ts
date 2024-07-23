@@ -36,6 +36,7 @@ export async function renameElement(id: string, name: string) {
 }
 
 export async function changeType(id: string, name: string, abstract: boolean) {
+	console.log(id, name, abstract);
 	const type_local = types_local.find((type) => type.name === name);
 
 	if (!type_local) {
@@ -48,8 +49,8 @@ export async function changeType(id: string, name: string, abstract: boolean) {
 			type_created.id_referenced = id;
 		}
 		types_local.push(type_created);
+		types.set(types_local);
 	}
-	types.set(types_local);
 
 	structure_local = structure_local.map((element) => {
 		if (element.id === id) {
@@ -61,21 +62,6 @@ export async function changeType(id: string, name: string, abstract: boolean) {
 }
 
 export async function changeMultiplicity(id: string, multiplicity: number) {
-	// check if the element is refence of a type
-	const el: Element = structure_local.find((element) => element.id === id);
-	const type_name: string = el.type;
-	const type_tab: Element = types_local.find((type) => type.name === type_name);
-	if (type_tab.abstract) {
-		if (type_tab.id_referenced != el.id_parent) {
-			// Type is referenced elsewhere
-			const child = structure_local.find(
-				(x: Element) => x.id_parent === el.id_parent && x.name === el.name
-			);
-			await changeMultiplicity(child?.id, multiplicity);
-			return;
-		}
-	}
-
 	structure_local = structure_local.map((element) => {
 		if (element.id === id) {
 			return { ...element, multiplicity };
@@ -89,26 +75,10 @@ export async function deleteElement(id: string) {
 	structure_local = structure_local.filter((element) => element.id !== id);
 	structure.set(structure_local);
 
-	// check if the element if refence of a type
-
-	// check if parent has children
+	// check if the element if refence of a type, set reference to other existnce, else delete
 }
 
 export async function addElement(element: Element) {
-	// check if the element is refence of a type
-	const type_name: string = element.type;
-	let type_tab: Element = types_local.find((type) => type.name === type_name);
-	if (type_tab && type_tab.abstract) {
-		if (type_tab.id_referenced != element.id_parent) {
-			// Type is referenced elsewhere
-			const child = structure_local.find(
-				(x: Element) => x.id_parent === element.id_parent && x.name === element.name
-			);
-			await addElement(child?.id, multiplicity);
-			return;
-		}
-	}
-
 	structure_local.push(element);
 	structure.set(structure_local);
 }
