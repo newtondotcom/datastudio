@@ -9,7 +9,6 @@
 	import { Plus } from 'lucide-svelte';
 
 	import { structure } from '$lib/scripts/store';
-	import Save from '$lib/components/studio/Save.svelte';
 
 	let structure_local: IElement[];
 	let origins: IElement[];
@@ -20,8 +19,6 @@
 
 	let name: string;
 </script>
-
-<Save />
 
 <Dialog.Root>
 	<Dialog.Trigger>

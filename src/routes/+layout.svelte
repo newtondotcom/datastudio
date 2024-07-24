@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import Save from '$lib/components/studio/Save.svelte';
 </script>
 
 <header class="flex flex-col">
@@ -21,7 +22,7 @@
 		</p>
 		<div class="mt-4 flex w-full flex-wrap justify-center space-x-4">
 			<Button>Import a structure</Button>
-			<Button>Download the structure</Button>
+			<Save />
 			<Button>Export to XSD</Button>
 			<Button>Export to UML Diagram</Button>
 			<Button>Export to PySpark</Button>

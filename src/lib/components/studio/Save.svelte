@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button/index.js';
+
 	let is_ctrl_down = false;
 	let is_s_down = false;
 
@@ -41,4 +43,5 @@
 	}
 </script>
 
+<Button on:click={on_bind}>Download the structure</Button>
 <svelte:window on:keydown={on_key_down} on:keyup={on_key_up} />
