@@ -1,48 +1,62 @@
 <script lang="ts">
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
 	import type { Element } from '../ambient';
-	import { Input } from '$lib/components/ui/input/index.js';
 	import Delete from '$lib/components/studio/Delete.svelte';
 	import Type from '$lib/components/studio/Type.svelte';
 	import Multiplicity from '$lib/components/studio/Multiplicity.svelte';
 	import Rename from '$lib/components/studio/Rename.svelte';
-	import { cn } from './utils';
-	import Add from './components/studio/Add.svelte';
+	import { cn } from '$lib/utils';
+	import Add from '$lib/components/studio/Add.svelte';
+	import Name from '$lib/components/studio/Name.svelte';
 
-	export let indent: number = 0;
 	export let id: string;
+
+	let el_local: Element;
+	let type_local: Type;
+	let color_local: string;
 
 	import { structure, types } from '$lib/store';
 	let structure_local: Element[];
 	let children: Element[];
+	let types_local: Type[];
+
 	structure.subscribe((value) => {
 		structure_local = value;
 		children = value.filter((el) => el.id_parent === id);
+		updateStruct();
 	});
-	let types_local: Type[];
 	types.subscribe((value: Type[]) => {
 		types_local = value;
+		updateStruct();
 	});
 
-	let parent: Element = structure_local.find((el) => el.id === id);
-	let name = parent?.name;
-	let type = parent?.type;
-	let color = parent?.color;
-	let parent_id: string = parent.id;
-	let parent_indent = parent?.indent | 0;
+	function updateStruct() {
+		children = structure_local.filter((el) => el.id_parent === id);
+		el_local = structure_local.find((el: Element) => el.id === id);
+		if (types_local) {
+			type_local = types_local.find((type: Type) => type.name === el_local?.type);
+			if (type_local == undefined) {
+				console.log('Type not found : ', el_local.name, el_local.type, types_local);
+			}
+			if (!type_local.struct) {
+				color_local = 'neutral-100';
+			} else {
+				color_local = el_local.color;
+			}
+		}
+	}
 
 	let open = true;
-
 	function toggleOpen() {
 		open = !open;
 	}
 </script>
 
-<div class={cn('my-4 w-full rounded-lg border-2 px-4 py-2', 'border-' + color)}>
+<div class={cn('my-4 w-full rounded-lg border-2 px-4 py-2', 'border-' + el_local.color)}>
 	<div class="flex w-full flex-row items-center justify-between">
-		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + color)}>
+		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + el_local.color)}>
 			<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg px-2 text-3xl">
-				{name} | {type}
+				{type_local.name}
 				{#if open}
 					<ChevronDown size={40} />
 				{:else}
@@ -52,8 +66,8 @@
 			<Multiplicity {id} />
 		</div>
 		<div class="flex flex-row">
-			<Add id_parent={parent_id} indent_parent={parent_indent} />
-			<Delete id={parent_id} />
+			<Add id_parent={el_local.id} />
+			<Delete id={el_local.id} />
 			<Rename />
 		</div>
 	</div>
@@ -63,23 +77,12 @@
 			<div class="overflow-hidden transition-all duration-300 ease-in-out">
 				{#each children as child}
 					<li class="mx-1 my-1 flex flex-row rounded-lg py-2 text-2xl">
-						{#if types_local.find((el) => el.name === child.type)?.abstract}
-							{#if types_local.find((el) => el.name === child.type)?.id_referenced == child.id}
-								<svelte:self indent={indent + 1} id={child.id} />
-							{:else}
-								<svelte:self
-									indent={indent + 1}
-									id={types_local.find((el) => el.name === child.type)?.id_referenced}
-								/>
-							{/if}
-						{:else}
-							<div class="flex w-full flex-row rounded-xl bg-neutral-100 px-2 py-2">
-								<Input value={child.name} type="email" placeholder="Name" class="max-w-xs" />
-								<Type id={child.id} />
-								<Multiplicity id={child.id} />
-								<Delete id={child.id} />
-							</div>
-						{/if}
+						<div class={cn('flex w-full flex-row rounded-xl px-2 py-2', 'bg-' + color_local)}>
+							<Name id={child.id} />
+							<Type id={child.id} />
+							<Multiplicity id={child.id} />
+							<Delete id={child.id} />
+						</div>
 					</li>
 				{/each}
 			</div>
