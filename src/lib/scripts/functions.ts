@@ -6,12 +6,12 @@ let types_local: IType[];
 
 structure.subscribe((value: Element[]) => {
 	structure_local = value;
-	console.log('new strucutre: ' + structure_local);
+	console.log('new strucutre: ' + structure_local.length);
 });
 
 types.subscribe((value: Type[]) => {
 	types_local = value;
-	console.log('new type: ' + types_local);
+	console.log('new type: ' + types_local.length);
 });
 
 export async function renameElement(id: string, name: string) {
