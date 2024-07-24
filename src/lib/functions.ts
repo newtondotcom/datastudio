@@ -73,6 +73,19 @@ export async function addElement(element: Element) {
 	structure.set(structure_local);
 }
 
+export async function createElement(id_parent: string) {
+	const element: Element = {
+		id: await genUID(),
+		name: 'edit',
+		type: 'string',
+		multiplicity: 0,
+		id_parent: id_parent,
+		color: await genColor(),
+		indent: 0
+	};
+	await addElement(element);
+}
+
 export async function createTypestruct(name: string) {
 	let type_created: Type = {
 		name,
@@ -87,17 +100,17 @@ export async function createTypestruct(name: string) {
 		name,
 		type: name,
 		multiplicity: 0,
-		color: await genColor(0),
+		color: await genColor(),
 		indent: 0
 	};
 	await addElement(newElement);
 }
 
-export async function genColor(indent: number): Promise<string> {
+export async function genColor(): Promise<string> {
 	const teints = [950, 800, 600, 400, 200];
 	const colors = ['blue', 'purple', 'orange', 'green', 'rose'];
 	const randomIndex = Math.floor(Math.random() * colors.length);
-	return Promise.resolve(`${colors[randomIndex]}-${teints[indent]}`);
+	return Promise.resolve(`${colors[randomIndex]}-600`);
 }
 
 export async function genUID() {
