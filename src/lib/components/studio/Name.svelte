@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Input } from '$lib/components/ui/input/index.js';
-	import { renameIElement } from '$lib/scripts/functions';
+	import { renameElement } from '$lib/scripts/functions';
 	export let id: string;
 
 	let name: string;
@@ -19,7 +19,7 @@
 	});
 
 	async function renameEl() {
-		await renameIElement(id, name);
+		await renameElement(id, name);
 	}
 </script>
 

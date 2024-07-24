@@ -10,7 +10,7 @@
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { tick } from 'svelte';
 	import { Checkbox } from '$lib/components/ui/checkbox';
-	import { capitalizeFirstLetter, changeIType } from '$lib/scripts/functions';
+	import { capitalizeFirstLetter, changeType } from '$lib/scripts/functions';
 
 	export let id: string;
 
@@ -76,7 +76,7 @@
 	}
 
 	async function setType(name: string, struct: boolean) {
-		await changeIType(id, name, !struct);
+		await changeType(id, name, !struct);
 	}
 </script>
 

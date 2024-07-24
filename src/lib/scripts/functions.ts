@@ -1,17 +1,20 @@
 import { structure, types } from '$lib/scripts/store';
+import type { IElement } from '../../ambient';
 
 let structure_local: IElement[];
 let types_local: IType[];
 
-structure.subscribe((value) => {
+structure.subscribe((value: Element[]) => {
 	structure_local = value;
+	console.log('new strucutre: ' + structure_local);
 });
 
-types.subscribe((value) => {
+types.subscribe((value: Type[]) => {
 	types_local = value;
+	console.log('new type: ' + types_local);
 });
 
-export async function renameIElement(id: string, name: string) {
+export async function renameElement(id: string, name: string) {
 	structure_local = structure_local.map((element) => {
 		if (element.id === id) {
 			return { ...element, name };
@@ -21,7 +24,7 @@ export async function renameIElement(id: string, name: string) {
 	structure.set(structure_local);
 }
 
-export async function changeIType(id: string, name: string, struct: boolean) {
+export async function changeType(id: string, name: string, struct: boolean) {
 	const type_local = types_local.find((type) => type.name === name);
 
 	if (!type_local) {
@@ -47,7 +50,7 @@ export async function changeMultiplicity(id: string, multiplicity: number) {
 	structure.set(structure_local);
 }
 
-export async function deleteIElement(id: string) {
+export async function deleteElement(id: string) {
 	const element = structure_local.find((el) => el.id === id);
 	if (!element.id_parent) {
 		// IElement is the creator of his type
@@ -68,12 +71,13 @@ export async function deleteIElement(id: string) {
 	structure.set(structure_local);
 }
 
-export async function addIElement(element: IElement) {
+export async function addElement(element: IElement) {
 	structure_local.push(element);
 	structure.set(structure_local);
 }
 
 export async function createIElement(id_parent: string) {
+	const parent: IElement = structure_local.find((el: Element) => el.id === id_parent);
 	const element: IElement = {
 		id: await genUID(),
 		name: 'edit',
@@ -81,9 +85,9 @@ export async function createIElement(id_parent: string) {
 		multiplicity: 0,
 		id_parent: id_parent,
 		color: await genColor(),
-		indent: 0
+		indent: parent.indent + 1
 	};
-	await addIElement(element);
+	await addElement(element);
 }
 
 export async function createTypestruct(name: string) {
@@ -103,7 +107,7 @@ export async function createTypestruct(name: string) {
 		color: await genColor(),
 		indent: 0
 	};
-	await addIElement(newIElement);
+	await addElement(newIElement);
 }
 
 const Colors = ['blue', 'purple', 'orange', 'green', 'rose'];
