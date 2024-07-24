@@ -12,9 +12,9 @@
 	</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-[425px]">
 		<Dialog.Header>
-			<Dialog.Title>Edit profile</Dialog.Title>
+			<Dialog.Title>Rename Structure</Dialog.Title>
 			<Dialog.Description>
-				Make changes to your profile here. Click save when you're done.
+				Rename the structure and click on save when you're done.
 			</Dialog.Description>
 		</Dialog.Header>
 		<div class="grid gap-4 py-4">

@@ -23,4 +23,4 @@
 	}
 </script>
 
-<Input bind:value={name} type="email" placeholder="Name" class="max-w-xs" on:input={renameEl} />
+<Input bind:value={name} type="text" placeholder="Name" class="max-w-xs" on:input={renameEl} />

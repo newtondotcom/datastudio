@@ -123,7 +123,7 @@
 						<Sheet.Header>
 							<Sheet.Title>Create a type</Sheet.Title>
 							<Sheet.Description>
-								You can create a new type by providing a name and selecting the type of the new
+								You can create a new type by providing a name and selecting the nature of the new
 								type.
 							</Sheet.Description>
 						</Sheet.Header>
