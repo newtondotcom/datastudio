@@ -6,11 +6,11 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import * as Sheet from '$lib/components/ui/sheet/index.js';
-	import { cn } from '$lib/utils.js';
+	import { cn } from '$lib/scripts/utils';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { tick } from 'svelte';
 	import { Checkbox } from '$lib/components/ui/checkbox';
-	import { capitalizeFirstLetter, changeIType } from '$lib/functions';
+	import { capitalizeFirstLetter, changeIType } from '$lib/scripts/functions';
 
 	export let id: string;
 
@@ -20,7 +20,7 @@
 	let name: string;
 	let struct: boolean;
 
-	import { types, structure } from '$lib/store';
+	import { types, structure } from '$lib/scripts/store';
 
 	let structure_local: IElement[];
 	let types_select: { value: string; label: string }[];
@@ -71,11 +71,11 @@
 	function closeAndFocusTrigger(triggerId: string) {
 		open = false;
 		tick().then(() => {
-			document.getIElementById(triggerId)?.focus();
+			document.getElementById(triggerId)?.focus();
 		});
 	}
 
-	async function setIType(name: string, struct: boolean) {
+	async function setType(name: string, struct: boolean) {
 		await changeIType(id, name, !struct);
 	}
 </script>
@@ -102,7 +102,7 @@
 					<Command.Item
 						value={framework.value}
 						onSelect={async (currentValue) => {
-							await setIType(currentValue, false);
+							await setType(currentValue, false);
 							closeAndFocusTrigger(ids.trigger);
 						}}
 					>
@@ -152,7 +152,7 @@
 							<Sheet.Close asChild let:builder>
 								<Button
 									on:click={async () => {
-										await setIType(name, struct);
+										await setType(name, struct);
 										closeAndFocusTrigger(ids.trigger);
 									}}
 									builders={[builder]}

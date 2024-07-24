@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { createIElement } from '$lib/functions';
+	import { createIElement } from '$lib/scripts/functions';
 	import { Plus } from 'lucide-svelte';
 
 	export let id_parent: string;

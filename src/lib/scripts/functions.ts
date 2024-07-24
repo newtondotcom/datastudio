@@ -1,4 +1,4 @@
-import { structure, types } from '$lib/store';
+import { structure, types } from '$lib/scripts/store';
 
 let structure_local: IElement[];
 let types_local: IType[];
@@ -25,7 +25,7 @@ export async function changeIType(id: string, name: string, struct: boolean) {
 	const type_local = types_local.find((type) => type.name === name);
 
 	if (!type_local) {
-		await createITypestruct(name);
+		await createTypestruct(name);
 	}
 
 	structure_local = structure_local.map((element) => {
@@ -86,7 +86,7 @@ export async function createIElement(id_parent: string) {
 	await addIElement(element);
 }
 
-export async function createITypestruct(name: string) {
+export async function createTypestruct(name: string) {
 	let type_created: IType = {
 		name,
 		struct: true
@@ -106,11 +106,12 @@ export async function createITypestruct(name: string) {
 	await addIElement(newIElement);
 }
 
+const Colors = ['blue', 'purple', 'orange', 'green', 'rose'];
+
 export async function genColor(): Promise<string> {
-	const teints = [950, 800, 600, 400, 200];
-	const colors = ['blue', 'purple', 'orange', 'green', 'rose'];
-	const randomIndex = Math.floor(Math.random() * colors.length);
-	return Promise.resolve(`${colors[randomIndex]}-600`);
+	//const teints = [950, 800, 600, 400, 200];
+	const randomIndex = Math.floor(Math.random() * Colors.length);
+	return Promise.resolve(`${Colors[randomIndex]}-600`);
 }
 
 export async function genUID() {

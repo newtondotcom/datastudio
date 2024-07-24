@@ -1,4 +1,4 @@
-export interface IIElement {
+export interface IElement {
 	id: string;
 	name: string;
 	type: string;
@@ -8,15 +8,7 @@ export interface IIElement {
 	indent: number;
 }
 
-export interface IIType {
+export interface IType {
 	name: string;
 	struct: boolean;
-}
-
-export enum Colors {
-	blue,
-	purple,
-	orange,
-	green,
-	rose
 }

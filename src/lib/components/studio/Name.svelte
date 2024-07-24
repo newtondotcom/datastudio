@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Input } from '$lib/components/ui/input/index.js';
-	import { renameIElement } from '$lib/functions';
+	import { renameIElement } from '$lib/scripts/functions';
 	export let id: string;
 
 	let name: string;
 
-	import { structure } from '$lib/store';
+	import { structure } from '$lib/scripts/store';
 	let structure_local: IElement[];
 	structure.subscribe((value: IElement[]) => {
 		structure_local = value;

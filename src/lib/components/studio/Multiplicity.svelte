@@ -7,8 +7,8 @@
 	let multiplicity: number;
 	let valueDisplayed: any;
 
-	import { structure } from '$lib/store';
-	import { changeMultiplicity } from '$lib/functions';
+	import { structure } from '$lib/scripts/store';
+	import { changeMultiplicity } from '$lib/scripts/functions';
 	let structure_local: IElement[];
 	structure.subscribe((value: IElement[]) => {
 		structure_local = value;

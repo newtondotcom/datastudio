@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
-	import type { IElement } from '../ambient';
+	import type { IElement } from '../../../ambient';
 	import Delete from '$lib/components/studio/Delete.svelte';
 	import IType from '$lib/components/studio/Type.svelte';
 	import Multiplicity from '$lib/components/studio/Multiplicity.svelte';
 	import Rename from '$lib/components/studio/Rename.svelte';
-	import { cn } from '$lib/utils';
+	import { cn } from '$lib/scripts/utils';
 	import Add from '$lib/components/studio/Add.svelte';
 	import Name from '$lib/components/studio/Name.svelte';
 
@@ -15,7 +15,7 @@
 	let type_local: IType;
 	let color_local: string;
 
-	import { structure, types } from '$lib/store';
+	import { structure, types } from '$lib/scripts/store';
 	let structure_local: IElement[];
 	let children: IElement[];
 	let types_local: IType[];
@@ -36,7 +36,7 @@
 		if (types_local) {
 			type_local = types_local.find((type: IType) => type.name === el_local?.type);
 			if (type_local == undefined) {
-				console.log('IType not found : ', el_local.name, el_local.type, types_local);
+				console.log('Type not found : ', el_local.name, el_local.type, types_local);
 			}
 			if (!type_local.struct) {
 				color_local = 'neutral-100';
@@ -63,7 +63,6 @@
 					<ChevronUp size={40} />
 				{/if}
 			</button>
-			<Multiplicity {id} />
 		</div>
 		<div class="flex flex-row">
 			<Add id_parent={el_local.id} />
