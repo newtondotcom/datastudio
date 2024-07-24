@@ -11,26 +11,6 @@ types.subscribe((value) => {
 	types_local = value;
 });
 
-export async function createTypeAbstract(name: string) {
-	let type_created: Type = {
-		name,
-		abstract: true
-	};
-	types_local.push(type_created);
-	types.set(types_local);
-
-	const newElement: Element = {
-		id: await genUID(),
-		id_parent: null,
-		name,
-		type: name,
-		multiplicity: 0,
-		color: await genColor(0),
-		indent: 0
-	};
-	await addElement(newElement);
-}
-
 export async function renameElement(id: string, name: string) {
 	structure_local = structure_local.map((element) => {
 		if (element.id === id) {
@@ -41,11 +21,11 @@ export async function renameElement(id: string, name: string) {
 	structure.set(structure_local);
 }
 
-export async function changeType(id: string, name: string, abstract: boolean) {
+export async function changeType(id: string, name: string, struct: boolean) {
 	const type_local = types_local.find((type) => type.name === name);
 
 	if (!type_local) {
-		await createTypeAbstract(name);
+		await createTypestruct(name);
 	}
 
 	structure_local = structure_local.map((element) => {
@@ -93,33 +73,31 @@ export async function addElement(element: Element) {
 	structure.set(structure_local);
 }
 
-export async function createOrigin(name: string, type: string) {
-	const id = await genUID();
+export async function createTypestruct(name: string) {
+	let type_created: Type = {
+		name,
+		struct: true
+	};
+	types_local.push(type_created);
+	types.set(types_local);
 
-	// Create the new element
 	const newElement: Element = {
-		id,
+		id: await genUID(),
 		id_parent: null,
 		name,
-		type,
+		type: name,
 		multiplicity: 0,
 		color: await genColor(0),
 		indent: 0
 	};
 	await addElement(newElement);
-
-	// Create the new type
-	const type_local: Type = {
-		name,
-		abstract: true
-	};
-	types_local.push(type_local);
-	types.set(types_local);
 }
 
 export async function genColor(indent: number) {
 	const teints = [950, 800, 600, 400, 200];
-	return 'orange-' + teints[indent];
+	const colors = ['blue', 'purple', 'orange', 'green', 'rose'];
+	//return 'orange-' + teints[indent];
+	return colors[Math.random() * 10] + '-600';
 }
 
 export async function genUID() {

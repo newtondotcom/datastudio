@@ -10,8 +10,7 @@ export interface Element {
 
 export interface Type {
 	name: string;
-	abstract: boolean;
-	id_referenced?: string;
+	struct: boolean;
 }
 
 export enum Colors {
