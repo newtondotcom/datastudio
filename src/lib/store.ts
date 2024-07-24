@@ -9,9 +9,9 @@ structure.set([
 		id: 'c8hs80nis',
 		id_parent: null,
 		name: 'name',
-		type: 'struc',
+		type: 'na',
 		multiplicity: 0,
-		color: 'orange-950',
+		color: 'blue-950',
 		indent: 0
 	},
 	{
@@ -20,7 +20,7 @@ structure.set([
 		type: 'integer',
 		multiplicity: 2,
 		id_parent: 'c8hs80nis',
-		color: 'orange-800',
+		color: 'blue-800',
 		indent: 1
 	}
 ]);
@@ -28,10 +28,18 @@ structure.set([
 types.set([
 	{
 		name: 'string',
-		abstract: false
+		struct: false
 	},
 	{
 		name: 'integer',
-		abstract: false
+		struct: false
+	},
+	{
+		name: 'na',
+		struct: false
+	},
+	{
+		name: 'date',
+		struct: false
 	}
 ]);
