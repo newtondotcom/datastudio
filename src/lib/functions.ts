@@ -93,11 +93,11 @@ export async function createTypestruct(name: string) {
 	await addElement(newElement);
 }
 
-export async function genColor(indent: number) {
+export async function genColor(indent: number): Promise<string> {
 	const teints = [950, 800, 600, 400, 200];
 	const colors = ['blue', 'purple', 'orange', 'green', 'rose'];
-	//return 'orange-' + teints[indent];
-	return colors[Math.random() * 10] + '-600';
+	const randomIndex = Math.floor(Math.random() * colors.length);
+	return Promise.resolve(`${colors[randomIndex]}-${teints[indent]}`);
 }
 
 export async function genUID() {
