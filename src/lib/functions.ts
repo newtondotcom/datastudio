@@ -11,21 +11,27 @@ types.subscribe((value) => {
 	types_local = value;
 });
 
+export async function createTypeAbstract(name: string) {
+	let type_created: Type = {
+		name,
+		abstract: true
+	};
+	types_local.push(type_created);
+	types.set(types_local);
+
+	const newElement: Element = {
+		id: await genUID(),
+		id_parent: null,
+		name,
+		type: name,
+		multiplicity: 0,
+		color: await genColor(0),
+		indent: 0
+	};
+	await addElement(newElement);
+}
+
 export async function renameElement(id: string, name: string) {
-	// check if the element is refence of a type
-	const el: Element = structure_local.find((element) => element.id === id);
-	const type_name: string = el.type;
-	const type_tab: Element = types_local.find((type) => type.name === type_name);
-	if (type_tab.abstract) {
-		if (type_tab.id_referenced != el.id_parent) {
-			// Type is referenced elsewhere
-			const child = structure_local.find(
-				(x: Element) => x.id_parent === el.id_parent && x.name === el.name
-			);
-			await renameElement(child?.id, name);
-			return;
-		}
-	}
 	structure_local = structure_local.map((element) => {
 		if (element.id === id) {
 			return { ...element, name };
@@ -36,20 +42,10 @@ export async function renameElement(id: string, name: string) {
 }
 
 export async function changeType(id: string, name: string, abstract: boolean) {
-	console.log(id, name, abstract);
 	const type_local = types_local.find((type) => type.name === name);
 
 	if (!type_local) {
-		// Create the type
-		let type_created: Type = {
-			name,
-			abstract
-		};
-		if (abstract) {
-			type_created.id_referenced = id;
-		}
-		types_local.push(type_created);
-		types.set(types_local);
+		await createTypeAbstract(name);
 	}
 
 	structure_local = structure_local.map((element) => {
@@ -72,10 +68,24 @@ export async function changeMultiplicity(id: string, multiplicity: number) {
 }
 
 export async function deleteElement(id: string) {
+	const element = structure_local.find((el) => el.id === id);
+	if (!element.id_parent) {
+		// Element is the creator of his type
+		// Delete this type and change the type of the other reference
+		const type_name = element.type;
+		types_local = types_local.filter((type) => type.name !== type_name);
+		types.set(types_local);
+
+		structure_local = structure_local.map((element) => {
+			if (element.type == type_name) {
+				return { ...element, type: 'na' };
+			}
+			return element;
+		});
+	}
+
 	structure_local = structure_local.filter((element) => element.id !== id);
 	structure.set(structure_local);
-
-	// check if the element if refence of a type, set reference to other existnce, else delete
 }
 
 export async function addElement(element: Element) {
@@ -96,13 +106,12 @@ export async function createOrigin(name: string, type: string) {
 		color: await genColor(0),
 		indent: 0
 	};
-	addElement(newElement);
+	await addElement(newElement);
 
 	// Create the new type
 	const type_local: Type = {
 		name,
-		abstract: true,
-		id_referenced: true
+		abstract: true
 	};
 	types_local.push(type_local);
 	types.set(types_local);
