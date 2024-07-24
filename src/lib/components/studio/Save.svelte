@@ -1,0 +1,44 @@
+<script lang="ts">
+	let is_ctrl_down = false;
+	let is_s_down = false;
+
+	function on_bind() {
+		console.log('save');
+	}
+
+	function on_key_down(event: KeyboardEvent) {
+		if (event.repeat) return;
+
+		switch (event.key) {
+			case 'Control':
+				is_ctrl_down = true;
+				event.preventDefault();
+				break;
+
+			case 's':
+				is_s_down = true;
+				event.preventDefault();
+				break;
+		}
+
+		if (is_ctrl_down && is_s_down) {
+			on_bind();
+		}
+	}
+
+	function on_key_up(event: KeyboardEvent) {
+		switch (event.key) {
+			case 'Control':
+				is_ctrl_down = false;
+				event.preventDefault();
+				break;
+
+			case 's':
+				is_s_down = false;
+				event.preventDefault();
+				break;
+		}
+	}
+</script>
+
+<svelte:window on:keydown={on_key_down} on:keyup={on_key_up} />
