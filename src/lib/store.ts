@@ -1,8 +1,8 @@
 import { writable } from 'svelte/store';
 
-export const structure: Element[] = writable([]);
+export const structure: IElement[] = writable([]);
 
-export const types: Types[] = writable([]);
+export const types: ITypes[] = writable([]);
 
 structure.set([
 	{

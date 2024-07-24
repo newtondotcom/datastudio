@@ -1,13 +1,13 @@
 <script lang="ts">
 	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { deleteElement } from '$lib/functions';
+	import { deleteIElement } from '$lib/functions';
 	import { Trash2 } from 'lucide-svelte';
 
 	export let id: string;
 
 	async function del() {
-		await deleteElement(id);
+		await deleteIElement(id);
 	}
 </script>
 

@@ -1,4 +1,4 @@
-export interface Element {
+export interface IIElement {
 	id: string;
 	name: string;
 	type: string;
@@ -8,7 +8,7 @@ export interface Element {
 	indent: number;
 }
 
-export interface Type {
+export interface IIType {
 	name: string;
 	struct: boolean;
 }

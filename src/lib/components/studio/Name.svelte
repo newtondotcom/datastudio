@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { Input } from '$lib/components/ui/input/index.js';
-	import { renameElement } from '$lib/functions';
+	import { renameIElement } from '$lib/functions';
 	export let id: string;
 
 	let name: string;
 
 	import { structure } from '$lib/store';
-	let structure_local: Element[];
-	structure.subscribe((value: Element[]) => {
+	let structure_local: IElement[];
+	structure.subscribe((value: IElement[]) => {
 		structure_local = value;
 
 		if (!value.find((el) => el.id === id)) {
@@ -19,7 +19,7 @@
 	});
 
 	async function renameEl() {
-		await renameElement(id, name);
+		await renameIElement(id, name);
 	}
 </script>
 

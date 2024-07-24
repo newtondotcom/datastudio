@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
-	import type { Element } from '../ambient';
+	import type { IElement } from '../ambient';
 	import Delete from '$lib/components/studio/Delete.svelte';
-	import Type from '$lib/components/studio/Type.svelte';
+	import IType from '$lib/components/studio/Type.svelte';
 	import Multiplicity from '$lib/components/studio/Multiplicity.svelte';
 	import Rename from '$lib/components/studio/Rename.svelte';
 	import { cn } from '$lib/utils';
@@ -11,32 +11,32 @@
 
 	export let id: string;
 
-	let el_local: Element;
-	let type_local: Type;
+	let el_local: IElement;
+	let type_local: IType;
 	let color_local: string;
 
 	import { structure, types } from '$lib/store';
-	let structure_local: Element[];
-	let children: Element[];
-	let types_local: Type[];
+	let structure_local: IElement[];
+	let children: IElement[];
+	let types_local: IType[];
 
 	structure.subscribe((value) => {
 		structure_local = value;
 		children = value.filter((el) => el.id_parent === id);
 		updateStruct();
 	});
-	types.subscribe((value: Type[]) => {
+	types.subscribe((value: IType[]) => {
 		types_local = value;
 		updateStruct();
 	});
 
 	function updateStruct() {
 		children = structure_local.filter((el) => el.id_parent === id);
-		el_local = structure_local.find((el: Element) => el.id === id);
+		el_local = structure_local.find((el: IElement) => el.id === id);
 		if (types_local) {
-			type_local = types_local.find((type: Type) => type.name === el_local?.type);
+			type_local = types_local.find((type: IType) => type.name === el_local?.type);
 			if (type_local == undefined) {
-				console.log('Type not found : ', el_local.name, el_local.type, types_local);
+				console.log('IType not found : ', el_local.name, el_local.type, types_local);
 			}
 			if (!type_local.struct) {
 				color_local = 'neutral-100';
@@ -79,7 +79,7 @@
 					<li class="mx-1 my-1 flex flex-row rounded-lg py-2 text-2xl">
 						<div class={cn('flex w-full flex-row rounded-xl px-2 py-2', 'bg-' + color_local)}>
 							<Name id={child.id} />
-							<Type id={child.id} />
+							<IType id={child.id} />
 							<Multiplicity id={child.id} />
 							<Delete id={child.id} />
 						</div>

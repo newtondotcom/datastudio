@@ -10,7 +10,7 @@
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { tick } from 'svelte';
 	import { Checkbox } from '$lib/components/ui/checkbox';
-	import { capitalizeFirstLetter, changeType } from '$lib/functions';
+	import { capitalizeFirstLetter, changeIType } from '$lib/functions';
 
 	export let id: string;
 
@@ -22,13 +22,13 @@
 
 	import { types, structure } from '$lib/store';
 
-	let structure_local: Element[];
+	let structure_local: IElement[];
 	let types_select: { value: string; label: string }[];
-	let types_local: Type[];
-	let el_local: Element;
-	let el_parent: Element;
+	let types_local: IType[];
+	let el_local: IElement;
+	let el_parent: IElement;
 
-	structure.subscribe((value: Element[]) => {
+	structure.subscribe((value: IElement[]) => {
 		structure_local = value;
 
 		// The element just got deleted
@@ -45,10 +45,10 @@
 		el_parent = value.find((el) => el.id === el_local.id_parent);
 	});
 
-	types.subscribe((value: Type[]) => {
+	types.subscribe((value: IType[]) => {
 		types_local = value;
 		types_select = value
-			.map((type: Type) => {
+			.map((type: IType) => {
 				if (type.name == el_parent.type) {
 					return null;
 				}
@@ -71,12 +71,12 @@
 	function closeAndFocusTrigger(triggerId: string) {
 		open = false;
 		tick().then(() => {
-			document.getElementById(triggerId)?.focus();
+			document.getIElementById(triggerId)?.focus();
 		});
 	}
 
-	async function setType(name: string, struct: boolean) {
-		await changeType(id, name, !struct);
+	async function setIType(name: string, struct: boolean) {
+		await changeIType(id, name, !struct);
 	}
 </script>
 
@@ -102,7 +102,7 @@
 					<Command.Item
 						value={framework.value}
 						onSelect={async (currentValue) => {
-							await setType(currentValue, false);
+							await setIType(currentValue, false);
 							closeAndFocusTrigger(ids.trigger);
 						}}
 					>
@@ -129,7 +129,7 @@
 						</Sheet.Header>
 						<div class="grid gap-4 py-4">
 							<div class="grid grid-cols-4 items-center gap-4">
-								<Label for="name" class="text-right">Type Name</Label>
+								<Label for="name" class="text-right">IType Name</Label>
 								<Input bind:value={name} id="name" class="col-span-3" />
 							</div>
 							<div class="items-top flex space-x-2">
@@ -152,7 +152,7 @@
 							<Sheet.Close asChild let:builder>
 								<Button
 									on:click={async () => {
-										await setType(name, struct);
+										await setIType(name, struct);
 										closeAndFocusTrigger(ids.trigger);
 									}}
 									builders={[builder]}

@@ -1,7 +1,7 @@
 import { structure, types } from '$lib/store';
 
-let structure_local: Element[];
-let types_local: Type[];
+let structure_local: IElement[];
+let types_local: IType[];
 
 structure.subscribe((value) => {
 	structure_local = value;
@@ -11,7 +11,7 @@ types.subscribe((value) => {
 	types_local = value;
 });
 
-export async function renameElement(id: string, name: string) {
+export async function renameIElement(id: string, name: string) {
 	structure_local = structure_local.map((element) => {
 		if (element.id === id) {
 			return { ...element, name };
@@ -21,11 +21,11 @@ export async function renameElement(id: string, name: string) {
 	structure.set(structure_local);
 }
 
-export async function changeType(id: string, name: string, struct: boolean) {
+export async function changeIType(id: string, name: string, struct: boolean) {
 	const type_local = types_local.find((type) => type.name === name);
 
 	if (!type_local) {
-		await createTypestruct(name);
+		await createITypestruct(name);
 	}
 
 	structure_local = structure_local.map((element) => {
@@ -47,10 +47,10 @@ export async function changeMultiplicity(id: string, multiplicity: number) {
 	structure.set(structure_local);
 }
 
-export async function deleteElement(id: string) {
+export async function deleteIElement(id: string) {
 	const element = structure_local.find((el) => el.id === id);
 	if (!element.id_parent) {
-		// Element is the creator of his type
+		// IElement is the creator of his type
 		// Delete this type and change the type of the other reference
 		const type_name = element.type;
 		types_local = types_local.filter((type) => type.name !== type_name);
@@ -68,13 +68,13 @@ export async function deleteElement(id: string) {
 	structure.set(structure_local);
 }
 
-export async function addElement(element: Element) {
+export async function addIElement(element: IElement) {
 	structure_local.push(element);
 	structure.set(structure_local);
 }
 
-export async function createElement(id_parent: string) {
-	const element: Element = {
+export async function createIElement(id_parent: string) {
+	const element: IElement = {
 		id: await genUID(),
 		name: 'edit',
 		type: 'string',
@@ -83,18 +83,18 @@ export async function createElement(id_parent: string) {
 		color: await genColor(),
 		indent: 0
 	};
-	await addElement(element);
+	await addIElement(element);
 }
 
-export async function createTypestruct(name: string) {
-	let type_created: Type = {
+export async function createITypestruct(name: string) {
+	let type_created: IType = {
 		name,
 		struct: true
 	};
 	types_local.push(type_created);
 	types.set(types_local);
 
-	const newElement: Element = {
+	const newIElement: IElement = {
 		id: await genUID(),
 		id_parent: null,
 		name,
@@ -103,7 +103,7 @@ export async function createTypestruct(name: string) {
 		color: await genColor(),
 		indent: 0
 	};
-	await addElement(newElement);
+	await addIElement(newIElement);
 }
 
 export async function genColor(): Promise<string> {

@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { createElement } from '$lib/functions';
+	import { createIElement } from '$lib/functions';
 	import { Plus } from 'lucide-svelte';
 
 	export let id_parent: string;
 
 	async function create() {
 		const parentId = await id_parent;
-		await createElement(parentId);
+		await createIElement(parentId);
 	}
 </script>
 

@@ -9,8 +9,8 @@
 
 	import { structure } from '$lib/store';
 	import { changeMultiplicity } from '$lib/functions';
-	let structure_local: Element[];
-	structure.subscribe((value: Element[]) => {
+	let structure_local: IElement[];
+	structure.subscribe((value: IElement[]) => {
 		structure_local = value;
 
 		// The element just got deleted

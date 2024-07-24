@@ -1,7 +1,7 @@
 <script lang="ts">
-	import RecursiveElement from '$lib/RecursiveElement.svelte';
-	import type { Element } from '../ambient';
-	import { createTypestruct } from '$lib/functions';
+	import IElement from '$lib/Element.svelte';
+	import type { IElement } from '../ambient';
+	import { createITypestruct } from '$lib/functions';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
@@ -9,11 +9,11 @@
 	import { Plus } from 'lucide-svelte';
 
 	import { structure } from '$lib/store';
-	let structure_local: Element[];
-	let origins: Element[];
+	let structure_local: IElement[];
+	let origins: IElement[];
 	structure.subscribe((value) => {
 		structure_local = value;
-		origins = value.filter((el: Element) => el.indent === 0);
+		origins = value.filter((el: IElement) => el.indent === 0);
 	});
 
 	let name: string;
@@ -38,7 +38,7 @@
 		</div>
 		<Dialog.Footer>
 			<Dialog.Close>
-				<Button type="submit" on:click={createTypestruct(name)}>Save changes</Button>
+				<Button type="submit" on:click={createITypestruct(name)}>Save changes</Button>
 			</Dialog.Close>
 		</Dialog.Footer>
 	</Dialog.Content>
@@ -46,6 +46,6 @@
 
 {#if origins.length > 0}
 	{#each origins as origin}
-		<RecursiveElement id={origin.id} />
+		<IElement id={origin.id} />
 	{/each}
 {/if}
