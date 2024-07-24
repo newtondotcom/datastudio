@@ -10,6 +10,7 @@
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { tick } from 'svelte';
 	import { Checkbox } from '$lib/components/ui/checkbox';
+	import { capitalizeFirstLetter, changeType } from '$lib/functions';
 
 	export let id: string;
 
@@ -17,22 +18,16 @@
 	let selectedValue: string;
 	let search: string;
 	let name: string;
-	let abstract: boolean;
+	let struct: boolean;
 
 	import { types, structure } from '$lib/store';
-	import { capitalizeFirstLetter, changeType } from '$lib/functions';
+
+	let structure_local: Element[];
 	let types_select: { value: string; label: string }[];
 	let types_local: Type[];
-	types.subscribe((value: Type[]) => {
-		types_local = value;
-		types_select = value.map((type: Type) => {
-			return {
-				value: type.name,
-				label: capitalizeFirstLetter(type.name)
-			};
-		});
-	});
-	let structure_local: Element[];
+	let el_local: Element;
+	let el_parent: Element;
+
 	structure.subscribe((value: Element[]) => {
 		structure_local = value;
 
@@ -41,12 +36,28 @@
 			return;
 		}
 
-		const el = value.find((el) => el.id === id);
-		if (!el) {
+		el_local = value.find((el) => el.id === id);
+		if (!el_local) {
 			return;
 		} else {
-			selectedValue = el.type;
+			selectedValue = el_local.type;
 		}
+		el_parent = value.find((el) => el.id === el_local.id_parent);
+	});
+
+	types.subscribe((value: Type[]) => {
+		types_local = value;
+		types_select = value
+			.map((type: Type) => {
+				if (type.name == el_parent.type) {
+					return null;
+				}
+				return {
+					value: type.name,
+					label: capitalizeFirstLetter(type.name)
+				};
+			})
+			.filter((item) => item !== null);
 	});
 
 	$: search =
@@ -64,8 +75,8 @@
 		});
 	}
 
-	async function setType(name: string, abstract: boolean) {
-		await changeType(id, name, !abstract);
+	async function setType(name: string, struct: boolean) {
+		await changeType(id, name, !struct);
 	}
 </script>
 
@@ -122,13 +133,13 @@
 								<Input bind:value={name} id="name" class="col-span-3" />
 							</div>
 							<div class="items-top flex space-x-2">
-								<Checkbox bind:checked={abstract} id="terms1" />
+								<Checkbox bind:checked={struct} id="terms1" />
 								<div class="grid gap-1.5 leading-none">
 									<Label
 										for="terms1"
 										class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 									>
-										Is this not an abstract type ?
+										Is this not an struct type ?
 									</Label>
 									<p class="text-sm text-muted-foreground">
 										If you select this option, the type will be created as a concrete type (ex :
@@ -141,7 +152,7 @@
 							<Sheet.Close asChild let:builder>
 								<Button
 									on:click={async () => {
-										await setType(name, abstract);
+										await setType(name, struct);
 										closeAndFocusTrigger(ids.trigger);
 									}}
 									builders={[builder]}
