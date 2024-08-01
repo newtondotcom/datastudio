@@ -1,8 +1,9 @@
-import { structure, types } from '$lib/scripts/store';
-import type { IElement } from '../../ambient';
+import { structure, types, timestamp } from '$lib/scripts/store';
+import type { IElement, IStructure, IType } from '../../ambient';
 
 let structure_local: IElement[];
 let types_local: IType[];
+let timestamp_local: Date;
 
 structure.subscribe((value: Element[]) => {
 	structure_local = value;
@@ -12,6 +13,11 @@ structure.subscribe((value: Element[]) => {
 types.subscribe((value: Type[]) => {
 	types_local = value;
 	console.log('new type: ' + types_local.length);
+});
+
+timestamp.subscribe((value: Date) => {
+	timestamp_local = value;
+	console.log('new timestamp ' + timestamp_local.toDateString());
 });
 
 export async function renameElement(id: string, name: string) {
@@ -120,6 +126,15 @@ export async function changeDesc(id: string, description: string) {
 		return element;
 	});
 	structure.set(structure_local);
+}
+
+export async function loadStructure(structureL: IStructure) {
+	structure_local = structureL.elements;
+	types_local = structureL.types;
+	timestamp_local = structureL.timestamp;
+	structure.set(structure_local);
+	types.set(types_local);
+	timestamp.set(timestamp_local);
 }
 
 const Colors = ['blue', 'purple', 'orange', 'green', 'rose'];
