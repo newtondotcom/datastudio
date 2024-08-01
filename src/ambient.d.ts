@@ -13,3 +13,9 @@ export interface IType {
 	name: string;
 	struct: boolean;
 }
+
+export interface IStructure {
+	timestamp: Date;
+	elements: IElement[];
+	types: IType[];
+}

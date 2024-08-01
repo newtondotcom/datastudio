@@ -4,6 +4,8 @@ export const structure: IElement[] = writable([]);
 
 export const types: ITypes[] = writable([]);
 
+export const timestamp: Date = writable(new Date());
+
 structure.set([
 	{
 		id: 'c8hs80nis',
