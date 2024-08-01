@@ -25,7 +25,8 @@ DataStudio provides several export options to meet the diverse needs of data eng
 - Export to **PySpark**: Export the structure for use with PySpark, enabling seamless integration with your big data processing workflows.
 - Export to **Scala**: Export the structure for use with Scala, supporting your development in this programming language.
 - Export a **Markdown table** describing a db schema.
-- Generate SQL query to create tables according to declared types.
+- Generate **SQL query** to create tables according to declared types.
+- Generate **HQL query** to create tables according to declared types.
 
 ## Generating Test Dataset
 
