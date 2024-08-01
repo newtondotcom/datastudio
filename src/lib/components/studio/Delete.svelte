@@ -13,7 +13,7 @@
 
 <AlertDialog.Root>
 	<AlertDialog.Trigger asChild let:builder>
-		<Button variant="secondary" class="mx-1" builders={[builder]}><Trash2 /></Button>
+		<Button variant="destructive" class="mx-1" builders={[builder]}><Trash2 /></Button>
 	</AlertDialog.Trigger>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
