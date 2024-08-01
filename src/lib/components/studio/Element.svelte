@@ -57,7 +57,7 @@
 	<div class="flex w-full flex-row items-center justify-between">
 		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + el_local.color)}>
 			<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg px-2 text-3xl">
-				{type_local.name}
+				{el_local.name} - {type_local.name}
 				{#if open}
 					<ChevronDown size={40} />
 				{:else}
@@ -68,7 +68,7 @@
 		<div class="flex flex-row">
 			<Add id_parent={el_local.id} />
 			<Delete id={el_local.id} />
-			<Rename />
+			<Rename id={el_local.id} />
 		</div>
 	</div>
 

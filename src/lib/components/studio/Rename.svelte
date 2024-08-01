@@ -4,6 +4,27 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Pen } from 'lucide-svelte';
+
+	export let id: string;
+	let name: string;
+
+	import { structure } from '$lib/scripts/store';
+	import { renameElement } from '$lib/scripts/functions';
+	let structure_local: IElement[];
+	structure.subscribe((value: IElement[]) => {
+		structure_local = value;
+
+		if (!value.find((el) => el.id === id)) {
+			return;
+		}
+
+		const el = value.find((el) => el.id === id);
+		name = el.name;
+	});
+
+	async function renameEl() {
+		await renameElement(id, name);
+	}
 </script>
 
 <Dialog.Root>
@@ -20,11 +41,13 @@
 		<div class="grid gap-4 py-4">
 			<div class="grid grid-cols-4 items-center gap-4">
 				<Label for="name" class="text-right">Name</Label>
-				<Input id="name" value="Pedro Duarte" class="col-span-3" />
+				<Input id="name" bind:value={name} class="col-span-3" />
 			</div>
 		</div>
 		<Dialog.Footer>
-			<Button type="submit">Save changes</Button>
+			<Dialog.Close>
+				<Button type="submit" on:click={renameEl}>Save changes</Button>
+			</Dialog.Close>
 		</Dialog.Footer>
 	</Dialog.Content>
 </Dialog.Root>
