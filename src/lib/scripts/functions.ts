@@ -110,6 +110,16 @@ export async function createTypestruct(name: string) {
 	await addElement(newIElement);
 }
 
+export async function changeDesc(id: string, description: string) {
+	structure_local = structure_local.map((element) => {
+		if (element.id === id) {
+			return { ...element, description };
+		}
+		return element;
+	});
+	structure.set(structure_local);
+}
+
 const Colors = ['blue', 'purple', 'orange', 'green', 'rose'];
 
 export async function genColor(): Promise<string> {

@@ -16,6 +16,7 @@
 	let color_local: string;
 
 	import { structure, types } from '$lib/scripts/store';
+	import Desc from './Desc.svelte';
 	let structure_local: IElement[];
 	let children: IElement[];
 	let types_local: IType[];
@@ -80,6 +81,7 @@
 							<Name id={child.id} />
 							<IType id={child.id} />
 							<Multiplicity id={child.id} />
+							<Desc id={child.id} />
 							<Delete id={child.id} />
 						</div>
 					</li>

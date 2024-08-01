@@ -6,6 +6,7 @@ export interface IElement {
 	id_parent?: string;
 	color: string;
 	indent: number;
+	description: string;
 }
 
 export interface IType {
