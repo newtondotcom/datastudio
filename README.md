@@ -19,11 +19,13 @@
 DataStudio provides several export options to meet the diverse needs of data engineers:
 
 - **Import a structure**: Import an existing structure. This feature allows you to work with already defined schemas and modify them as needed.
-- **Download the structure**: Download the current structure for offline use or backup.
-- **Export to XSD**: Export the structure in XML Schema Definition (XSD) format for use in XML-based systems.
-- **Export to UML Diagram**: Export the structure as a UML diagram for documentation and visualization purposes.
-- **Export to PySpark**: Export the structure for use with PySpark, enabling seamless integration with your big data processing workflows.
-- **Export to Scala**: Export the structure for use with Scala, supporting your development in this programming language.
+- Download the **structure**: Download the current structure to reuse it later.
+- Export to **XSD**: Export the structure in XML Schema Definition (XSD) format for use in XML-based systems.
+- Export to **UML Diagram**: Export the structure as a UML diagram for documentation and visualization purposes.
+- Export to **PySpark**: Export the structure for use with PySpark, enabling seamless integration with your big data processing workflows.
+- Export to **Scala**: Export the structure for use with Scala, supporting your development in this programming language.
+- Export a **Markdown table** describing a db schema.
+- Generate SQL query to create tables according to declared types.
 
 ## Generating Test Dataset
 
