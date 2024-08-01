@@ -85,7 +85,8 @@ export async function createIElement(id_parent: string) {
 		multiplicity: 0,
 		id_parent: id_parent,
 		color: await genColor(),
-		indent: parent.indent + 1
+		indent: parent.indent + 1,
+		description: ''
 	};
 	await addElement(element);
 }
@@ -105,7 +106,8 @@ export async function createTypestruct(name: string) {
 		type: name,
 		multiplicity: 0,
 		color: await genColor(),
-		indent: 0
+		indent: 0,
+		description: ''
 	};
 	await addElement(newIElement);
 }
