@@ -137,6 +137,15 @@ export async function loadStructure(structureL: IStructure) {
 	timestamp.set(timestamp_local);
 }
 
+export async function exportStructure() {
+	const structureL: IStructure = {
+		timestamp: timestamp_local,
+		elements: structure_local,
+		types: types_local
+	};
+	return structureL;
+}
+
 const Colors = ['blue', 'purple', 'orange', 'green', 'rose'];
 
 export async function genColor(): Promise<string> {
