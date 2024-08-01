@@ -1,2 +1,3 @@
 - Add toast at each modification
 - Make all exports
+- Verify if type not exists or attribute before creating by toast
