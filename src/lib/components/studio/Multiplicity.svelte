@@ -7,11 +7,11 @@
 	let multiplicity: number;
 	let valueDisplayed: any;
 
-	import { structure } from '$lib/scripts/store';
+	import { elements } from '$lib/scripts/store';
 	import { changeMultiplicity } from '$lib/scripts/functions';
-	let structure_local: IElement[];
-	structure.subscribe((value: IElement[]) => {
-		structure_local = value;
+	let elements_local: IElement[];
+	elements.subscribe((value: IElement[]) => {
+		elements_local = value;
 
 		// The element just got deleted
 		if (!value.find((el) => el.id === id)) {

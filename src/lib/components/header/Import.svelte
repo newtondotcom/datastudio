@@ -46,7 +46,7 @@
 	}
 </script>
 
-<div class="mx-1 flex flex-row items-center text-lg">
+<div class="mx-1 mt-2 flex flex-row items-center text-lg">
 	<Dialog.Root>
 		<Dialog.Trigger>
 			<Button>Load a structure</Button>

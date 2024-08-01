@@ -15,14 +15,14 @@
 	let type_local: IType;
 	let color_local: string;
 
-	import { structure, types } from '$lib/scripts/store';
+	import { elements, types } from '$lib/scripts/store';
 	import Desc from './Desc.svelte';
-	let structure_local: IElement[];
+	let elements_local: IElement[];
 	let children: IElement[];
 	let types_local: IType[];
 
-	structure.subscribe((value) => {
-		structure_local = value;
+	elements.subscribe((value) => {
+		elements_local = value;
 		children = value.filter((el) => el.id_parent === id);
 		updateStruct();
 	});
@@ -32,8 +32,8 @@
 	});
 
 	function updateStruct() {
-		children = structure_local.filter((el) => el.id_parent === id);
-		el_local = structure_local.find((el: IElement) => el.id === id);
+		children = elements_local.filter((el) => el.id_parent === id);
+		el_local = elements_local.find((el: IElement) => el.id === id);
 		if (types_local) {
 			type_local = types_local.find((type: IType) => type.name === el_local?.type);
 			if (type_local == undefined) {

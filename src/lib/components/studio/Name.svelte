@@ -5,10 +5,10 @@
 
 	let name: string;
 
-	import { structure } from '$lib/scripts/store';
-	let structure_local: IElement[];
-	structure.subscribe((value: IElement[]) => {
-		structure_local = value;
+	import { elements } from '$lib/scripts/store';
+	let elements_local: IElement[];
+	elements.subscribe((value: IElement[]) => {
+		elements_local = value;
 
 		if (!value.find((el) => el.id === id)) {
 			return;

@@ -1,13 +1,13 @@
-import { structure, types, timestamp } from '$lib/scripts/store';
+import { elements, types, timestamp } from '$lib/scripts/store';
 import type { IElement, IStructure, IType } from '../../ambient';
 
-let structure_local: IElement[];
+let elements_local: IElement[];
 let types_local: IType[];
 let timestamp_local: Date;
 
-structure.subscribe((value: Element[]) => {
-	structure_local = value;
-	console.log('new strucutre: ' + structure_local.length);
+elements.subscribe((value: Element[]) => {
+	elements_local = value;
+	console.log('new strucutre: ' + elements_local.length);
 });
 
 types.subscribe((value: Type[]) => {
@@ -21,13 +21,13 @@ timestamp.subscribe((value: Date) => {
 });
 
 export async function renameElement(id: string, name: string) {
-	structure_local = structure_local.map((element) => {
+	elements_local = elements_local.map((element) => {
 		if (element.id === id) {
 			return { ...element, name };
 		}
 		return element;
 	});
-	structure.set(structure_local);
+	elements.set(elements_local);
 }
 
 export async function changeType(id: string, name: string, struct: boolean) {
@@ -37,27 +37,27 @@ export async function changeType(id: string, name: string, struct: boolean) {
 		await createTypestruct(name);
 	}
 
-	structure_local = structure_local.map((element) => {
+	elements_local = elements_local.map((element) => {
 		if (element.id === id) {
 			return { ...element, type: name };
 		}
 		return element;
 	});
-	structure.set(structure_local);
+	elements.set(elements_local);
 }
 
 export async function changeMultiplicity(id: string, multiplicity: number) {
-	structure_local = structure_local.map((element) => {
+	elements_local = elements_local.map((element) => {
 		if (element.id === id) {
 			return { ...element, multiplicity };
 		}
 		return element;
 	});
-	structure.set(structure_local);
+	elements.set(elements_local);
 }
 
 export async function deleteElement(id: string) {
-	const element = structure_local.find((el) => el.id === id);
+	const element = elements_local.find((el) => el.id === id);
 	if (!element.id_parent) {
 		// IElement is the creator of his type
 		// Delete this type and change the type of the other reference
@@ -65,7 +65,7 @@ export async function deleteElement(id: string) {
 		types_local = types_local.filter((type) => type.name !== type_name);
 		types.set(types_local);
 
-		structure_local = structure_local.map((element) => {
+		elements_local = elements_local.map((element) => {
 			if (element.type == type_name) {
 				return { ...element, type: 'na' };
 			}
@@ -73,17 +73,17 @@ export async function deleteElement(id: string) {
 		});
 	}
 
-	structure_local = structure_local.filter((element) => element.id !== id);
-	structure.set(structure_local);
+	elements_local = elements_local.filter((element) => element.id !== id);
+	elements.set(elements_local);
 }
 
 export async function addElement(element: IElement) {
-	structure_local.push(element);
-	structure.set(structure_local);
+	elements_local.push(element);
+	elements.set(elements_local);
 }
 
-export async function createIElement(id_parent: string) {
-	const parent: IElement = structure_local.find((el: Element) => el.id === id_parent);
+export async function createElement(id_parent: string) {
+	const parent: IElement = elements_local.find((el: Element) => el.id === id_parent);
 	const element: IElement = {
 		id: await genUID(),
 		name: 'edit',
@@ -119,20 +119,20 @@ export async function createTypestruct(name: string) {
 }
 
 export async function changeDesc(id: string, description: string) {
-	structure_local = structure_local.map((element) => {
+	elements_local = elements_local.map((element) => {
 		if (element.id === id) {
 			return { ...element, description };
 		}
 		return element;
 	});
-	structure.set(structure_local);
+	elements.set(elements_local);
 }
 
 export async function loadStructure(structureL: IStructure) {
-	structure_local = structureL.elements;
+	elements_local = structureL.elements;
 	types_local = structureL.types;
 	timestamp_local = structureL.timestamp;
-	structure.set(structure_local);
+	elements.set(elements_local);
 	types.set(types_local);
 	timestamp.set(timestamp_local);
 }
@@ -140,7 +140,7 @@ export async function loadStructure(structureL: IStructure) {
 export async function exportStructure() {
 	const structureL: IStructure = {
 		timestamp: timestamp_local,
-		elements: structure_local,
+		elements: elements_local,
 		types: types_local
 	};
 	return structureL;

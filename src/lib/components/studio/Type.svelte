@@ -20,16 +20,16 @@
 	let name: string;
 	let struct: boolean;
 
-	import { types, structure } from '$lib/scripts/store';
+	import { types, elements } from '$lib/scripts/store';
 
-	let structure_local: IElement[];
+	let elements_local: IElement[];
 	let types_select: { value: string; label: string }[];
 	let types_local: IType[];
 	let el_local: IElement;
 	let el_parent: IElement;
 
-	structure.subscribe((value: IElement[]) => {
-		structure_local = value;
+	elements.subscribe((value: IElement[]) => {
+		elements_local = value;
 
 		// The element just got deleted
 		if (!value.find((el) => el.id === id)) {

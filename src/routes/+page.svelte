@@ -8,12 +8,12 @@
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Plus } from 'lucide-svelte';
 
-	import { structure } from '$lib/scripts/store';
+	import { elements } from '$lib/scripts/store';
 
-	let structure_local: IElement[];
+	let elements_local: IElement[];
 	let origins: IElement[];
-	structure.subscribe((value) => {
-		structure_local = value;
+	elements.subscribe((value) => {
+		elements_local = value;
 		origins = value.filter((el: IElement) => el.indent === 0);
 	});
 
