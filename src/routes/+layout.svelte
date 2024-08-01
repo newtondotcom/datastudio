@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import Save from '$lib/components/studio/Save.svelte';
+	import Save from '$lib/components/header/Save.svelte';
 </script>
 
 <header class="flex flex-col">
@@ -20,7 +20,7 @@
 			for use in different environments and tools. It can also generate a test dataset based on the criteria
 			of the schema.
 		</p>
-		<div class="mt-4 flex w-full flex-wrap justify-center space-x-4">
+		<div class="mt-4 flex w-full flex-wrap justify-center space-x-4 space-y-2">
 			<Button>Import a structure</Button>
 			<Save />
 			<Button>Export to XSD</Button>
@@ -28,6 +28,9 @@
 			<Button>Export to PySpark</Button>
 			<Button>Export to Scala</Button>
 			<Button>Generate test data</Button>
+			<Button>Generate SQL structure</Button>
+			<Button>Generate HQL structure</Button>
+			<Button>Generate Mardown array describing</Button>
 		</div>
 	</div>
 </header>
