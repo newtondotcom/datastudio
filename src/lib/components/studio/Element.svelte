@@ -39,11 +39,6 @@
 			if (type_local == undefined) {
 				console.log('Type not found : ', el_local.name, el_local.type, types_local);
 			}
-			if (!type_local.struct) {
-				color_local = 'neutral-100';
-			} else {
-				color_local = el_local.color;
-			}
 		}
 	}
 
@@ -77,7 +72,15 @@
 			<div class="overflow-hidden transition-all duration-300 ease-in-out">
 				{#each children as child}
 					<li class="mx-1 my-1 flex flex-row rounded-lg py-2 text-2xl">
-						<div class={cn('flex w-full flex-row rounded-xl px-2 py-2', 'bg-' + color_local)}>
+						<div
+							class={cn(
+								'flex w-full flex-row rounded-xl px-2 py-2',
+								'bg-' +
+									(types_local.find((type) => type.name === child?.type)?.struc
+										? child.color
+										: 'neutral-100')
+							)}
+						>
 							<Name id={child.id} />
 							<IType id={child.id} />
 							<Multiplicity id={child.id} />
