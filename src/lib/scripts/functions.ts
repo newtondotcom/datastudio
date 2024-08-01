@@ -17,7 +17,7 @@ types.subscribe((value: Type[]) => {
 
 timestamp.subscribe((value: Date) => {
 	timestamp_local = value;
-	console.log('new timestamp ' + timestamp_local.toDateString());
+	console.log('new timestamp ' + new Date(value).toLocaleDateString());
 });
 
 export async function renameElement(id: string, name: string) {
