@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import Save from '$lib/components/header/Save.svelte';
+	import Import from '$lib/components/header/Import.svelte';
 </script>
 
 <header class="flex flex-col">
@@ -21,7 +22,7 @@
 			of the schema.
 		</p>
 		<div class="mt-4 flex w-full flex-wrap justify-center space-x-4 space-y-2">
-			<Button>Import a structure</Button>
+			<Import />
 			<Save />
 			<Button>Export to XSD</Button>
 			<Button>Export to UML Diagram</Button>
