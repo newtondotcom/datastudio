@@ -1,47 +1,88 @@
 import { writable } from 'svelte/store';
+import type { IElement, IType } from '../../ambient';
 
 export const elements: IElement[] = writable([]);
 
-export const types: ITypes[] = writable([]);
+export const types: IType[] = writable([]);
 
 export const timestamp: Date = writable(new Date());
 
 elements.set([
 	{
-		id: 'c8hs80nis',
+		id: '3g2j075uy',
 		id_parent: null,
-		name: 'name',
-		type: 'na',
+		name: 'Voiture',
+		type: 'Voiture',
 		multiplicity: 0,
-		color: 'blue-950',
-		indent: 0
+		color: 'green-600',
+		indent: 0,
+		description: '',
+		struct: true
 	},
 	{
-		id: 'uhhmwwa8o',
-		name: 'edit',
-		type: 'integer',
+		id: '0lludwr84',
+		name: 'Marque',
+		type: 'string',
+		multiplicity: 1,
+		id_parent: '3g2j075uy',
+		color: 'purple-600',
+		indent: 1,
+		description: '',
+		struct: false
+	},
+	{
+		id: 'ylde03zxx',
+		name: 'Conducteur',
+		type: 'Humain',
+		multiplicity: 1,
+		id_parent: '3g2j075uy',
+		color: 'rose-600',
+		indent: 1,
+		description: '',
+		struct: false
+	},
+	{
+		id: 'tuobw7d2p',
+		id_parent: null,
+		name: 'Humain',
+		type: 'Humain',
+		multiplicity: 0,
+		color: 'rose-600',
+		indent: 0,
+		description: '',
+		struct: true
+	},
+	{
+		id: 'ssjvn1kcl',
+		name: 'nom',
+		type: 'string',
+		multiplicity: 0,
+		id_parent: 'tuobw7d2p',
+		color: 'green-600',
+		indent: 1,
+		description: '',
+		struct: false
+	},
+	{
+		id: 'b8qcfhtfs',
+		name: 'Passagers',
+		type: 'Humain',
 		multiplicity: 2,
-		id_parent: 'c8hs80nis',
-		color: 'blue-800',
-		indent: 1
+		id_parent: '3g2j075uy',
+		color: 'purple-600',
+		indent: 1,
+		description: '',
+		struct: true
 	}
 ]);
 
 types.set([
 	{
-		name: 'string',
-		struct: false
+		name: 'Voiture',
+		struct: true
 	},
 	{
-		name: 'integer',
-		struct: false
-	},
-	{
-		name: 'na',
-		struct: false
-	},
-	{
-		name: 'date',
-		struct: false
+		name: 'Humain',
+		struct: true
 	}
 ]);
