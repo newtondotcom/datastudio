@@ -5,9 +5,11 @@
 	let is_ctrl_down = false;
 	let is_s_down = false;
 
-	function on_bind() {
+	async function on_bind() {
 		console.log('save');
 		saveJSONFile();
+		//const structure = await exportStructure();
+		//console.log(structure)
 	}
 
 	async function saveJSONFile() {
@@ -34,6 +36,11 @@
 				event.preventDefault();
 				break;
 
+			case 'Meta':
+				is_ctrl_down = true;
+				event.preventDefault();
+				break;
+
 			case 's':
 				is_s_down = true;
 				break;
@@ -47,6 +54,11 @@
 	function on_key_up(event: KeyboardEvent) {
 		switch (event.key) {
 			case 'Control':
+				is_ctrl_down = false;
+				event.preventDefault();
+				break;
+
+			case 'Meta':
 				is_ctrl_down = false;
 				event.preventDefault();
 				break;
