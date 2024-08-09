@@ -1,0 +1,27 @@
+class Car {
+    +brand: String
+    +model: String
+    +year: int
+}
+
+class Pedestrian {
+    +name: String
+    +age: int
+    +smartphone: Smartphone
+}
+
+class Smartphone {
+    +brand: String
+    +model: String
+    +os: String
+}
+
+class Shoes {
+    +brand: String
+    +size: int
+    +color: String
+}
+
+Car *-- "0..*" Pedestrian
+Pedestrian *-- "1" Smartphone
+Pedestrian *-- "1..*" Shoes
