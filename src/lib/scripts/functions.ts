@@ -70,7 +70,7 @@ export async function deleteElement(id: string) {
 
 		elements_local = elements_local.map((element) => {
 			if (element.type == type_name) {
-				return { ...element, type: 'na' };
+				return { ...element, type: 'na', struct: false };
 			}
 			return element;
 		});
