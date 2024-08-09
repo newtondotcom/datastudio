@@ -76,8 +76,9 @@
 							class={cn(
 								'flex w-full flex-row rounded-xl px-2 py-2',
 								'bg-' +
-									(types_local.find((type) => type.name === child?.type)?.struc
-										? child.color
+									(child.struct
+										? elements_local.find((el) => el.id_parent === null && el.type === child.type)
+												?.color
 										: 'neutral-100')
 							)}
 						>
