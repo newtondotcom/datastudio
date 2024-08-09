@@ -3,6 +3,7 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import Save from '$lib/components/header/Save.svelte';
 	import Import from '$lib/components/header/Import.svelte';
+	import Uml from '$lib/components/header/Uml.svelte';
 </script>
 
 <header class="flex flex-col">
@@ -24,8 +25,8 @@
 		<div class="mt-4 flex w-full flex-wrap justify-center space-x-4 space-y-2">
 			<Import />
 			<Save />
+			<Uml />
 			<Button disabled>Export to XSD</Button>
-			<Button>Export to UML Diagram</Button>
 			<Button disabled>Export to PySpark</Button>
 			<Button disabled>Export to Scala</Button>
 			<Button disabled>Generate test data</Button>
