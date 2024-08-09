@@ -24,18 +24,20 @@
 		<div class="mt-4 flex w-full flex-wrap justify-center space-x-4 space-y-2">
 			<Import />
 			<Save />
-			<Button>Export to XSD</Button>
+			<Button disabled>Export to XSD</Button>
 			<Button>Export to UML Diagram</Button>
-			<Button>Export to PySpark</Button>
-			<Button>Export to Scala</Button>
-			<Button>Generate test data</Button>
-			<Button>Generate SQL structure</Button>
-			<Button>Generate HQL structure</Button>
-			<Button>Generate Mardown array describing</Button>
+			<Button disabled>Export to PySpark</Button>
+			<Button disabled>Export to Scala</Button>
+			<Button disabled>Generate test data</Button>
+			<Button disabled>Generate SQL structure</Button>
+			<Button disabled>Generate HQL structure</Button>
+			<Button disabled>Generate Mardown array describing</Button>
 		</div>
 	</div>
 </header>
-<div class="flex h-full flex-col items-center justify-center px-4 text-center align-middle">
+<div
+	class="flex h-full flex-col items-center justify-center overflow-scroll px-4 text-center align-middle"
+>
 	<slot />
 </div>
 <footer></footer>
