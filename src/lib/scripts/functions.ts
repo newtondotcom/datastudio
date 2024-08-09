@@ -39,7 +39,10 @@ export async function changeType(id: string, name: string, struct: boolean) {
 
 	elements_local = elements_local.map((element) => {
 		if (element.id === id) {
-			return { ...element, type: name };
+			if (type_local?.struct) {
+				return { ...element, type: name, struct: true };
+			}
+			return { ...element, type: name, struct: false };
 		}
 		return element;
 	});
@@ -92,7 +95,8 @@ export async function createElement(id_parent: string) {
 		id_parent: id_parent,
 		color: await genColor(),
 		indent: parent.indent + 1,
-		description: ''
+		description: '',
+		struct: false
 	};
 	await addElement(element);
 }
@@ -113,7 +117,8 @@ export async function createTypestruct(name: string) {
 		multiplicity: 0,
 		color: await genColor(),
 		indent: 0,
-		description: ''
+		description: '',
+		struct: true
 	};
 	await addElement(newIElement);
 }

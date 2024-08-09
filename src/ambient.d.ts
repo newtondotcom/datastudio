@@ -7,6 +7,7 @@ export interface IElement {
 	color: string;
 	indent: number;
 	description: string;
+	struct: boolean;
 }
 
 export interface IType {
