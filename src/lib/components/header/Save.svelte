@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { exportStructure } from '$lib/scripts/functions';
+	import t from '$lib/scripts/locales';
 
 	let is_ctrl_down = false;
 	let is_s_down = false;
@@ -70,5 +71,5 @@
 	}
 </script>
 
-<Button on:click={on_bind}>Save the structure</Button>
+<Button on:click={on_bind}>{t('header_save')}</Button>
 <svelte:window on:keydown={on_key_down} on:keyup={on_key_up} />

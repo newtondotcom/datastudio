@@ -21,6 +21,7 @@
 	let struct: boolean;
 
 	import { types, elements } from '$lib/scripts/store';
+	import t from '$lib/scripts/locales';
 
 	let elements_local: IElement[];
 	let types_select: { value: string; label: string }[];
@@ -96,7 +97,7 @@
 	<Popover.Content class="w-[200px] p-0">
 		<Command.Root>
 			<Command.Input placeholder="Search a type..." />
-			<Command.Empty>No framework found.</Command.Empty>
+			<Command.Empty>{t('type_notfound')}</Command.Empty>
 			<Command.Group>
 				{#each types_select as framework}
 					<Command.Item
@@ -116,20 +117,19 @@
 					<Sheet.Trigger>
 						<Command.Item>
 							<Check class="mr-2 h-4 w-4 text-transparent" />
-							Create a type
+							{t('type_create')}
 						</Command.Item>
 					</Sheet.Trigger>
 					<Sheet.Content>
 						<Sheet.Header>
-							<Sheet.Title>Create a type</Sheet.Title>
+							<Sheet.Title>{t('type_create')}</Sheet.Title>
 							<Sheet.Description>
-								You can create a new type by providing a name and selecting the nature of the new
-								type.
+								{t('type_create_description')}
 							</Sheet.Description>
 						</Sheet.Header>
 						<div class="grid gap-4 py-4">
 							<div class="grid grid-cols-4 items-center gap-4">
-								<Label for="name" class="text-right">IType Name</Label>
+								<Label for="name" class="text-right">{t('type_name')}</Label>
 								<Input bind:value={name} id="name" class="col-span-3" />
 							</div>
 							<div class="items-top flex space-x-2">
@@ -139,11 +139,10 @@
 										for="terms1"
 										class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 									>
-										Is this not an struct type ?
+										{t('type_isstruct')}
 									</Label>
 									<p class="text-sm text-muted-foreground">
-										If you select this option, the type will be created as a concrete type (ex :
-										String, Integer, Float, Boolean, Date)
+										{t('type_isstruct_desc')}
 									</p>
 								</div>
 							</div>
@@ -156,7 +155,7 @@
 										closeAndFocusTrigger(ids.trigger);
 									}}
 									builders={[builder]}
-									variant="outline">Submit</Button
+									variant="outline">{t('submit')}</Button
 								>
 							</Sheet.Close>
 						</Sheet.Footer>

@@ -1,0 +1,8 @@
+class Voiture{ 
++Marque : String
++Conducteur : Humain
++Passagers : Humain
+}
+class Humain{ 
++nom : String
+}

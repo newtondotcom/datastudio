@@ -4,6 +4,7 @@
 	import Save from '$lib/components/header/Save.svelte';
 	import Import from '$lib/components/header/Import.svelte';
 	import Uml from '$lib/components/header/Uml.svelte';
+	import t from '$lib/scripts/locales';
 </script>
 
 <header class="flex flex-col">
@@ -16,23 +17,20 @@
 			DataStudio
 		</h1>
 		<p class="mt-4 max-w-3xl text-center text-base font-normal text-neutral-600">
-			<b>DataStudio</b> is an Integrated Development Environment (IDE) specifically designed for data
-			engineers and scientists working with large and complex data schemas. With DataStudio, you can
-			easily create, visualize, and manipulate your data schemas, as well as export them in various formats
-			for use in different environments and tools. It can also generate a test dataset based on the criteria
-			of the schema.
+			<b>DataStudio</b>
+			{t('description')}
 		</p>
 		<div class="mt-4 flex w-full flex-wrap justify-center space-x-4 space-y-2">
 			<Import />
 			<Save />
 			<Uml />
-			<Button disabled>Export to XSD</Button>
-			<Button disabled>Export to PySpark</Button>
-			<Button disabled>Export to Scala</Button>
-			<Button disabled>Generate test data</Button>
-			<Button disabled>Generate SQL structure</Button>
-			<Button disabled>Generate HQL structure</Button>
-			<Button disabled>Generate Mardown array describing</Button>
+			<Button disabled>{t('header_xsd')}</Button>
+			<Button disabled>{t('header_pyspark')}</Button>
+			<Button disabled>{t('header_scala')}</Button>
+			<Button disabled>{t('header_test')}</Button>
+			<Button disabled>{t('header_sql')}</Button>
+			<Button disabled>{t('header_hql')}</Button>
+			<Button disabled>{t('header_md')}</Button>
 		</div>
 	</div>
 </header>

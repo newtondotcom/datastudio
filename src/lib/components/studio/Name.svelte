@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { renameElement } from '$lib/scripts/functions';
+	import t from '$lib/scripts/locales';
 	export let id: string;
 
 	let name: string;
@@ -23,4 +24,10 @@
 	}
 </script>
 
-<Input bind:value={name} type="text" placeholder="Name" class="mx-1 max-w-xs" on:input={renameEl} />
+<Input
+	bind:value={name}
+	type="text"
+	placeholder={t('rename_name')}
+	class="mx-1 max-w-xs"
+	on:input={renameEl}
+/>

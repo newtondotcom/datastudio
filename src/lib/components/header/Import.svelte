@@ -4,6 +4,7 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { loadStructure } from '$lib/scripts/functions';
+	import t from '$lib/scripts/locales';
 	import type { IStructure } from '../../../ambient';
 
 	let structureL: IStructure;
@@ -49,22 +50,22 @@
 <div class="mx-1 mt-2 flex flex-row items-center text-lg">
 	<Dialog.Root>
 		<Dialog.Trigger>
-			<Button>Load a structure</Button>
+			<Button>{t('header_load')}</Button>
 		</Dialog.Trigger>
 		<Dialog.Content class="sm:max-w-[425px]">
 			<Dialog.Header>
-				<Dialog.Title>Load a structure</Dialog.Title>
-				<Dialog.Description>Please pick a JSON DataStudio generated structure.</Dialog.Description>
+				<Dialog.Title>{t('structure_title')}</Dialog.Title>
+				<Dialog.Description>{t('structure_desc')}</Dialog.Description>
 			</Dialog.Header>
 			<div class="grid gap-4 py-4">
 				<div class="grid grid-cols-4 items-center gap-4">
-					<Label for="username" class="text-right">File</Label>
+					<Label for="username" class="text-right">{t('structure_file')}</Label>
 					<Input type="file" id="fileInput" accept=".json" class="col-span-3" />
 				</div>
 			</div>
 			<Dialog.Footer>
 				<Dialog.Close>
-					<Button on:click={load} type="submit">Save changes</Button>
+					<Button on:click={load} type="submit">{t('submit')}</Button>
 				</Dialog.Close>
 			</Dialog.Footer>
 		</Dialog.Content>

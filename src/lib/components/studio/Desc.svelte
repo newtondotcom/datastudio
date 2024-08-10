@@ -11,6 +11,7 @@
 	import { elements } from '$lib/scripts/store';
 	import { changeDesc } from '$lib/scripts/functions';
 	import { Captions } from 'lucide-svelte';
+	import t from '$lib/scripts/locales';
 	let elements_local: IElement[];
 	elements.subscribe((value: IElement[]) => {
 		elements_local = value;
@@ -39,18 +40,18 @@
 		</Dialog.Trigger>
 		<Dialog.Content class="sm:max-w-[425px]">
 			<Dialog.Header>
-				<Dialog.Title>Description du champ</Dialog.Title>
-				<Dialog.Description>Renseignez une description du champ</Dialog.Description>
+				<Dialog.Title>{t('elementdesc_title')}</Dialog.Title>
+				<Dialog.Description>{t('elementdesc_desc')}</Dialog.Description>
 			</Dialog.Header>
 			<div class="grid gap-4 py-4">
 				<div class="grid grid-cols-4 items-center gap-4">
-					<Label for="name" class="text-right">Name</Label>
+					<Label for="name" class="text-right">{t('elementdesc_name')}</Label>
 					<Input id="name" bind:value={desc} class="col-span-3" />
 				</div>
 			</div>
 			<Dialog.Footer>
 				<Dialog.Close>
-					<Button on:click={setDesc} type="submit">Sauvegarder</Button>
+					<Button on:click={setDesc} type="submit">{t('submit')}</Button>
 				</Dialog.Close>
 			</Dialog.Footer>
 		</Dialog.Content>

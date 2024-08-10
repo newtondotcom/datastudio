@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { exportStructure } from '$lib/scripts/functions';
+	import t from '$lib/scripts/locales';
 	import { exportUML } from '$lib/scripts/uml';
 	import type { IStructure } from '../../../ambient';
 
@@ -11,4 +12,4 @@
 	}
 </script>
 
-<Button on:click={exportation}>Export to UML Diagram</Button>
+<Button on:click={exportation}>{t('header_uml')}</Button>
