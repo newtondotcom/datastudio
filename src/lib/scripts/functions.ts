@@ -161,11 +161,12 @@ export async function exportStructure() {
 }
 
 const Colors = ['blue', 'purple', 'orange', 'green', 'rose'];
+const Teints = [900, 750, 600, 400, 200];
 
 export async function genColor(): Promise<string> {
-	//const teints = [950, 800, 600, 400, 200];
 	const randomIndex = Math.floor(Math.random() * Colors.length);
-	return Promise.resolve(`${Colors[randomIndex]}-600`);
+	const randomTeint = Math.floor(Math.random() * Teints.length);
+	return Promise.resolve(`${Colors[randomIndex]}-${Teints[randomTeint]}`);
 }
 
 export async function genUID() {
