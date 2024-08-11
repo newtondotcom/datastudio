@@ -44,6 +44,8 @@
 		"clsx": "^2.1.1",
 		"cmdk-sv": "^0.0.18",
 		"lucide-svelte": "^0.411.0",
+		"mode-watcher": "^0.4.1",
+		"svelte-sonner": "^0.3.27",
 		"tailwind-variants": "^0.2.1"
 	}
 }

@@ -5,8 +5,10 @@
 	import Import from '$lib/components/header/Import.svelte';
 	import Uml from '$lib/components/header/Uml.svelte';
 	import t from '$lib/scripts/locales';
+	import { Toaster } from '$lib/components/ui/sonner';
 </script>
 
+<Toaster />
 <header class="flex flex-col">
 	<div
 		class="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center p-4 pt-20 md:pt-0"
