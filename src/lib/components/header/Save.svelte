@@ -8,7 +8,7 @@
 
 	async function on_bind() {
 		console.log('save');
-		saveJSONFile();
+		await saveJSONFile();
 		//const structure = await exportStructure();
 		//console.log(structure)
 	}

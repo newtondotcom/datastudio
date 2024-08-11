@@ -9,6 +9,7 @@
 	import { Plus } from 'lucide-svelte';
 
 	import { elements } from '$lib/scripts/store';
+	import t from '$lib/scripts/locales';
 
 	let elements_local: IElement[];
 	let origins: IElement[];
@@ -22,11 +23,11 @@
 
 <Dialog.Root>
 	<Dialog.Trigger>
-		<Button class="mx-1">Create a type<Plus /></Button>
+		<Button class="mx-1">{t('type_create')}<Plus /></Button>
 	</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-[425px]">
 		<Dialog.Header>
-			<Dialog.Title>Create a type</Dialog.Title>
+			<Dialog.Title>{t('type_create')}</Dialog.Title>
 			<Dialog.Description>
 				Specify the name of the type and click on save when you're done.
 			</Dialog.Description>

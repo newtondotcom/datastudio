@@ -52,7 +52,7 @@
 	<div class="flex w-full flex-row items-center justify-between">
 		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + el_local.color)}>
 			<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg px-2 text-3xl">
-				{el_local.name} - {type_local.name}
+				{type_local.name}
 				{#if open}
 					<ChevronDown size={40} />
 				{:else}
