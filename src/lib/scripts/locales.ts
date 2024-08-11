@@ -38,7 +38,8 @@ const translations = {
 		header_test: `Generate test dataset`,
 		header_sql: `Generate SQL structure query`,
 		header_hql: `Generate HQL structure query`,
-		header_md: `Generate Markdown array`
+		header_md: `Generate Markdown array`,
+		header_colors: `Change colors`
 	},
 	fr: {
 		submit: `Submit`,
@@ -79,7 +80,8 @@ const translations = {
 		header_test: `Generate test dataset`,
 		header_sql: `Generate SQL structure query`,
 		header_hql: `Generate HQL structure query`,
-		header_md: `Generate Markdown array`
+		header_md: `Generate Markdown array`,
+		header_colors: `Change colors`
 	}
 };
 

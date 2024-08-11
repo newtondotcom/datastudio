@@ -160,6 +160,17 @@ export async function exportStructure() {
 	return structureL;
 }
 
+export async function change_colors() {
+	elements_local.forEach(async (el: IElement) => {
+		let color = el.color;
+		const new_color = await genColor();
+		if (color !== new_color) {
+			el.color = new_color;
+		}
+	});
+	elements.set(elements_local);
+}
+
 const Colors = ['blue', 'purple', 'orange', 'green', 'rose'];
 const Teints = [900, 750, 600, 400, 200];
 
