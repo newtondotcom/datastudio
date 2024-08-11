@@ -31,17 +31,6 @@ elements.set([
 		struct: false
 	},
 	{
-		id: 'ylde03zxx',
-		name: 'Conducteur',
-		type: 'Humain',
-		multiplicity: 1,
-		id_parent: '3g2j075uy',
-		color: 'rose-600',
-		indent: 1,
-		description: '',
-		struct: false
-	},
-	{
 		id: 'tuobw7d2p',
 		id_parent: null,
 		name: 'Humain',
@@ -56,7 +45,7 @@ elements.set([
 		id: 'ssjvn1kcl',
 		name: 'nom',
 		type: 'string',
-		multiplicity: 0,
+		multiplicity: 1,
 		id_parent: 'tuobw7d2p',
 		color: 'green-600',
 		indent: 1,
@@ -73,6 +62,61 @@ elements.set([
 		indent: 1,
 		description: '',
 		struct: true
+	},
+	{
+		id: '1kpsy7tej',
+		id_parent: null,
+		name: 'Smartphone',
+		type: 'Smartphone',
+		multiplicity: 0,
+		color: 'green-600',
+		indent: 0,
+		description: '',
+		struct: true
+	},
+	{
+		id: 'kqx4lkqk0',
+		name: 'telephone',
+		type: 'Smartphone',
+		multiplicity: 0,
+		id_parent: 'tuobw7d2p',
+		color: 'rose-600',
+		indent: 1,
+		description: '',
+		struct: true
+	},
+	{
+		id: '9ungvdtfs',
+		name: 'marque',
+		type: 'string',
+		multiplicity: 1,
+		id_parent: '1kpsy7tej',
+		color: 'blue-600',
+		indent: 1,
+		description: '',
+		struct: false
+	},
+	{
+		id: '32jnxuvso',
+		name: 'Modele',
+		type: 'string',
+		multiplicity: 1,
+		id_parent: '1kpsy7tej',
+		color: 'blue-600',
+		indent: 1,
+		description: '',
+		struct: false
+	},
+	{
+		id: 'qwf9nf6xx',
+		name: 'Age',
+		type: 'Integer',
+		multiplicity: 1,
+		id_parent: '1kpsy7tej',
+		color: 'blue-600',
+		indent: 1,
+		description: '',
+		struct: false
 	}
 ]);
 
@@ -84,5 +128,13 @@ types.set([
 	{
 		name: 'Humain',
 		struct: true
+	},
+	{
+		name: 'Smartphone',
+		struct: true
+	},
+	{
+		name: 'Integer',
+		struct: false
 	}
 ]);

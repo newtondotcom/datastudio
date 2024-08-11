@@ -1,8 +1,18 @@
 class Voiture{ 
 +Marque : String
-+Conducteur : Humain
-+Passagers : Humain
 }
 class Humain{ 
 +nom : String
 }
+class Smartphone{ 
++marque : String
++Modele : String
++Age : Integer
+}
+class Valise{ 
++Couleur : String
+}
+
+Voiture *-- "1..*" Humain
+Humain *-- "0..*" Smartphone
+Humain *-- "1" Valise
