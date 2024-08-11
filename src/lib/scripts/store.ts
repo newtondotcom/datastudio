@@ -11,8 +11,8 @@ elements.set([
 	{
 		id: '3g2j075uy',
 		id_parent: null,
-		name: 'Voiture',
-		type: 'Voiture',
+		name: 'Car',
+		type: 'Car',
 		multiplicity: 0,
 		color: 'green-600',
 		indent: 0,
@@ -21,7 +21,7 @@ elements.set([
 	},
 	{
 		id: '0lludwr84',
-		name: 'Marque',
+		name: 'Brand',
 		type: 'string',
 		multiplicity: 1,
 		id_parent: '3g2j075uy',
@@ -33,8 +33,8 @@ elements.set([
 	{
 		id: 'tuobw7d2p',
 		id_parent: null,
-		name: 'Humain',
-		type: 'Humain',
+		name: 'Human',
+		type: 'Human',
 		multiplicity: 0,
 		color: 'rose-600',
 		indent: 0,
@@ -43,7 +43,7 @@ elements.set([
 	},
 	{
 		id: 'ssjvn1kcl',
-		name: 'nom',
+		name: 'name',
 		type: 'string',
 		multiplicity: 1,
 		id_parent: 'tuobw7d2p',
@@ -54,8 +54,8 @@ elements.set([
 	},
 	{
 		id: 'b8qcfhtfs',
-		name: 'Passagers',
-		type: 'Humain',
+		name: 'Passengers',
+		type: 'Human',
 		multiplicity: 2,
 		id_parent: '3g2j075uy',
 		color: 'purple-600',
@@ -76,7 +76,7 @@ elements.set([
 	},
 	{
 		id: 'kqx4lkqk0',
-		name: 'telephone',
+		name: 'Iphone',
 		type: 'Smartphone',
 		multiplicity: 0,
 		id_parent: 'tuobw7d2p',
@@ -87,7 +87,7 @@ elements.set([
 	},
 	{
 		id: '9ungvdtfs',
-		name: 'marque',
+		name: 'brand',
 		type: 'string',
 		multiplicity: 1,
 		id_parent: '1kpsy7tej',
@@ -98,7 +98,7 @@ elements.set([
 	},
 	{
 		id: '32jnxuvso',
-		name: 'Modele',
+		name: 'Model',
 		type: 'string',
 		multiplicity: 1,
 		id_parent: '1kpsy7tej',
@@ -122,11 +122,11 @@ elements.set([
 
 types.set([
 	{
-		name: 'Voiture',
+		name: 'Car',
 		struct: true
 	},
 	{
-		name: 'Humain',
+		name: 'Human',
 		struct: true
 	},
 	{
@@ -135,6 +135,10 @@ types.set([
 	},
 	{
 		name: 'Integer',
+		struct: false
+	},
+	{
+		name: 'String',
 		struct: false
 	}
 ]);
