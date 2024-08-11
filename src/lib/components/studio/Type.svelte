@@ -22,6 +22,7 @@
 
 	import { types, elements } from '$lib/scripts/store';
 	import t from '$lib/scripts/locales';
+	import type { IElement, IType } from '../../../ambient';
 
 	let elements_local: IElement[];
 	let types_select: { value: string; label: string }[];
@@ -115,7 +116,7 @@
 				{/each}
 				<Sheet.Root>
 					<Sheet.Trigger>
-						<Command.Item>
+						<Command.Item on:click={() => closeAndFocusTrigger(ids.trigger)}>
 							<Check class="mr-2 h-4 w-4 text-transparent" />
 							{t('type_create')}
 						</Command.Item>

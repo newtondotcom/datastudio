@@ -74,7 +74,7 @@
 					<li class="mx-1 my-1 flex flex-row rounded-lg py-2 text-2xl">
 						<div
 							class={cn(
-								'flex w-full flex-row rounded-xl px-2 py-2',
+								'flex w-full flex-row justify-between rounded-xl px-2 py-2',
 								'bg-' +
 									(child.struct
 										? elements_local.find((el) => el.id_parent === null && el.type === child.type)
