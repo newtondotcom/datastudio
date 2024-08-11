@@ -34,7 +34,16 @@ export async function changeType(id: string, name: string, struct: boolean) {
 	const type_local = types_local.find((type) => type.name === name);
 
 	if (!type_local) {
-		await createTypestruct(name);
+		if (struct) {
+			await createTypestruct(name);
+		} else {
+			const type: IType = {
+				name: name,
+				struct: false
+			};
+			types_local.push(type);
+			types.set(types_local);
+		}
 	}
 
 	elements_local = elements_local.map((element) => {
