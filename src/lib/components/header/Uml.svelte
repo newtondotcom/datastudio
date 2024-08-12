@@ -2,7 +2,7 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { exportStructure } from '$lib/scripts/functions';
 	import t from '$lib/scripts/locales';
-	import { exportUML } from '$lib/scripts/uml';
+	import { exportUML } from '$lib/scripts/exports/uml';
 	import type { IStructure } from '../../../ambient';
 
 	async function exportation() {

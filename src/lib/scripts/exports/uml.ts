@@ -1,5 +1,5 @@
-import type { IElement, IStructure, IType } from '../../ambient';
-import { capitalizeFirstLetter } from './functions';
+import type { IElement, IStructure, IType } from '../../../ambient';
+import { capitalizeFirstLetter } from '../functions';
 
 export async function exportUML(structure: IStructure) {
 	let umlstring: string = '';
