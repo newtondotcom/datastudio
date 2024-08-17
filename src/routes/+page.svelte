@@ -11,12 +11,9 @@
 	import { elements } from '$lib/scripts/store';
 	import t from '$lib/scripts/locales';
 
-	import { createSwapy } from 'swapy';
-	import { onMount } from 'svelte';
-
 	let elements_local: IElement[];
 	let origins: IElement[];
-	elements.subscribe((value) => {
+	elements.subscribe((value: IElement[]) => {
 		elements_local = value;
 		origins = value.filter((el: IElement) => el.indent === 0);
 	});
@@ -26,20 +23,6 @@
 	async function change() {
 		await change_colors();
 	}
-
-	let container;
-
-	onMount(() => {
-		if (container) {
-			const swapy = createSwapy(container);
-			swapy.onSwap(({ data }) => {
-				localStorage.setItem('slotItem', JSON.stringify(data.object));
-				console.log(data.object);
-				console.log(data.array);
-				console.log(data.map);
-			});
-		}
-	});
 </script>
 
 <div class="flex flex-row">
@@ -77,9 +60,7 @@
 </div>
 
 {#if origins.length > 0}
-	<div class="container" bind:this={container}>
-		{#each origins as origin}
-			<Element id={origin.id} />
-		{/each}
-	</div>
+	{#each origins as origin}
+		<Element id={origin.id} />
+	{/each}
 {/if}

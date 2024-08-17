@@ -50,54 +50,52 @@
 	}
 </script>
 
-<div data-swapy-slot="{el_local.id}-s">
-	<div
-		class={cn('my-4 w-full rounded-lg border-2 bg-secondary px-4 py-2', 'border-' + el_local.color)}
-		data-swapy-item={el_local.id}
-	>
-		<div class="flex w-full flex-row items-center justify-between">
-			<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + el_local.color)}>
-				<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg px-2 text-3xl">
-					{type_local.name}
-					{#if open}
-						<ChevronDown size={40} />
-					{:else}
-						<ChevronUp size={40} />
-					{/if}
-				</button>
-			</div>
-			<div class="flex flex-row">
-				<Add id_parent={el_local.id} />
-				<Delete id={el_local.id} />
-				<Rename id={el_local.id} />
-			</div>
+<div
+	class={cn('my-4 w-full rounded-lg border-2 bg-secondary px-4 py-2', 'border-' + el_local.color)}
+	data-swapy-item={el_local.id}
+>
+	<div class="flex w-full flex-row items-center justify-between">
+		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + el_local.color)}>
+			<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg px-2 text-3xl">
+				{type_local.name}
+				{#if open}
+					<ChevronDown size={40} />
+				{:else}
+					<ChevronUp size={40} />
+				{/if}
+			</button>
 		</div>
-
-		{#if open}
-			<ul>
-				<div class="overflow-hidden transition-all duration-300 ease-in-out">
-					{#each children as child}
-						<li class="mx-1 my-1 flex flex-row rounded-lg py-2 text-2xl">
-							<div
-								class={cn(
-									'flex w-full flex-row justify-between rounded-xl px-2 py-2',
-									'bg-' +
-										(child.struct
-											? elements_local.find((el) => el.id_parent === null && el.type === child.type)
-													?.color
-											: 'neutral-100')
-								)}
-							>
-								<Name id={child.id} />
-								<IType id={child.id} />
-								<Multiplicity id={child.id} />
-								<Desc id={child.id} />
-								<Delete id={child.id} />
-							</div>
-						</li>
-					{/each}
-				</div>
-			</ul>
-		{/if}
+		<div class="flex flex-row">
+			<Add id_parent={el_local.id} />
+			<Delete id={el_local.id} />
+			<Rename id={el_local.id} />
+		</div>
 	</div>
+
+	{#if open}
+		<ul>
+			<div class="overflow-hidden transition-all duration-300 ease-in-out">
+				{#each children as child}
+					<li class="mx-1 my-1 flex flex-row rounded-lg py-2 text-2xl">
+						<div
+							class={cn(
+								'flex w-full flex-row justify-between rounded-xl px-2 py-2',
+								'bg-' +
+									(child.struct
+										? elements_local.find((el) => el.id_parent === null && el.type === child.type)
+												?.color
+										: 'secondary')
+							)}
+						>
+							<Name id={child.id} />
+							<IType id={child.id} />
+							<Multiplicity id={child.id} />
+							<Desc id={child.id} />
+							<Delete id={child.id} />
+						</div>
+					</li>
+				{/each}
+			</div>
+		</ul>
+	{/if}
 </div>
