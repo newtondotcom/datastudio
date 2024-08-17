@@ -30,6 +30,8 @@
 	let el_local: IElement;
 	let el_parent: IElement;
 
+	let triggerId = 'type-trigger';
+
 	elements.subscribe((value: IElement[]) => {
 		elements_local = value;
 
@@ -67,10 +69,7 @@
 			? capitalizeFirstLetter(selectedValue)
 			: (types_local.find((f) => f.value === search)?.label ?? 'Select a type');
 
-	// We want to refocus the trigger button when the user selects
-	// an item from the list so users can continue navigating the
-	// rest of the form with the keyboard.
-	function closeAndFocusTrigger(triggerId: string) {
+	function closeAndFocusTrigger() {
 		open = false;
 		tick().then(() => {
 			document.getElementById(triggerId)?.focus();
@@ -79,90 +78,98 @@
 
 	async function setType(name: string, struct: boolean) {
 		await changeType(id, name, !struct);
+		closeAndFocusTrigger();
 	}
 </script>
 
-<Popover.Root bind:open let:ids>
-	<Popover.Trigger asChild let:builder>
-		<Button
-			builders={[builder]}
-			variant="outline"
-			role="combobox"
-			aria-expanded={open}
-			class="mx-1 w-[200px] justify-between"
-		>
-			{search}
-			<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-		</Button>
-	</Popover.Trigger>
-	<Popover.Content class="w-[200px] p-0">
-		<Command.Root>
-			<Command.Input placeholder="Search a type..." />
-			<Command.Empty>{t('type_notfound')}</Command.Empty>
-			<Command.Group>
-				{#each types_select as framework}
-					<Command.Item
-						value={framework.value}
-						onSelect={async (currentValue) => {
-							await setType(currentValue, false);
-							closeAndFocusTrigger(ids.trigger);
+<Sheet.Root>
+	<Popover.Root bind:open let:ids>
+		<Popover.Trigger asChild let:builder>
+			<Button
+				builders={[builder]}
+				variant="outline"
+				role="combobox"
+				aria-expanded={open}
+				class="mx-1 w-[200px] justify-between"
+			>
+				{search}
+				<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+			</Button>
+		</Popover.Trigger>
+		<Popover.Content class="w-[200px] p-0">
+			<Command.Root>
+				<Command.Input placeholder="Search a type..." />
+				<Command.Empty>{t('type_notfound')}</Command.Empty>
+				<Command.Group>
+					{#each types_select as framework}
+						<Command.Item
+							value={framework.value}
+							onSelect={async (currentValue) => {
+								await setType(currentValue, false);
+								triggerId = ids.trigger;
+								closeAndFocusTrigger();
+							}}
+						>
+							<Check
+								class={cn('mr-2 h-4 w-4', selectedValue !== framework.value && 'text-transparent')}
+							/>
+							{framework.label}
+						</Command.Item>
+					{/each}
+					<Sheet.Trigger
+						on:click={() => {
+							console.log('triggerId', triggerId);
+							triggerId = ids.trigger;
+							closeAndFocusTrigger();
 						}}
 					>
-						<Check
-							class={cn('mr-2 h-4 w-4', selectedValue !== framework.value && 'text-transparent')}
-						/>
-						{framework.label}
-					</Command.Item>
-				{/each}
-				<Sheet.Root>
-					<Sheet.Trigger>
-						<Command.Item on:click={() => closeAndFocusTrigger(ids.trigger)}>
+						<Command.Item>
 							<Check class="mr-2 h-4 w-4 text-transparent" />
 							{t('type_create')}
 						</Command.Item>
 					</Sheet.Trigger>
-					<Sheet.Content>
-						<Sheet.Header>
-							<Sheet.Title>{t('type_create')}</Sheet.Title>
-							<Sheet.Description>
-								{t('type_create_description')}
-							</Sheet.Description>
-						</Sheet.Header>
-						<div class="grid gap-4 py-4">
-							<div class="grid grid-cols-4 items-center gap-4">
-								<Label for="name" class="text-right">{t('type_name')}</Label>
-								<Input bind:value={name} id="name" class="col-span-3" />
-							</div>
-							<div class="items-top flex space-x-2">
-								<Checkbox bind:checked={struct} id="terms1" />
-								<div class="grid gap-1.5 leading-none">
-									<Label
-										for="terms1"
-										class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-									>
-										{t('type_isstruct')}
-									</Label>
-									<p class="text-sm text-muted-foreground">
-										{t('type_isstruct_desc')}
-									</p>
-								</div>
-							</div>
-						</div>
-						<Sheet.Footer>
-							<Sheet.Close asChild let:builder>
-								<Button
-									on:click={async () => {
-										await setType(name, struct);
-										closeAndFocusTrigger(ids.trigger);
-									}}
-									builders={[builder]}
-									variant="outline">{t('submit')}</Button
-								>
-							</Sheet.Close>
-						</Sheet.Footer>
-					</Sheet.Content>
-				</Sheet.Root>
-			</Command.Group>
-		</Command.Root>
-	</Popover.Content>
-</Popover.Root>
+				</Command.Group>
+			</Command.Root>
+		</Popover.Content>
+	</Popover.Root>
+
+	<Sheet.Content>
+		<Sheet.Header>
+			<Sheet.Title>{t('type_create')}</Sheet.Title>
+			<Sheet.Description>
+				{t('type_create_description')}
+			</Sheet.Description>
+		</Sheet.Header>
+		<div class="grid gap-4 py-4">
+			<div class="grid grid-cols-4 items-center gap-4">
+				<Label for="name" class="text-right">{t('type_name')}</Label>
+				<Input bind:value={name} id="name" class="col-span-3" />
+			</div>
+			<div class="items-top flex space-x-2">
+				<Checkbox bind:checked={struct} id="terms1" />
+				<div class="grid gap-1.5 leading-none">
+					<Label
+						for="terms1"
+						class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+					>
+						{t('type_isstruct')}
+					</Label>
+					<p class="text-sm text-muted-foreground">
+						{t('type_isstruct_desc')}
+					</p>
+				</div>
+			</div>
+		</div>
+		<Sheet.Footer>
+			<Sheet.Close asChild let:builder>
+				<Button
+					on:click={async () => {
+						await setType(name, struct);
+					}}
+					builders={[builder]}
+					variant="outline">{t('submit')}</Button
+				>
+			</Sheet.Close>
+		</Sheet.Footer>
+	</Sheet.Content>
+</Sheet.Root>
