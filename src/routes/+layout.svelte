@@ -9,7 +9,7 @@
 </script>
 
 <Toaster />
-<header class="flex flex-col">
+<header class="flex flex-col bg-secondary">
 	<div
 		class="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center p-4 pt-20 md:pt-0"
 	>
@@ -37,7 +37,7 @@
 	</div>
 </header>
 <div
-	class="flex h-full flex-col items-center justify-center overflow-scroll px-4 text-center align-middle"
+	class="flex h-full flex-col items-center justify-center overflow-scroll bg-secondary px-4 text-center align-middle"
 >
 	<slot />
 </div>
