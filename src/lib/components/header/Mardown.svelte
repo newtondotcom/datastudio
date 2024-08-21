@@ -1,8 +1,8 @@
 <script lang="ts">
+	import type { IStructure } from '../../../ambient';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { exportStructure } from '$lib/scripts/functions';
 	import t from '$lib/scripts/locales';
-	import type { IStructure } from '../../../ambient';
 	import { exportMarkdown } from '$lib/scripts/exports/markdown';
 
 	async function exportation() {
