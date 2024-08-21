@@ -7,6 +7,11 @@
 	import t from '$lib/scripts/locales';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import Mardown from '$lib/components/header/Mardown.svelte';
+	import Sql from '$lib/components/header/Sql.svelte';
+	import Hql from '$lib/components/header/Hql.svelte';
+	import PySpark from '$lib/components/header/PySpark.svelte';
+	import TestData from '$lib/components/header/TestData.svelte';
+	import Xsd from '$lib/components/header/Xsd.svelte';
 </script>
 
 <Toaster />
@@ -27,12 +32,12 @@
 			<Import />
 			<Save />
 			<Uml />
-			<Button disabled>{t('header_xsd')}</Button>
-			<Button disabled>{t('header_pyspark')}</Button>
+			<Xsd />
+			<PySpark />
 			<Button disabled>{t('header_scala')}</Button>
-			<Button disabled>{t('header_test')}</Button>
-			<Button disabled>{t('header_sql')}</Button>
-			<Button disabled>{t('header_hql')}</Button>
+			<TestData />
+			<Sql />
+			<Hql />
 			<Mardown />
 		</div>
 	</div>
