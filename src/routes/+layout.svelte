@@ -6,6 +6,7 @@
 	import Uml from '$lib/components/header/Uml.svelte';
 	import t from '$lib/scripts/locales';
 	import { Toaster } from '$lib/components/ui/sonner';
+	import Mardown from '$lib/components/header/Mardown.svelte';
 </script>
 
 <Toaster />
@@ -32,7 +33,7 @@
 			<Button disabled>{t('header_test')}</Button>
 			<Button disabled>{t('header_sql')}</Button>
 			<Button disabled>{t('header_hql')}</Button>
-			<Button disabled>{t('header_md')}</Button>
+			<Mardown />
 		</div>
 	</div>
 </header>
