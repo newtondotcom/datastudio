@@ -2,11 +2,12 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { renameElement } from '$lib/scripts/functions';
 	import t from '$lib/scripts/locales';
+	import { elements } from '$lib/scripts/store';
+
 	export let id: string;
 
 	let name: string;
 
-	import { elements } from '$lib/scripts/store';
 	let elements_local: IElement[];
 	elements.subscribe((value: IElement[]) => {
 		elements_local = value;

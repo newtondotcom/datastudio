@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { IStructure } from '../../../ambient';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { exportXsd } from '$lib/scripts/exports/xsd';
 	import { exportStructure } from '$lib/scripts/functions';
 	import t from '$lib/scripts/locales';
-	import { exportXsd } from '$lib/scripts/exports/xsd';
+	import type { IStructure } from '../../../ambient';
 
 	async function exportation() {
 		const structure: IStructure = await exportStructure();

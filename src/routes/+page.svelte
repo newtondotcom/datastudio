@@ -1,15 +1,14 @@
 <script lang="ts">
 	import Element from '$lib/components/studio/Element.svelte';
-	import type { IElement } from '../ambient';
-	import { change_colors, createTypestruct } from '$lib/scripts/functions';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
-	import { LockOpen, Plus } from 'lucide-svelte';
-
-	import { elements } from '$lib/scripts/store';
+	import { change_colors, createTypestruct } from '$lib/scripts/functions';
 	import t from '$lib/scripts/locales';
+	import { elements } from '$lib/scripts/store';
+	import { LockOpen, Plus } from 'lucide-svelte';
+	import type { IElement } from '../ambient';
 
 	let elements_local: IElement[];
 	let origins: IElement[];

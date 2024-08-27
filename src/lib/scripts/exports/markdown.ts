@@ -1,4 +1,5 @@
 import type { IElement, IStructure, IType } from '../../../ambient';
+
 import { capitalizeFirstLetter } from '../functions';
 
 export async function exportMarkdown(structure: IStructure) {

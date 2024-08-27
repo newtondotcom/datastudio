@@ -1,5 +1,7 @@
 <script lang="ts">
 	import * as Select from '$lib/components/ui/select';
+	import { changeMultiplicity } from '$lib/scripts/functions';
+	import { elements } from '$lib/scripts/store';
 	import { SquareM } from 'lucide-svelte';
 
 	export let id: string;
@@ -7,8 +9,6 @@
 	let multiplicity: number;
 	let valueDisplayed: any;
 
-	import { elements } from '$lib/scripts/store';
-	import { changeMultiplicity } from '$lib/scripts/functions';
 	let elements_local: IElement[];
 	elements.subscribe((value: IElement[]) => {
 		elements_local = value;

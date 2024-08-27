@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { IStructure } from '../../../ambient';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { exportSql } from '$lib/scripts/exports/sql';
 	import { exportStructure } from '$lib/scripts/functions';
 	import t from '$lib/scripts/locales';
-	import { exportSql } from '$lib/scripts/exports/sql';
+	import type { IStructure } from '../../../ambient';
 
 	async function exportation() {
 		const structure: IStructure = await exportStructure();

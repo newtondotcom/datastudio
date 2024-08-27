@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { IStructure } from '../../../ambient';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { exportPySpark } from '$lib/scripts/exports/pyspark';
 	import { exportStructure } from '$lib/scripts/functions';
 	import t from '$lib/scripts/locales';
-	import { exportPySpark } from '$lib/scripts/exports/pyspark';
+	import type { IStructure } from '../../../ambient';
 
 	async function exportation() {
 		const structure: IStructure = await exportStructure();

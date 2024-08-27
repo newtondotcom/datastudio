@@ -3,15 +3,15 @@
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
+	import { changeDesc } from '$lib/scripts/functions';
+	import t from '$lib/scripts/locales';
+	import { elements } from '$lib/scripts/store';
+	import { Captions } from 'lucide-svelte';
 
 	export let id: string;
 
 	let desc: string;
 
-	import { elements } from '$lib/scripts/store';
-	import { changeDesc } from '$lib/scripts/functions';
-	import { Captions } from 'lucide-svelte';
-	import t from '$lib/scripts/locales';
 	let elements_local: IElement[];
 	elements.subscribe((value: IElement[]) => {
 		elements_local = value;

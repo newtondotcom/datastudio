@@ -1,16 +1,19 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button/index.js';
+	import { Checkbox } from '$lib/components/ui/checkbox';
+	import * as Command from '$lib/components/ui/command/index.js';
+	import { Input } from '$lib/components/ui/input/index.js';
+	import { Label } from '$lib/components/ui/label/index.js';
+	import * as Popover from '$lib/components/ui/popover/index.js';
+	import * as Sheet from '$lib/components/ui/sheet/index.js';
+	import { capitalizeFirstLetter, changeType } from '$lib/scripts/functions';
+	import t from '$lib/scripts/locales';
+	import { elements, types } from '$lib/scripts/store';
+	import { cn } from '$lib/scripts/utils';
 	import Check from 'lucide-svelte/icons/check';
 	import ChevronsUpDown from 'lucide-svelte/icons/chevrons-up-down';
-	import * as Command from '$lib/components/ui/command/index.js';
-	import * as Popover from '$lib/components/ui/popover/index.js';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import * as Sheet from '$lib/components/ui/sheet/index.js';
-	import { cn } from '$lib/scripts/utils';
-	import { Label } from '$lib/components/ui/label/index.js';
 	import { tick } from 'svelte';
-	import { Checkbox } from '$lib/components/ui/checkbox';
-	import { capitalizeFirstLetter, changeType } from '$lib/scripts/functions';
+	import type { IElement, IType } from '../../../ambient';
 
 	export let id: string;
 
@@ -19,10 +22,6 @@
 	let search: string;
 	let name: string;
 	let struct: boolean;
-
-	import { types, elements } from '$lib/scripts/store';
-	import t from '$lib/scripts/locales';
-	import type { IElement, IType } from '../../../ambient';
 
 	let elements_local: IElement[];
 	let types_select: { value: string; label: string }[];

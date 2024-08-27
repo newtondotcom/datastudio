@@ -1,21 +1,22 @@
 <script lang="ts">
+	import Add from '$lib/components/studio/Add.svelte';
+	import Delete from '$lib/components/studio/Delete.svelte';
+	import Multiplicity from '$lib/components/studio/Multiplicity.svelte';
+	import Name from '$lib/components/studio/Name.svelte';
+	import Rename from '$lib/components/studio/Rename.svelte';
+	import IType from '$lib/components/studio/Type.svelte';
+	import { elements, types } from '$lib/scripts/store';
+	import { cn } from '$lib/scripts/utils';
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
 	import type { IElement } from '../../../ambient';
-	import Delete from '$lib/components/studio/Delete.svelte';
-	import IType from '$lib/components/studio/Type.svelte';
-	import Multiplicity from '$lib/components/studio/Multiplicity.svelte';
-	import Rename from '$lib/components/studio/Rename.svelte';
-	import { cn } from '$lib/scripts/utils';
-	import Add from '$lib/components/studio/Add.svelte';
-	import Name from '$lib/components/studio/Name.svelte';
+
+	import Desc from './Desc.svelte';
 
 	export let id: string;
 
 	let el_local: IElement;
 	let type_local: IType;
 
-	import { elements, types } from '$lib/scripts/store';
-	import Desc from './Desc.svelte';
 	let elements_local: IElement[];
 	let children: IElement[];
 	let types_local: IType[];
