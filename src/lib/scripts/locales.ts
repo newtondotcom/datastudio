@@ -2,6 +2,7 @@ const translations = {
 	en: {
 		submit: `Submit`,
 		cancel: `Cancel`,
+		close: `Close`,
 
 		description: `is an Integrated Development Environment (IDE) specifically designed for data
 		engineers and scientists working with large and complex data schemas. With DataStudio, you can
@@ -39,11 +40,15 @@ const translations = {
 		header_sql: `Generate SQL structure query`,
 		header_hql: `Generate HQL structure query`,
 		header_md: `Generate Markdown array`,
-		header_colors: `Change colors`
+		header_colors: `Change colors`,
+
+		export_title: `Export`,
+		export_desc: `Here you go !`
 	},
 	fr: {
 		submit: `Submit`,
 		cancel: `Cancel`,
+		close: `Close`,
 
 		description: `is an Integrated Development Environment (IDE) specifically designed for data
 		engineers and scientists working with large and complex data schemas. With DataStudio, you can
