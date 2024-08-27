@@ -9,8 +9,8 @@
 
 	const exportTypes = [
 		{ type: 'header_uml' },
+		{ type: 'header_md' },
 		{ type: 'header_hql', disabled: true },
-		{ type: 'header_md', disabled: true },
 		{ type: 'header_pyspark', disabled: true },
 		{ type: 'header_sql', disabled: true },
 		{ type: 'header_test', disabled: true },
