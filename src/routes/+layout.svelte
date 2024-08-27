@@ -1,18 +1,22 @@
 <script lang="ts">
 	import '../app.css';
 
-	import Hql from '$lib/components/header/Hql.svelte';
+	import Export from '$lib/components/header/Export.svelte';
 	import Import from '$lib/components/header/Import.svelte';
-	import Mardown from '$lib/components/header/Mardown.svelte';
-	import PySpark from '$lib/components/header/PySpark.svelte';
 	import Save from '$lib/components/header/Save.svelte';
-	import Sql from '$lib/components/header/Sql.svelte';
-	import TestData from '$lib/components/header/TestData.svelte';
-	import Uml from '$lib/components/header/Uml.svelte';
-	import Xsd from '$lib/components/header/Xsd.svelte';
-	import { Button } from '$lib/components/ui/button/index.js';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import t from '$lib/scripts/locales';
+
+	const exportTypes = [
+		{ type: 'header_uml' },
+		{ type: 'header_hql', disabled: true },
+		{ type: 'header_md', disabled: true },
+		{ type: 'header_pyspark', disabled: true },
+		{ type: 'header_sql', disabled: true },
+		{ type: 'header_test', disabled: true },
+		{ type: 'header_xsd', disabled: true },
+		{ type: 'header_scala', disabled: true } // Example of a disabled button
+	];
 </script>
 
 <Toaster />
@@ -32,14 +36,9 @@
 		<div class="mt-4 flex w-full flex-wrap justify-center space-x-4 space-y-2">
 			<Import />
 			<Save />
-			<Uml />
-			<Xsd />
-			<PySpark />
-			<Button disabled>{t('header_scala')}</Button>
-			<TestData />
-			<Sql />
-			<Hql />
-			<Mardown />
+			{#each exportTypes as { type, disabled = false }}
+				<Export button_content={type} {disabled} />
+			{/each}
 		</div>
 	</div>
 </header>
