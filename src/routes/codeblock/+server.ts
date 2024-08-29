@@ -7,6 +7,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
+import { getHighlighter } from 'shiki';
 import { unified } from 'unified';
 import type { RequestHandler } from './$types';
 import type { Compatible } from 'vfile';
@@ -31,7 +32,33 @@ const toHTML = (content: Compatible | undefined) =>
 				transformerFoldableLines({
 					lines: [[1, 2]]
 				})
-			]
+			],
+			getHighlighter: (options) =>
+				getHighlighter({
+					...options,
+					langs: [
+						'plaintext',
+						import('shiki/langs/javascript.mjs'),
+						import('shiki/langs/typescript.mjs'),
+						import('shiki/langs/css.mjs'),
+						import('shiki/langs/svelte.mjs'),
+						import('shiki/langs/shellscript.mjs'),
+						import('shiki/langs/markdown.mjs')
+					]
+				}),
+			keepBackground: false,
+			onVisitLine(node) {
+				if (node.children.length === 0) {
+					// @ts-expect-error - we're changing the node type
+					node.children = { type: 'text', value: ' ' };
+				}
+			},
+			onVisitHighlightedLine(node) {
+				node.properties.className = ['line--highlighted'];
+			},
+			onVisitHighlightedChars(node) {
+				node.properties.className = ['chars--highlighted'];
+			}
 		})
 		.use(rehypeStringify)
 		.process(content);

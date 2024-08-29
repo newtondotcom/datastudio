@@ -52,6 +52,7 @@
 		"rehype-stringify": "^10.0.0",
 		"remark-parse": "^11.0.0",
 		"remark-rehype": "^11.1.0",
+		"shiki": "^1.14.1",
 		"svelte-sonner": "^0.3.27",
 		"tailwind-variants": "^0.2.1",
 		"unified": "^11.0.5",
