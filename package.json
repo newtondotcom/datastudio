@@ -55,6 +55,7 @@
 		"shiki": "^1.14.1",
 		"svelte-sonner": "^0.3.27",
 		"tailwind-variants": "^0.2.1",
+		"tinykeys": "^3.0.0",
 		"unified": "^11.0.5",
 		"vfile": "^6.0.3"
 	}
