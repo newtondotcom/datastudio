@@ -1,5 +1,5 @@
-import { elements, timestamp, types } from '$lib/scripts/store';
-import type { IElement, IStructure, IType } from '../../ambient';
+import { elements, timestamp, types } from '@/hooks/store';
+import type { IElement, IStructure, IType } from '@/hooks/types';
 
 let elements_local: IElement[];
 let types_local: IType[];

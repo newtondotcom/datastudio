@@ -1,14 +1,14 @@
 <script lang="ts">
-	import Add from '$lib/components/studio/Add.svelte';
-	import Delete from '$lib/components/studio/Delete.svelte';
-	import Multiplicity from '$lib/components/studio/Multiplicity.svelte';
-	import Name from '$lib/components/studio/Name.svelte';
-	import Rename from '$lib/components/studio/Rename.svelte';
-	import IType from '$lib/components/studio/Type.svelte';
-	import { elements, types } from '$lib/scripts/store';
-	import { cn } from '$lib/scripts/utils';
-	import { ChevronDown, ChevronUp } from 'lucide-svelte';
-	import type { IElement } from '../../../ambient';
+	import Add from '@/components/studio/Add.svelte';
+	import Delete from '@/components/studio/Delete.svelte';
+	import Multiplicity from '@/components/studio/Multiplicity.svelte';
+	import Name from '@/components/studio/Name.svelte';
+	import Rename from '@/components/studio/Rename.svelte';
+	import IType from '@/components/studio/Type.svelte';
+	import { elements, types } from '@/hooks/store';
+	import { cn } from '@/hooks/utils';
+	import { ChevronDown, ChevronUp } from '@lucide/svelte';
+	import type { IElement } from '@/hooks/types';
 
 	import Desc from './Desc.svelte';
 

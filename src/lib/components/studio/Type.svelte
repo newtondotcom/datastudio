@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button/index.js';
-	import { Checkbox } from '$lib/components/ui/checkbox';
-	import * as Command from '$lib/components/ui/command/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import * as Popover from '$lib/components/ui/popover/index.js';
-	import * as Sheet from '$lib/components/ui/sheet/index.js';
-	import { capitalizeFirstLetter, changeType } from '$lib/scripts/functions';
-	import t from '$lib/scripts/locales';
-	import { elements, types } from '$lib/scripts/store';
-	import { cn } from '$lib/scripts/utils';
-	import Check from 'lucide-svelte/icons/check';
-	import ChevronsUpDown from 'lucide-svelte/icons/chevrons-up-down';
+	import { Button } from '@/components/ui/button/index.js';
+	import { Checkbox } from '@/components/ui/checkbox';
+	import * as Command from '@/components/ui/command/index.js';
+	import { Input } from '@/components/ui/input/index.js';
+	import { Label } from '@/components/ui/label/index.js';
+	import * as Popover from '@/components/ui/popover/index.js';
+	import * as Sheet from '@/components/ui/sheet/index.js';
+	import { capitalizeFirstLetter, changeType } from '@/hooks/functions';
+	import { m } from '@/paraglide/messages.js';
+	import { elements, types } from '@/hooks/store';
+	import { cn } from '@/hooks/utils';
+	import Check from '@lucide/svelte/icons/check';
+	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 	import { tick } from 'svelte';
 	import { run } from 'svelte/legacy';
-	import type { IElement, IType } from '../../../ambient';
+	import type { IElement, IType } from '@/hooks/types';
 
 	interface Props {
 		id: string;
@@ -108,7 +108,7 @@
 			<Popover.Content class="w-[200px] p-0">
 				<Command.Root>
 					<Command.Input placeholder="Search a type..." />
-					<Command.Empty>{t('type_notfound')}</Command.Empty>
+					<Command.Empty>{m.type_notfound()}</Command.Empty>
 					<Command.Group>
 						{#each types_select as framework}
 							<Command.Item
@@ -129,7 +129,7 @@
 							</Command.Item>
 						{/each}
 						<Sheet.Trigger
-							on:click={() => {
+							onclick={() => {
 								console.log('triggerId', triggerId);
 								triggerId = ids.trigger;
 								closeAndFocusTrigger();
@@ -137,7 +137,7 @@
 						>
 							<Command.Item>
 								<Check class="mr-2 h-4 w-4 text-transparent" />
-								{t('type_create')}
+								{m.type_create()}
 							</Command.Item>
 						</Sheet.Trigger>
 					</Command.Group>
@@ -148,14 +148,14 @@
 
 	<Sheet.Content>
 		<Sheet.Header>
-			<Sheet.Title>{t('type_create')}</Sheet.Title>
+			<Sheet.Title>{m.type_create()}</Sheet.Title>
 			<Sheet.Description>
-				{t('type_create_description')}
+				{m.type_create_description()}
 			</Sheet.Description>
 		</Sheet.Header>
 		<div class="grid gap-4 py-4">
 			<div class="grid grid-cols-4 items-center gap-4">
-				<Label for="name" class="text-right">{t('type_name')}</Label>
+				<Label for="name" class="text-right">{m.type_name()}</Label>
 				<Input bind:value={name} id="name" class="col-span-3" />
 			</div>
 			<div class="items-top flex space-x-2">
@@ -165,10 +165,10 @@
 						for="terms1"
 						class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 					>
-						{t('type_isstruct')}
+						{m.type_isstruct()}
 					</Label>
 					<p class="text-sm text-muted-foreground">
-						{t('type_isstruct_desc')}
+						{m.type_isstruct_desc()}
 					</p>
 				</div>
 			</div>
@@ -177,11 +177,11 @@
 			<Sheet.Close asChild>
 				{#snippet children({ builder })}
 					<Button
-						on:click={async () => {
+						onclick={async () => {
 							await setType(name, struct);
 						}}
 						builders={[builder]}
-						variant="outline">{t('submit')}</Button
+						variant="outline">{m.submit()}</Button
 					>
 				{/snippet}
 			</Sheet.Close>

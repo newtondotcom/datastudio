@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Card from '$lib/components/ui/card/index.js';
-	import { exportHql } from '$lib/scripts/exports/hql';
-	import { exportMarkdown } from '$lib/scripts/exports/markdown';
-	import { exportPySpark } from '$lib/scripts/exports/pyspark';
-	import { exportSql } from '$lib/scripts/exports/sql';
-	import { exportTestData } from '$lib/scripts/exports/test_data';
-	import { exportUML } from '$lib/scripts/exports/uml';
-	import { exportXsd } from '$lib/scripts/exports/xsd';
-	import { exportStructure } from '$lib/scripts/functions';
-	import t from '$lib/scripts/locales';
+	import { Button } from '@/components/ui/button/index.js';
+	import * as Card from '@/components/ui/card/index.js';
+	import { exportHql } from '@/hooks/exports/hql';
+	import { exportMarkdown } from '@/hooks/exports/markdown';
+	import { exportPySpark } from '@/hooks/exports/pyspark';
+	import { exportSql } from '@/hooks/exports/sql';
+	import { exportTestData } from '@/hooks/exports/test_data';
+	import { exportUML } from '@/hooks/exports/uml';
+	import { exportXsd } from '@/hooks/exports/xsd';
+	import { exportStructure } from '@/hooks/functions';
+	import { m } from '@/paraglide/messages.js';
 	import { ofetch } from 'ofetch';
-	import type { IStructure } from '../../../ambient';
+	import type { IStructure } from '@/hooks/types';
 
 	interface Props {
 		button_content: string;
@@ -63,6 +63,7 @@
 		}
 
 		if (code_local) {
+		/*
 			const data = await ofetch(`/codeblock`, {
 				method: 'POST',
 				headers: {
@@ -74,13 +75,15 @@
 				}
 			});
 			code = data.formattedCode;
+		*/
+			code = code_local;
 		} else {
 			console.log('No code to export');
 		}
 	}
 </script>
 
-<Button on:click={exportation} {disabled}>{t(button_content)}</Button>
+<Button onclick={exportation} {disabled}>{m.button_content()}</Button>
 
 {#if code}
 	<div
@@ -88,20 +91,20 @@
 	>
 		<Card.Root>
 			<Card.Header>
-				<Card.Title>{t('export_title')}</Card.Title>
-				<Card.Description>{t('export_desc')}</Card.Description>
+				<Card.Title>{m.export_title()}</Card.Title>
+				<Card.Description>{m.export_desc()}</Card.Description>
 			</Card.Header>
 			<Card.Content>
 				{@html code}
 			</Card.Content>
 			<Card.Footer class="flex justify-end">
 				<Button
-					on:click={() => {
+					onclick={() => {
 						code = undefined;
 					}}
 					variant="outline"
 				>
-					{t('close')}
+					{m.close()}
 				</Button>
 			</Card.Footer>
 		</Card.Root>

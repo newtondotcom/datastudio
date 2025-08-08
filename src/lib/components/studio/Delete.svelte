@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import { deleteElement } from '$lib/scripts/functions';
-	import t from '$lib/scripts/locales';
-	import { Trash2 } from 'lucide-svelte';
+	import * as AlertDialog from '@/components/ui/alert-dialog/index.js';
+	import { Button } from '@/components/ui/button/index.js';
+	import { deleteElement } from '@/hooks/functions';
+	import { m } from '@/paraglide/messages.js';
+	import { Trash2 } from '@lucide/svelte';
 
 	interface Props {
 		id: string;
@@ -24,14 +24,14 @@
 	</AlertDialog.Trigger>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
-			<AlertDialog.Title>{t('delete_title')}</AlertDialog.Title>
+			<AlertDialog.Title>{m.delete_title()}</AlertDialog.Title>
 			<AlertDialog.Description>
-				{t('delete_desc')}
+				{m.delete_desc()}
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
-			<AlertDialog.Cancel>{t('cancel')}</AlertDialog.Cancel>
-			<AlertDialog.Action on:click={del}>{t('submit')}</AlertDialog.Action>
+			<AlertDialog.Cancel>{m.cancel()}</AlertDialog.Cancel>
+			<AlertDialog.Action onclick={del}>{m.submit()}</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>

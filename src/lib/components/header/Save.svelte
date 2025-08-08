@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button/index.js';
-	import { exportStructure } from '$lib/scripts/functions';
-	import t from '$lib/scripts/locales';
+	import { Button } from '@/components/ui/button/index.js';
+	import { exportStructure } from '@/hooks/functions';
+	import { m } from '@/paraglide/messages.js';
 	import { onMount } from 'svelte';
 	import { tinykeys } from 'tinykeys';
 
@@ -35,4 +35,4 @@
 	});
 </script>
 
-<Button on:click={on_bind}>{t('header_save')}</Button>
+<Button onclick={on_bind}>{m.header_save()}</Button>

@@ -1,37 +1,38 @@
-# DataStudio
+# sv
 
-✏️ **DataStudio**: an IDE for big data diagrams
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
----
+## Creating a project
 
-## Introduction
+If you're seeing this, you've probably already done this step. Congrats!
 
-**DataStudio** is an Integrated Development Environment (IDE) specifically designed for data engineers and scientists working with large and complex data schemas. With DataStudio, you can easily create, visualize, and manipulate your data schemas, as well as export them in various formats for use in different environments and tools. It can also generate a test dataset based on the criteria of the schema.
+```sh
+# create a new project in the current directory
+npx sv create
 
-## Key Features
+# create a new project in my-app
+npx sv create my-app
+```
 
-- **Schema Creation and Editing**: Create and edit complex data schemas with an intuitive user interface.
-- **Schema Visualization**: Export your schemas as UML diagrams for better understanding and documentation.
-- **Import and Export**: Import existing schemas and export them in multiple formats.
+## Developing
 
-## Available Export Types
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-DataStudio provides several export options to meet the diverse needs of data engineers:
+```sh
+npm run dev
 
-- **Import a structure**: Import an existing structure. This feature allows you to work with already defined schemas and modify them as needed.
-- Download the **structure**: Download the current structure to reuse it later.
-- Export to **XSD**: Export the structure in XML Schema Definition (XSD) format for use in XML-based systems.
-- Export to **UML Diagram**: Export the structure as a UML diagram for documentation and visualization purposes.
-- Export to **PySpark**: Export the structure for use with PySpark, enabling seamless integration with your big data processing workflows.
-- Export to **Scala**: Export the structure for use with Scala, supporting your development in this programming language.
-- Export a **Markdown table** describing a db schema.
-- Generate **SQL query** to create tables according to declared types.
-- Generate **HQL query** to create tables according to declared types.
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
 
-## Generating Test Dataset
+## Building
 
-**DataStudio** can generate a test dataset based on the criteria defined in the schema, allowing you to quickly create sample data for testing and development purposes.
+To create a production version of your app:
 
----
+```sh
+npm run build
+```
 
-By using DataStudio, data engineers can efficiently handle large data schemas, create UML diagrams, generate schemas for PySpark and Scala, and produce test datasets, enhancing their productivity and ensuring seamless integration with various tools and platforms.
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

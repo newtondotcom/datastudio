@@ -1,4 +1,4 @@
-import type { IElement, IStructure, IType } from '../../../ambient';
+import type { IElement, IStructure, IType } from '@/hooks/types';
 
 import { capitalizeFirstLetter } from '../functions';
 

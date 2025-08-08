@@ -1,8 +1,9 @@
 <script lang="ts">
-	import * as Select from '$lib/components/ui/select';
-	import { changeMultiplicity } from '$lib/scripts/functions';
-	import { elements } from '$lib/scripts/store';
-	import { SquareM } from 'lucide-svelte';
+	import * as Select from '@/components/ui/select';
+	import { changeMultiplicity } from '@/hooks/functions';
+	import { elements } from '@/hooks/store';
+	import { SquareM } from '@lucide/svelte';
+	import type { IElement } from '@/hooks/types';
 
 	interface Props {
 		id: string;
@@ -10,12 +11,13 @@
 
 	let { id }: Props = $props();
 
+	let value = $state<string[]>([]);
 	let multiplicity: number;
-	let valueDisplayed: any = $state();
+	let valueDisplayed: any = $state("");
 
 	let elements_local: IElement[];
-	elements.subscribe((value: IElement[]) => {
-		elements_local = value;
+	elements.subscribe((v: IElement[]) => {
+		elements_local = v;
 
 		// The element just got deleted
 		if (!value.find((el) => el.id === id)) {
@@ -34,7 +36,8 @@
 	});
 
 	async function setMultiplicity(event: any) {
-		multiplicity = parseInt(event.value);
+		// event.value is now an array of strings
+		multiplicity = parseInt(event.value[0]);
 		console.log('multp has changed', multiplicity);
 		await changeMultiplicity(id, multiplicity);
 	}
@@ -42,14 +45,11 @@
 
 <div class="flex flex-row items-center text-lg">
 	<div class="mx-1"><SquareM /></div>
-	<Select.Root
-		onSelectedChange={async (v) => {
-			v && (await setMultiplicity(v));
-		}}
-		selected={valueDisplayed}
+	<Select.Root type="single" name="multiplicity"
+		bind:value
 	>
 		<Select.Trigger class="w-[80px]">
-			<Select.Value />
+			{valueDisplayed}
 		</Select.Trigger>
 		<Select.Content>
 			<Select.Item value="0" label="0">0</Select.Item>

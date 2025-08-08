@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { renameElement } from '$lib/scripts/functions';
-	import t from '$lib/scripts/locales';
-	import { elements } from '$lib/scripts/store';
+	import { Input } from '@/components/ui/input/index.js';
+	import { renameElement } from '@/hooks/functions';
+	import { m } from '@/paraglide/messages.js';
+	import { elements } from '@/hooks/store';
 
 	interface Props {
 		id: string;
@@ -32,7 +32,7 @@
 <Input
 	bind:value={name}
 	type="text"
-	placeholder={t('rename_name')}
+	placeholder={m.rename_name()}
 	class="mx-1 max-w-xs"
 	on:input={renameEl}
 />

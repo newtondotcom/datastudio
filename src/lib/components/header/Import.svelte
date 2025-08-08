@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import { loadStructure } from '$lib/scripts/functions';
-	import t from '$lib/scripts/locales';
-	import type { IStructure } from '../../../ambient';
+	import { Button } from '@/components/ui/button/index.js';
+	import * as Dialog from '@/components/ui/dialog/index.js';
+	import { Input } from '@/components/ui/input/index.js';
+	import { Label } from '@/components/ui/label/index.js';
+	import { loadStructure } from '@/hooks/functions';
+	import { m } from '@/paraglide/messages.js';
+	import type { IStructure } from '@/hooks/types';
 
 	let structureL: IStructure;
 
@@ -50,22 +50,22 @@
 <div class="mx-1 mt-2 flex flex-row items-center text-lg">
 	<Dialog.Root>
 		<Dialog.Trigger>
-			<Button>{t('header_load')}</Button>
+			<Button>{m.header_load()}</Button>
 		</Dialog.Trigger>
 		<Dialog.Content class="sm:max-w-[425px]">
 			<Dialog.Header>
-				<Dialog.Title>{t('structure_title')}</Dialog.Title>
-				<Dialog.Description>{t('structure_desc')}</Dialog.Description>
+				<Dialog.Title>{m.structure_title()}</Dialog.Title>
+				<Dialog.Description>{m.structure_desc()}</Dialog.Description>
 			</Dialog.Header>
 			<div class="grid gap-4 py-4">
 				<div class="grid grid-cols-4 items-center gap-4">
-					<Label for="username" class="text-right">{t('structure_file')}</Label>
+					<Label for="username" class="text-right">{m.structure_file()}</Label>
 					<Input type="file" id="fileInput" accept=".json" class="col-span-3" />
 				</div>
 			</div>
 			<Dialog.Footer>
 				<Dialog.Close>
-					<Button on:click={load} type="submit">{t('submit')}</Button>
+					<Button onclick={load} type="submit">{m.submit()}</Button>
 				</Dialog.Close>
 			</Dialog.Footer>
 		</Dialog.Content>

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import { renameElement } from '$lib/scripts/functions';
-	import t from '$lib/scripts/locales';
-	import { elements } from '$lib/scripts/store';
-	import { Pen } from 'lucide-svelte';
+	import { Button, buttonVariants } from '@/components/ui/button/index.js';
+	import * as Dialog from '@/components/ui/dialog/index.js';
+	import { Input } from '@/components/ui/input/index.js';
+	import { Label } from '@/components/ui/label/index.js';
+	import { renameElement } from '@/hooks/functions';
+	import { m } from '@/paraglide/messages.js';
+	import { elements } from '@/hooks/store';
+	import { Pen } from '@lucide/svelte';
 
 	interface Props {
 		id: string;
@@ -38,20 +38,20 @@
 	</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-[425px]">
 		<Dialog.Header>
-			<Dialog.Title>{t('rename_title')}</Dialog.Title>
+			<Dialog.Title>{m.rename_title()}</Dialog.Title>
 			<Dialog.Description>
-				{t('rename_desc')}
+				{m.rename_desc()}
 			</Dialog.Description>
 		</Dialog.Header>
 		<div class="grid gap-4 py-4">
 			<div class="grid grid-cols-4 items-center gap-4">
-				<Label for="name" class="text-right">{t('rename_name')}</Label>
+				<Label for="name" class="text-right">{m.rename_name()}</Label>
 				<Input id="name" bind:value={name} class="col-span-3" />
 			</div>
 		</div>
 		<Dialog.Footer>
 			<Dialog.Close>
-				<Button type="submit" on:click={renameEl}>{t('submit')}</Button>
+				<Button type="submit" onclick={renameEl}>{m.submit()}</Button>
 			</Dialog.Close>
 		</Dialog.Footer>
 	</Dialog.Content>

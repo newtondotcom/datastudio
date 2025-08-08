@@ -1,13 +1,15 @@
-import { fileURLToPath } from 'url';
-import { sveltekit } from '@sveltejs/kit/vite';
+import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import tailwindcss from '@tailwindcss/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
-	resolve: {
-		alias: {
-			'@': fileURLToPath(new URL('./src/', import.meta.url))
-		}
-	}
+	plugins: [
+		tailwindcss(),
+		sveltekit(),
+		paraglideVitePlugin({
+			project: './project.inlang',
+			outdir: './src/lib/paraglide'
+		})
+	]
 });

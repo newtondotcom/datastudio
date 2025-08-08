@@ -1,19 +1,18 @@
 <script lang="ts">
 	import '../app.css';
+	import favicon from "@/assets/favicon.svg";
+	import { m } from '@/paraglide/messages.js';
+	import { locales, localizeHref } from '@/paraglide/runtime';
+	import { page } from '$app/state';
+	
+	import Export from '@/components/header/Export.svelte';
+	import Import from '@/components/header/Import.svelte';
+	import Save from '@/components/header/Save.svelte';
+	import { Toaster } from '@/components/ui/sonner';
 
-	import Export from '$lib/components/header/Export.svelte';
-	import Import from '$lib/components/header/Import.svelte';
-	import Save from '$lib/components/header/Save.svelte';
-	import { Toaster } from '$lib/components/ui/sonner';
-	import t from '$lib/scripts/locales';
+	let { children } = $props();
 
-	interface Props {
-		children?: import('svelte').Snippet;
-	}
-
-	let { children }: Props = $props();
-
-	const exportTypes = [
+		const exportTypes = [
 		{ type: 'header_uml' },
 		{ type: 'header_md' },
 		{ type: 'header_hql', disabled: true },
@@ -21,12 +20,15 @@
 		{ type: 'header_sql', disabled: true },
 		{ type: 'header_test', disabled: true },
 		{ type: 'header_xsd', disabled: true },
-		{ type: 'header_scala', disabled: true } // Example of a disabled button
-	];
+		{ type: 'header_scala', disabled: true }];
 </script>
 
+<svelte:head>
+	<link rel="icon" href={favicon} />
+</svelte:head>
+
 <Toaster />
-<header class="flex flex-col bg-secondary">
+<header class="bg-secondary flex flex-col">
 	<div
 		class="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center p-4 pt-20 md:pt-0"
 	>
@@ -37,7 +39,7 @@
 		</h1>
 		<p class="mt-4 max-w-3xl text-center text-base font-normal text-neutral-600">
 			<b>DataStudio</b>
-			{t('description')}
+			{m.description()}
 		</p>
 		<div class="mt-4 flex w-full flex-wrap justify-center space-y-2 space-x-4">
 			<Import />
@@ -49,8 +51,15 @@
 	</div>
 </header>
 <div
-	class="flex h-full flex-col items-center justify-center overflow-scroll bg-secondary px-4 text-center align-middle"
+	class="bg-secondary flex h-full flex-col items-center justify-center overflow-scroll px-4 text-center align-middle"
 >
 	{@render children?.()}
 </div>
 <footer></footer>
+
+
++<div style="display:none">
++	{#each locales as locale}
++		<a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
++	{/each}
++</div>

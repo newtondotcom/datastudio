@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { IElement, IType } from '../../ambient';
+import type { IElement, IType } from '@/hooks/types';
 
 export const elements: IElement[] = writable([]);
 

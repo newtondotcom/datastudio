@@ -1,8 +1,8 @@
-import type { IElement, IStructure, IType } from '../../../ambient';
+import type { IElement, IStructure, IType } from '@/hooks/types';
 
 import { capitalizeFirstLetter } from '../functions';
 
-export async function exportHql(structure: IStructure) {
+export async function exportTestData(structure: IStructure) {
 	let markdownString: string = '';
 
 	const elements: IElement[] = structure.elements;

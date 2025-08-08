@@ -1,11 +1,11 @@
 <script>
-	import { Button } from '$lib/components/ui/button';
+	import { Button } from '@/components/ui/button';
 	import { toast } from 'svelte-sonner';
 </script>
 
 <Button
 	variant="outline"
-	on:click={() =>
+	onclick={() =>
 		toast.success('Event has been created', {
 			description: 'Sunday, December 03, 2023 at 9:00 AM'
 		})}

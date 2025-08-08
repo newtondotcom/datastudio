@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import { changeDesc } from '$lib/scripts/functions';
-	import t from '$lib/scripts/locales';
-	import { elements } from '$lib/scripts/store';
-	import { Captions } from 'lucide-svelte';
+	import { Button } from '@/components/ui/button/index.js';
+	import * as Dialog from '@/components/ui/dialog/index.js';
+	import { Input } from '@/components/ui/input/index.js';
+	import { Label } from '@/components/ui/label/index.js';
+	import { changeDesc } from '@/hooks/functions';
+	import { m } from '@/paraglide/messages.js';
+	import { elements } from '@/hooks/store';
+	import { Captions } from '@lucide/svelte';
 
 	interface Props {
 		id: string;
@@ -44,18 +44,18 @@
 		</Dialog.Trigger>
 		<Dialog.Content class="sm:max-w-[425px]">
 			<Dialog.Header>
-				<Dialog.Title>{t('elementdesc_title')}</Dialog.Title>
-				<Dialog.Description>{t('elementdesc_desc')}</Dialog.Description>
+				<Dialog.Title>{m.elementdesc_title()}</Dialog.Title>
+				<Dialog.Description>{m.elementdesc_desc()}</Dialog.Description>
 			</Dialog.Header>
 			<div class="grid gap-4 py-4">
 				<div class="grid grid-cols-4 items-center gap-4">
-					<Label for="name" class="text-right">{t('elementdesc_name')}</Label>
+					<Label for="name" class="text-right">{m.elementdesc_name()}</Label>
 					<Input id="name" bind:value={desc} class="col-span-3" />
 				</div>
 			</div>
 			<Dialog.Footer>
 				<Dialog.Close>
-					<Button on:click={setDesc} type="submit">{t('submit')}</Button>
+					<Button onclick={setDesc} type="submit">{m.submit()}</Button>
 				</Dialog.Close>
 			</Dialog.Footer>
 		</Dialog.Content>

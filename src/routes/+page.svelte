@@ -1,14 +1,13 @@
 <script lang="ts">
-	import Element from '$lib/components/studio/Element.svelte';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import { change_colors, createTypestruct } from '$lib/scripts/functions';
-	import t from '$lib/scripts/locales';
-	import { elements } from '$lib/scripts/store';
-	import { Plus, RotateCcw } from 'lucide-svelte';
-	import type { IElement } from '../ambient';
+	import Element from '@/components/studio/Element.svelte';
+	import { Button } from '@/components/ui/button/index.js';
+	import * as Dialog from '@/components/ui/dialog/index.js';
+	import { Input } from '@/components/ui/input/index.js';
+	import { Label } from '@/components/ui/label/index.js';
+	import { change_colors, createTypestruct } from '@/hooks/functions';
+	import { m } from '@/paraglide/messages.js';
+	import { elements } from '@/hooks/store';
+	import { Plus, RotateCcw } from '@lucide/svelte';
 
 	let elements_local: IElement[];
 	let origins: IElement[] = $state();
@@ -28,13 +27,13 @@
 	<Dialog.Root>
 		<Dialog.Trigger>
 			<Button class="mx-1">
-				{t('type_create')}
+				{m.type_create()}
 				<Plus class="mx-1" />
 			</Button>
 		</Dialog.Trigger>
 		<Dialog.Content class="sm:max-w-[425px]">
 			<Dialog.Header>
-				<Dialog.Title>{t('type_create')}</Dialog.Title>
+				<Dialog.Title>{m.type_create()}</Dialog.Title>
 				<Dialog.Description>
 					Specify the name of the type and click on save when you're done.
 				</Dialog.Description>
@@ -47,13 +46,13 @@
 			</div>
 			<Dialog.Footer>
 				<Dialog.Close>
-					<Button type="submit" on:click={() => createTypestruct(name)}>Save changes</Button>
+					<Button type="submit" onclick={() => createTypestruct(name)}>Save changes</Button>
 				</Dialog.Close>
 			</Dialog.Footer>
 		</Dialog.Content>
 	</Dialog.Root>
-	<Button on:click={change}>
-		{t('header_colors')}
+	<Button onclick={change}>
+		{m.header_colors()}
 		<RotateCcw class="mx-1" />
 	</Button>
 </div>
