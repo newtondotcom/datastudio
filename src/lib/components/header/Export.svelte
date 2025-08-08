@@ -71,7 +71,7 @@
 	}
 </script>
 
-<Button onclick={exportation} {disabled}>{m.button_content()}</Button>
+<Button onclick={exportation} {disabled}>{m[button_content as string]()}</Button>
 
 {#if code}
 	<div

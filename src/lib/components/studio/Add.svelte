@@ -15,4 +15,4 @@
 	}
 </script>
 
-<Button variant="outline" onclick={create}><Plus /></Button>
+<Button variant="ghost" onclick={create}><Plus /></Button>

@@ -3,7 +3,7 @@
 	import { exportStructure } from '@/hooks/functions';
 	import { m } from '@/paraglide/messages.js';
 	import { onMount } from 'svelte';
-	import { tinykeys } from 'tinykeys';
+	import ShortcutManager from '@keybindy/core';
 
 	async function on_bind() {
 		console.log('save');
@@ -26,12 +26,25 @@
 	}
 
 	onMount(() => {
-		tinykeys(window, {
-			'$mod+s': (event: { preventDefault: () => void; key: any }) => {
-				event.preventDefault();
+		const manager = new ShortcutManager();
+		manager.register(
+			['Ctrl','S'],
+			() => {
 				on_bind();
+			},
+			{
+				preventDefault : true
 			}
-		});
+		);
+		manager.register(
+			['Meta','S'],
+			() => {
+				on_bind();
+			},
+			{
+				preventDefault : true
+			}
+		);
 	});
 </script>
 

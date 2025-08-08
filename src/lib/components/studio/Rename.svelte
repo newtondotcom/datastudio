@@ -35,7 +35,7 @@
 
 <Dialog.Root>
 	<Dialog.Trigger>
-		<Button><Pen /></Button>
+		<Button variant="outline"><Pen /></Button>
 	</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-[425px]">
 		<Dialog.Header>

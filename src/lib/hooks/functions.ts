@@ -5,12 +5,12 @@ let elementsStore_local: IElement[];
 let typesStore_local: IType[];
 let timestamp_local: Date;
 
-elementsStore.subscribe((value: Element[]) => {
+elementsStore.subscribe((value: IElement[]) => {
 	elementsStore_local = value;
 	console.log('new strucutre: ' + elementsStore_local.length);
 });
 
-typesStore.subscribe((value: Type[]) => {
+typesStore.subscribe((value: IType[]) => {
 	typesStore_local = value;
 	console.log('new type: ' + typesStore_local.length);
 });
@@ -98,7 +98,7 @@ export async function createElement(id_parent: string) {
 	const parent: IElement = elementsStore_local.find((el: Element) => el.id === id_parent);
 	const element: IElement = {
 		id: await genUID(),
-		name: 'edit',
+		name: 'CHANGEME',
 		type: 'string',
 		multiplicity: 0,
 		id_parent: id_parent,
