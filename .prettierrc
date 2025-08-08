@@ -10,7 +10,15 @@
 		"prettier-plugin-tailwindcss",
 		"@ianvs/prettier-plugin-sort-imports"
 	],
-	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }],
+	"overrides": [
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		}
+	],
 	"tailwindFunctions": ["tv", "tw"],
-	"importOrder": ["<BUILTIN_MODULES>", "<THIRD_PARTY_MODULES>", "<TYPES>", "", "^[.]"]
+	"importOrder": ["<BUILTIN_MODULES>", "<THIRD_PARTY_MODULES>", "<TYPES>", "", "^[.]"],
+	"tailwindStylesheet": "./src/app.css"
 }

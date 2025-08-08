@@ -39,7 +39,7 @@
 			<b>DataStudio</b>
 			{t('description')}
 		</p>
-		<div class="mt-4 flex w-full flex-wrap justify-center space-x-4 space-y-2">
+		<div class="mt-4 flex w-full flex-wrap justify-center space-y-2 space-x-4">
 			<Import />
 			<Save />
 			{#each exportTypes as { type, disabled = false }}
