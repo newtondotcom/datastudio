@@ -10,8 +10,9 @@
 	import { exportXsd } from '@/hooks/exports/xsd';
 	import { exportStructure } from '@/hooks/functions';
 	import { m } from '@/paraglide/messages.js';
-	import { ofetch } from 'ofetch';
 	import type { IStructure } from '@/hooks/types';
+  	import Highlight from "svelte-highlight";
+	import markdown from "svelte-highlight/languages/markdown";
 
 	interface Props {
 		button_content: string;
@@ -63,19 +64,6 @@
 		}
 
 		if (code_local) {
-			/*
-			const data = await ofetch(`/codeblock`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'multipart/form-data'
-				},
-				body: {
-					code: code_local,
-					langageId
-				}
-			});
-			code = data.formattedCode;
-		*/
 			code = code_local;
 		} else {
 			console.log('No code to export');
@@ -95,7 +83,9 @@
 				<Card.Description>{m.export_desc()}</Card.Description>
 			</Card.Header>
 			<Card.Content>
-				{@html code}
+				<Highlight
+					language={markdown}
+					class="h-96 w-full overflow-y-auto rounded-lg bg-gray-800 p-4" {code} />
 			</Card.Content>
 			<Card.Footer class="flex justify-end">
 				<Button

@@ -48,6 +48,7 @@
 	"dependencies": {
 		"@inlang/paraglide-js": "^2.0.0",
 		"ofetch": "^1.4.1",
+		"svelte-highlight": "^7.8.3",
 		"tinykeys": "^3.0.0"
 	}
 }
