@@ -5,17 +5,17 @@ import { capitalizeFirstLetter } from '../functions';
 export async function exportHql(structure: IStructure) {
 	let markdownString: string = '';
 
-	const elements: IElement[] = structure.elements;
-	const types: IType[] = structure.types;
+	const elementsStore: IElement[] = structure.elementsStore;
+	const typesStore: IType[] = structure.typesStore;
 
-	const types_struct = types.filter((type: IType) => type.struct);
+	const typesStore_struct = typesStore.filter((type: IType) => type.struct);
 
 	// Generate Markdown Tables
-	types_struct.forEach((type: IType) => {
-		const parent: IElement = elements.find(
+	typesStore_struct.forEach((type: IType) => {
+		const parent: IElement = elementsStore.find(
 			(el: IElement) => el.id_parent === null && el.type == type.name
 		);
-		const children: IElement[] = elements.filter((el: IElement) => el.id_parent === parent.id);
+		const children: IElement[] = elementsStore.filter((el: IElement) => el.id_parent === parent.id);
 
 		let localString = `### ${capitalizeFirstLetter(parent.type)}\n`;
 		localString += `| Name         | Type       | Multiplicity | Description |\n`;

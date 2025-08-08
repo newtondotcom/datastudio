@@ -5,7 +5,7 @@
 	import Name from '@/components/studio/Name.svelte';
 	import Rename from '@/components/studio/Rename.svelte';
 	import IType from '@/components/studio/Type.svelte';
-	import { elements, types } from '@/hooks/store';
+	import { elementsStore, typesStore } from '@/hooks/store';
 	import { cn } from '@/hooks/utils';
 	import { ChevronDown, ChevronUp } from '@lucide/svelte';
 	import type { IElement } from '@/hooks/types';
@@ -21,30 +21,30 @@
 	let el_local: IElement = $state();
 	let type_local: IType = $state();
 
-	let elements_local: IElement[] = $state();
-	let children: IElement[] = $state();
-	let types_local: IType[];
+	let elementsStore_local: IElement[] = $state([]);
+	let children: IElement[] = $state([]);
+	let typesStore_local: IType[];
 
-	elements.subscribe((value) => {
-		elements_local = value;
+	elementsStore.subscribe((value) => {
+		elementsStore_local = value;
 		children = value.filter((el) => el.id_parent === id);
 		updateStruct();
 	});
-	types.subscribe((value: IType[]) => {
-		types_local = value;
+	typesStore.subscribe((value: IType[]) => {
+		typesStore_local = value;
 		updateStruct();
 	});
 
 	function updateStruct() {
-		children = elements_local.filter((el) => el.id_parent === id);
-		el_local = elements_local.find((el: IElement) => el.id === id);
+		children = elementsStore_local.filter((el) => el.id_parent === id);
+		el_local = elementsStore_local.find((el: IElement) => el.id === id);
 		if (el_local == undefined) {
-			console.log('Element not found : ', id, elements_local);
+			console.log('Element not found : ', id, elementsStore_local);
 		}
-		if (types_local) {
-			type_local = types_local.find((type: IType) => type.name === el_local?.type);
+		if (typesStore_local) {
+			type_local = typesStore_local.find((type: IType) => type.name === el_local?.type);
 			if (type_local == undefined) {
-				console.log('Type not found : ', el_local.name, el_local.type, types_local);
+				console.log('Type not found : ', el_local.name, el_local.type, typesStore_local);
 			}
 		}
 	}
@@ -87,7 +87,7 @@
 								'flex w-full flex-row justify-between rounded-xl px-2 py-2',
 								'bg-' +
 									(child.struct
-										? elements_local.find((el) => el.id_parent === null && el.type === child.type)
+										? elementsStore_local.find((el) => el.id_parent === null && el.type === child.type)
 												?.color
 										: 'secondary')
 							)}

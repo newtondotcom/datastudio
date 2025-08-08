@@ -8,7 +8,7 @@
 	import * as Sheet from '@/components/ui/sheet/index.js';
 	import { capitalizeFirstLetter, changeType } from '@/hooks/functions';
 	import { m } from '@/paraglide/messages.js';
-	import { elements, types } from '@/hooks/store';
+	import { elementsStore, typesStore } from '@/hooks/store';
 	import { cn } from '@/hooks/utils';
 	import Check from '@lucide/svelte/icons/check';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
@@ -23,21 +23,21 @@
 	let { id }: Props = $props();
 
 	let open = $state(false);
-	let selectedValue: string = $state();
-	let search: string = $state();
-	let name: string = $state();
-	let struct: boolean = $state();
+	let selectedValue: string = $state("");
+	let search: string = $state("");
+	let name: string = $state("");
+	let struct: boolean = $state(false);
 
-	let elements_local: IElement[];
-	let types_select: { value: string; label: string }[] = $state();
-	let types_local: IType[] = $state();
+	let elementsStore_local: IElement[];
+	let typesStore_select: { value: string; label: string }[] = $state();
+	let typesStore_local: IType[] = $state([]);
 	let el_local: IElement;
 	let el_parent: IElement;
 
 	let triggerId = $state('type-trigger');
 
-	elements.subscribe((value: IElement[]) => {
-		elements_local = value;
+	elementsStore.subscribe((value: IElement[]) => {
+		elementsStore_local = value;
 
 		// The element just got deleted
 		if (!value.find((el) => el.id === id)) {
@@ -53,9 +53,9 @@
 		el_parent = value.find((el) => el.id === el_local.id_parent);
 	});
 
-	types.subscribe((value: IType[]) => {
-		types_local = value;
-		types_select = value
+	typesStore.subscribe((value: IType[]) => {
+		typesStore_local = value;
+		typesStore_select = value
 			.map((type: IType) => {
 				if (type.name == el_parent.type) {
 					return null;
@@ -72,7 +72,7 @@
 		search =
 			selectedValue !== ''
 				? capitalizeFirstLetter(selectedValue)
-				: (types_local.find((f) => f.value === search)?.label ?? 'Select a type');
+				: (typesStore_local.find((f) => f.value === search)?.label ?? 'Select a type');
 	});
 
 	function closeAndFocusTrigger() {
@@ -110,7 +110,7 @@
 					<Command.Input placeholder="Search a type..." />
 					<Command.Empty>{m.type_notfound()}</Command.Empty>
 					<Command.Group>
-						{#each types_select as framework}
+						{#each typesStore_select as framework}
 							<Command.Item
 								value={framework.value}
 								onSelect={async (currentValue) => {

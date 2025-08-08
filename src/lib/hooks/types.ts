@@ -17,6 +17,6 @@ export interface IType {
 
 export interface IStructure {
 	timestamp: Date;
-	elements: IElement[];
-	types: IType[];
+	elementsStore: IElement[];
+	typesStore: IType[];
 }

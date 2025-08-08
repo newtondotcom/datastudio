@@ -12,7 +12,7 @@
 
 	let { children } = $props();
 
-	const exportTypes = [
+	const exporttypesStore = [
 		{ type: 'header_uml' },
 		{ type: 'header_md' },
 		{ type: 'header_hql', disabled: true },
@@ -45,7 +45,7 @@
 		<div class="mt-4 flex w-full flex-wrap justify-center space-y-2 space-x-4">
 			<Import />
 			<Save />
-			{#each exportTypes as { type, disabled = false }}
+			{#each exporttypesStore as { type, disabled = false }}
 				<Export button_content={type} {disabled} />
 			{/each}
 		</div>

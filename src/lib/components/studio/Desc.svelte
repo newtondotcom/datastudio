@@ -5,8 +5,9 @@
 	import { Label } from '@/components/ui/label/index.js';
 	import { changeDesc } from '@/hooks/functions';
 	import { m } from '@/paraglide/messages.js';
-	import { elements } from '@/hooks/store';
+	import { elementsStore } from '@/hooks/store';
 	import { Captions } from '@lucide/svelte';
+	import type { IElement } from '@/hooks/types';
 
 	interface Props {
 		id: string;
@@ -14,11 +15,11 @@
 
 	let { id }: Props = $props();
 
-	let desc: string = $state();
+	let desc: string = $state("");
 
-	let elements_local: IElement[];
-	elements.subscribe((value: IElement[]) => {
-		elements_local = value;
+	let elementsStore_local: IElement[];
+	elementsStore.subscribe((value: IElement[]) => {
+		elementsStore_local = value;
 
 		// The element just got deleted
 		if (!value.find((el) => el.id === id)) {

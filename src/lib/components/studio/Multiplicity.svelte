@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Select from '@/components/ui/select';
 	import { changeMultiplicity } from '@/hooks/functions';
-	import { elements } from '@/hooks/store';
+	import { elementsStore } from '@/hooks/store';
 	import { SquareM } from '@lucide/svelte';
 	import type { IElement } from '@/hooks/types';
 
@@ -15,9 +15,9 @@
 	let multiplicity: number;
 	let valueDisplayed: any = $state('');
 
-	let elements_local: IElement[];
-	elements.subscribe((v: IElement[]) => {
-		elements_local = v;
+	let elementsStore_local: IElement[];
+	elementsStore.subscribe((v: IElement[]) => {
+		elementsStore_local = v;
 
 		// The element just got deleted
 		if (!value.find((el) => el.id === id)) {

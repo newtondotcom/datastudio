@@ -4,19 +4,20 @@
 	import * as Dialog from '@/components/ui/dialog/index.js';
 	import { Input } from '@/components/ui/input/index.js';
 	import { Label } from '@/components/ui/label/index.js';
-	import { change_colors, createTypestruct } from '@/hooks/functions';
+	import { change_colors, createtypesStoretruct } from '@/hooks/functions';
 	import { m } from '@/paraglide/messages.js';
-	import { elements } from '@/hooks/store';
+	import { elementsStore } from '@/hooks/store';
 	import { Plus, RotateCcw } from '@lucide/svelte';
+	import type { IElement } from '@/hooks/types';
 
-	let elements_local: IElement[];
-	let origins: IElement[] = $state();
-	elements.subscribe((value: IElement[]) => {
-		elements_local = value;
+	let elementsStore_local: IElement[];
+	let origins: IElement[] = $state([]);
+	elementsStore.subscribe((value: IElement[]) => {
+		elementsStore_local = value;
 		origins = value.filter((el: IElement) => el.indent === 0);
 	});
 
-	let name: string = $state();
+	let name: string = $state("");
 
 	async function change() {
 		await change_colors();
@@ -46,7 +47,7 @@
 			</div>
 			<Dialog.Footer>
 				<Dialog.Close>
-					<Button type="submit" onclick={() => createTypestruct(name)}>Save changes</Button>
+					<Button type="submit" onclick={() => createtypesStoretruct(name)}>Save changes</Button>
 				</Dialog.Close>
 			</Dialog.Footer>
 		</Dialog.Content>

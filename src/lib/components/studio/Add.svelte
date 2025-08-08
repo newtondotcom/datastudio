@@ -10,7 +10,7 @@
 	let { id_parent }: Props = $props();
 
 	async function create() {
-		const parentId = await id_parent;
+		const parentId = id_parent;
 		await createElement(parentId);
 	}
 </script>

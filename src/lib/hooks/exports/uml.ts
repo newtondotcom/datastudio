@@ -5,17 +5,17 @@ import { capitalizeFirstLetter } from '../functions';
 export async function exportUML(structure: IStructure) {
 	let umlstring: string = '';
 
-	const elements: IElement[] = structure.elements;
-	const types: IType[] = structure.types;
+	const elementsStore: IElement[] = structure.elementsStore;
+	const typesStore: IType[] = structure.typesStore;
 
-	const types_struct = types.filter((type: IType) => type.struct);
+	const typesStore_struct = typesStore.filter((type: IType) => type.struct);
 
 	// Generate Classes
-	types_struct.forEach((type: IType) => {
-		const parent: IElement = elements.find(
+	typesStore_struct.forEach((type: IType) => {
+		const parent: IElement = elementsStore.find(
 			(el: IElement) => el.id_parent === null && el.type == type.name
 		);
-		const children: IElement[] = elements.filter(
+		const children: IElement[] = elementsStore.filter(
 			(el: IElement) => el.id_parent === parent.id && el.struct === false
 		);
 
@@ -30,11 +30,11 @@ export async function exportUML(structure: IStructure) {
 	umlstring += '\n';
 
 	// Generate Links
-	types_struct.forEach((type: IType) => {
-		const parent: IElement = elements.find(
+	typesStore_struct.forEach((type: IType) => {
+		const parent: IElement = elementsStore.find(
 			(el: IElement) => el.id_parent === null && el.type == type.name
 		);
-		const children_struc: IElement[] = elements.filter(
+		const children_struc: IElement[] = elementsStore.filter(
 			(el: IElement) => el.id_parent === parent.id && el.struct === true
 		);
 
