@@ -7,6 +7,12 @@
 	import { Toaster } from '$lib/components/ui/sonner';
 	import t from '$lib/scripts/locales';
 
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
+
 	const exportTypes = [
 		{ type: 'header_uml' },
 		{ type: 'header_md' },
@@ -45,6 +51,6 @@
 <div
 	class="flex h-full flex-col items-center justify-center overflow-scroll bg-secondary px-4 text-center align-middle"
 >
-	<slot />
+	{@render children?.()}
 </div>
 <footer></footer>

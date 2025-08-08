@@ -4,10 +4,14 @@
 	import { elements } from '$lib/scripts/store';
 	import { SquareM } from 'lucide-svelte';
 
-	export let id: string;
+	interface Props {
+		id: string;
+	}
+
+	let { id }: Props = $props();
 
 	let multiplicity: number;
-	let valueDisplayed: any;
+	let valueDisplayed: any = $state();
 
 	let elements_local: IElement[];
 	elements.subscribe((value: IElement[]) => {

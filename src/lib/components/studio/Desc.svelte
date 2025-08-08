@@ -8,9 +8,13 @@
 	import { elements } from '$lib/scripts/store';
 	import { Captions } from 'lucide-svelte';
 
-	export let id: string;
+	interface Props {
+		id: string;
+	}
 
-	let desc: string;
+	let { id }: Props = $props();
+
+	let desc: string = $state();
 
 	let elements_local: IElement[];
 	elements.subscribe((value: IElement[]) => {

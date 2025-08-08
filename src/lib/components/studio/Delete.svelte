@@ -5,7 +5,11 @@
 	import t from '$lib/scripts/locales';
 	import { Trash2 } from 'lucide-svelte';
 
-	export let id: string;
+	interface Props {
+		id: string;
+	}
+
+	let { id }: Props = $props();
 
 	async function del() {
 		await deleteElement(id);
@@ -13,8 +17,10 @@
 </script>
 
 <AlertDialog.Root>
-	<AlertDialog.Trigger asChild let:builder>
-		<Button variant="destructive" class="mx-1" builders={[builder]}><Trash2 /></Button>
+	<AlertDialog.Trigger asChild>
+		{#snippet children({ builder })}
+			<Button variant="destructive" class="mx-1" builders={[builder]}><Trash2 /></Button>
+		{/snippet}
 	</AlertDialog.Trigger>
 	<AlertDialog.Content>
 		<AlertDialog.Header>

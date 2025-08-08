@@ -13,23 +13,28 @@
 	import Check from 'lucide-svelte/icons/check';
 	import ChevronsUpDown from 'lucide-svelte/icons/chevrons-up-down';
 	import { tick } from 'svelte';
+	import { run } from 'svelte/legacy';
 	import type { IElement, IType } from '../../../ambient';
 
-	export let id: string;
+	interface Props {
+		id: string;
+	}
 
-	let open = false;
-	let selectedValue: string;
-	let search: string;
-	let name: string;
-	let struct: boolean;
+	let { id }: Props = $props();
+
+	let open = $state(false);
+	let selectedValue: string = $state();
+	let search: string = $state();
+	let name: string = $state();
+	let struct: boolean = $state();
 
 	let elements_local: IElement[];
-	let types_select: { value: string; label: string }[];
-	let types_local: IType[];
+	let types_select: { value: string; label: string }[] = $state();
+	let types_local: IType[] = $state();
 	let el_local: IElement;
 	let el_parent: IElement;
 
-	let triggerId = 'type-trigger';
+	let triggerId = $state('type-trigger');
 
 	elements.subscribe((value: IElement[]) => {
 		elements_local = value;
@@ -63,10 +68,12 @@
 			.filter((item) => item !== null);
 	});
 
-	$: search =
-		selectedValue !== ''
-			? capitalizeFirstLetter(selectedValue)
-			: (types_local.find((f) => f.value === search)?.label ?? 'Select a type');
+	run(() => {
+		search =
+			selectedValue !== ''
+				? capitalizeFirstLetter(selectedValue)
+				: (types_local.find((f) => f.value === search)?.label ?? 'Select a type');
+	});
 
 	function closeAndFocusTrigger() {
 		open = false;
@@ -82,54 +89,61 @@
 </script>
 
 <Sheet.Root>
-	<Popover.Root bind:open let:ids>
-		<Popover.Trigger asChild let:builder>
-			<Button
-				builders={[builder]}
-				variant="outline"
-				role="combobox"
-				aria-expanded={open}
-				class="mx-1 w-[200px] justify-between"
-			>
-				{search}
-				<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-			</Button>
-		</Popover.Trigger>
-		<Popover.Content class="w-[200px] p-0">
-			<Command.Root>
-				<Command.Input placeholder="Search a type..." />
-				<Command.Empty>{t('type_notfound')}</Command.Empty>
-				<Command.Group>
-					{#each types_select as framework}
-						<Command.Item
-							value={framework.value}
-							onSelect={async (currentValue) => {
-								await setType(currentValue, false);
+	<Popover.Root bind:open>
+		{#snippet children({ ids })}
+			<Popover.Trigger asChild>
+				{#snippet children({ builder })}
+					<Button
+						builders={[builder]}
+						variant="outline"
+						role="combobox"
+						aria-expanded={open}
+						class="mx-1 w-[200px] justify-between"
+					>
+						{search}
+						<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+					</Button>
+				{/snippet}
+			</Popover.Trigger>
+			<Popover.Content class="w-[200px] p-0">
+				<Command.Root>
+					<Command.Input placeholder="Search a type..." />
+					<Command.Empty>{t('type_notfound')}</Command.Empty>
+					<Command.Group>
+						{#each types_select as framework}
+							<Command.Item
+								value={framework.value}
+								onSelect={async (currentValue) => {
+									await setType(currentValue, false);
+									triggerId = ids.trigger;
+									closeAndFocusTrigger();
+								}}
+							>
+								<Check
+									class={cn(
+										'mr-2 h-4 w-4',
+										selectedValue !== framework.value && 'text-transparent'
+									)}
+								/>
+								{framework.label}
+							</Command.Item>
+						{/each}
+						<Sheet.Trigger
+							on:click={() => {
+								console.log('triggerId', triggerId);
 								triggerId = ids.trigger;
 								closeAndFocusTrigger();
 							}}
 						>
-							<Check
-								class={cn('mr-2 h-4 w-4', selectedValue !== framework.value && 'text-transparent')}
-							/>
-							{framework.label}
-						</Command.Item>
-					{/each}
-					<Sheet.Trigger
-						on:click={() => {
-							console.log('triggerId', triggerId);
-							triggerId = ids.trigger;
-							closeAndFocusTrigger();
-						}}
-					>
-						<Command.Item>
-							<Check class="mr-2 h-4 w-4 text-transparent" />
-							{t('type_create')}
-						</Command.Item>
-					</Sheet.Trigger>
-				</Command.Group>
-			</Command.Root>
-		</Popover.Content>
+							<Command.Item>
+								<Check class="mr-2 h-4 w-4 text-transparent" />
+								{t('type_create')}
+							</Command.Item>
+						</Sheet.Trigger>
+					</Command.Group>
+				</Command.Root>
+			</Popover.Content>
+		{/snippet}
 	</Popover.Root>
 
 	<Sheet.Content>
@@ -160,14 +174,16 @@
 			</div>
 		</div>
 		<Sheet.Footer>
-			<Sheet.Close asChild let:builder>
-				<Button
-					on:click={async () => {
-						await setType(name, struct);
-					}}
-					builders={[builder]}
-					variant="outline">{t('submit')}</Button
-				>
+			<Sheet.Close asChild>
+				{#snippet children({ builder })}
+					<Button
+						on:click={async () => {
+							await setType(name, struct);
+						}}
+						builders={[builder]}
+						variant="outline">{t('submit')}</Button
+					>
+				{/snippet}
 			</Sheet.Close>
 		</Sheet.Footer>
 	</Sheet.Content>

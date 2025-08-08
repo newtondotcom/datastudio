@@ -13,10 +13,14 @@
 	import { ofetch } from 'ofetch';
 	import type { IStructure } from '../../../ambient';
 
-	export let button_content: string;
-	export let disabled: boolean;
+	interface Props {
+		button_content: string;
+		disabled: boolean;
+	}
 
-	let code: string | undefined;
+	let { button_content, disabled }: Props = $props();
+
+	let code: string | undefined = $state();
 
 	async function exportation() {
 		const structure: IStructure = await exportStructure();

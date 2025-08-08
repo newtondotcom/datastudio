@@ -7,17 +7,17 @@
 	import { change_colors, createTypestruct } from '$lib/scripts/functions';
 	import t from '$lib/scripts/locales';
 	import { elements } from '$lib/scripts/store';
-	import { LockOpen, Plus } from 'lucide-svelte';
+	import { Plus, RotateCcw } from 'lucide-svelte';
 	import type { IElement } from '../ambient';
 
 	let elements_local: IElement[];
-	let origins: IElement[];
+	let origins: IElement[] = $state();
 	elements.subscribe((value: IElement[]) => {
 		elements_local = value;
 		origins = value.filter((el: IElement) => el.indent === 0);
 	});
 
-	let name: string;
+	let name: string = $state();
 
 	async function change() {
 		await change_colors();
@@ -54,7 +54,7 @@
 	</Dialog.Root>
 	<Button on:click={change}>
 		{t('header_colors')}
-		<LockOpen class="mx-1" />
+		<RotateCcw class="mx-1" />
 	</Button>
 </div>
 

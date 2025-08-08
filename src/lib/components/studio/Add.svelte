@@ -3,7 +3,11 @@
 	import { createElement } from '$lib/scripts/functions';
 	import { Plus } from 'lucide-svelte';
 
-	export let id_parent: string;
+	interface Props {
+		id_parent: string;
+	}
+
+	let { id_parent }: Props = $props();
 
 	async function create() {
 		const parentId = await id_parent;

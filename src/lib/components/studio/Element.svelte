@@ -12,13 +12,17 @@
 
 	import Desc from './Desc.svelte';
 
-	export let id: string;
+	interface Props {
+		id: string;
+	}
 
-	let el_local: IElement;
-	let type_local: IType;
+	let { id }: Props = $props();
 
-	let elements_local: IElement[];
-	let children: IElement[];
+	let el_local: IElement = $state();
+	let type_local: IType = $state();
+
+	let elements_local: IElement[] = $state();
+	let children: IElement[] = $state();
 	let types_local: IType[];
 
 	elements.subscribe((value) => {
@@ -45,7 +49,7 @@
 		}
 	}
 
-	let open = true;
+	let open = $state(true);
 	function toggleOpen() {
 		open = !open;
 	}
@@ -57,7 +61,7 @@
 >
 	<div class="flex w-full flex-row items-center justify-between">
 		<div class={cn('flex flex-row rounded-md px-2 py-1', 'bg-' + el_local.color)}>
-			<button on:click={toggleOpen} class="flex w-full flex-row rounded-lg px-2 text-3xl">
+			<button onclick={toggleOpen} class="flex w-full flex-row rounded-lg px-2 text-3xl">
 				{type_local.name}
 				{#if open}
 					<ChevronDown size={40} />

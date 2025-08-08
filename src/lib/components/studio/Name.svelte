@@ -4,9 +4,13 @@
 	import t from '$lib/scripts/locales';
 	import { elements } from '$lib/scripts/store';
 
-	export let id: string;
+	interface Props {
+		id: string;
+	}
 
-	let name: string;
+	let { id }: Props = $props();
+
+	let name: string = $state();
 
 	let elements_local: IElement[];
 	elements.subscribe((value: IElement[]) => {
