@@ -6,7 +6,7 @@
 	import Rename from '@/components/studio/Rename.svelte';
 	import IType from '@/components/studio/Type.svelte';
 	import { elementsStore, typesStore } from '@/hooks/store';
-	import { cn } from '@/hooks/utils';
+	import { cn } from '@/utils.js';
 	import { ChevronDown, ChevronUp } from '@lucide/svelte';
 	import type { IElement } from '@/hooks/types';
 
@@ -87,7 +87,7 @@
 								'flex w-full flex-row justify-between rounded-xl px-2 py-2',
 								'bg-' +
 									(child.struct
-										? elementsStore_local.find((el) => el.id_parent === null && el.type === child.type)
+										? elementsStore_local.find((el) => !el.id_parent && el.type === child.type)
 												?.color
 										: 'secondary')
 							)}

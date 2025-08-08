@@ -47,7 +47,6 @@
 	}
 </script>
 
-<div class="mx-1 mt-2 flex flex-row items-center text-lg">
 	<Dialog.Root>
 		<Dialog.Trigger>
 			<Button>{m.header_load()}</Button>
@@ -70,4 +69,3 @@
 			</Dialog.Footer>
 		</Dialog.Content>
 	</Dialog.Root>
-</div>

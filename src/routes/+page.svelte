@@ -24,7 +24,7 @@
 	}
 </script>
 
-<div class="flex flex-row">
+<div class="flex flex-row pt-4">
 	<Dialog.Root>
 		<Dialog.Trigger>
 			<Button class="mx-1">

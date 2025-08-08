@@ -13,7 +13,7 @@ export async function exportPySpark(structure: IStructure) {
 	// Generate Markdown Tables
 	typesStore_struct.forEach((type: IType) => {
 		const parent: IElement = elementsStore.find(
-			(el: IElement) => el.id_parent === null && el.type == type.name
+			(el: IElement) => !el.id_parent && el.type == type.name
 		);
 		const children: IElement[] = elementsStore.filter((el: IElement) => el.id_parent === parent.id);
 

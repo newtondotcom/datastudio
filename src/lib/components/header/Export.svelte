@@ -13,6 +13,10 @@
 	import type { IStructure } from '@/hooks/types';
   	import Highlight from "svelte-highlight";
 	import markdown from "svelte-highlight/languages/markdown";
+	import sql from "svelte-highlight/languages/sql";
+	import python from "svelte-highlight/languages/python";
+	import json from "svelte-highlight/languages/json";
+	import xml from "svelte-highlight/languages/xml";
 
 	interface Props {
 		button_content: string;
@@ -28,6 +32,8 @@
 
 		let code_local: string | undefined;
 		let langageId: string | undefined;
+
+		console.log(structure);
 
 		switch (button_content) {
 			case 'header_hql':
@@ -84,8 +90,7 @@
 			</Card.Header>
 			<Card.Content>
 				<Highlight
-					language={markdown}
-					class="h-96 w-full overflow-y-auto rounded-lg bg-gray-800 p-4" {code} />
+					language={markdown} {code} />
 			</Card.Content>
 			<Card.Footer class="flex justify-end">
 				<Button

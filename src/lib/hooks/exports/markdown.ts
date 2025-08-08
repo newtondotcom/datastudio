@@ -12,9 +12,14 @@ export async function exportMarkdown(structure: IStructure) {
 
 	// Generate Markdown Tables
 	typesStore_struct.forEach((type: IType) => {
-		const parent: IElement = elementsStore.find(
-			(el: IElement) => el.id_parent === null && el.type == type.name
+		const parent = elementsStore.find(
+			(el: IElement) => !el.id_parent && el.type == type.name
 		);
+		if (!parent) {
+			console.log('parent not found for type', type.name);
+			return;
+		}
+
 		const children: IElement[] = elementsStore.filter((el: IElement) => el.id_parent === parent.id);
 
 		let localString = `### ${capitalizeFirstLetter(parent.type)}\n`;

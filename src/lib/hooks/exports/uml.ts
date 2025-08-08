@@ -13,7 +13,7 @@ export async function exportUML(structure: IStructure) {
 	// Generate Classes
 	typesStore_struct.forEach((type: IType) => {
 		const parent: IElement = elementsStore.find(
-			(el: IElement) => el.id_parent === null && el.type == type.name
+			(el: IElement) => !el.id_parent && el.type == type.name
 		);
 		const children: IElement[] = elementsStore.filter(
 			(el: IElement) => el.id_parent === parent.id && el.struct === false
@@ -32,7 +32,7 @@ export async function exportUML(structure: IStructure) {
 	// Generate Links
 	typesStore_struct.forEach((type: IType) => {
 		const parent: IElement = elementsStore.find(
-			(el: IElement) => el.id_parent === null && el.type == type.name
+			(el: IElement) => !el.id_parent && el.type == type.name
 		);
 		const children_struc: IElement[] = elementsStore.filter(
 			(el: IElement) => el.id_parent === parent.id && el.struct === true

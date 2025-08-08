@@ -38,6 +38,7 @@
         "tw-animate-css": "^1.3.6",
         "typescript": "^5.0.0",
         "typescript-eslint": "^8.20.0",
+        "vaul-svelte": "^1.0.0-next.7",
         "vite": "^7.0.4",
       },
     },
@@ -729,6 +730,8 @@
 
     "uuid": ["uuid@10.0.0", "", { "bin": { "uuid": "dist/bin/uuid" } }, "sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ=="],
 
+    "vaul-svelte": ["vaul-svelte@1.0.0-next.7", "", { "dependencies": { "runed": "^0.23.2", "svelte-toolbelt": "^0.7.1" }, "peerDependencies": { "svelte": "^5.0.0" } }, "sha512-7zN7Bi3dFQixvvbUJY9uGDe7Ws/dGZeBQR2pXdXmzQiakjrxBvWo0QrmsX3HK+VH+SZOltz378cmgmCS9f9rSg=="],
+
     "vfile-message": ["vfile-message@2.0.4", "", { "dependencies": { "@types/unist": "^2.0.0", "unist-util-stringify-position": "^2.0.0" } }, "sha512-DjssxRGkMvifUOJre00juHoP9DPWuzjxKuMDrhNbk2TdaYYBNMStsNhEOt3idrtI12VQYM/1+iM0KOzXi4pxwQ=="],
 
     "vite": ["vite@7.1.1", "", { "dependencies": { "esbuild": "^0.25.0", "fdir": "^6.4.6", "picomatch": "^4.0.3", "postcss": "^8.5.6", "rollup": "^4.43.0", "tinyglobby": "^0.2.14" }, "optionalDependencies": { "fsevents": "~2.3.3" }, "peerDependencies": { "@types/node": "^20.19.0 || >=22.12.0", "jiti": ">=1.21.0", "less": "^4.0.0", "lightningcss": "^1.21.0", "sass": "^1.70.0", "sass-embedded": "^1.70.0", "stylus": ">=0.54.8", "sugarss": "^5.0.0", "terser": "^5.16.0", "tsx": "^4.8.1", "yaml": "^2.4.2" }, "optionalPeers": ["@types/node", "jiti", "less", "lightningcss", "sass", "sass-embedded", "stylus", "sugarss", "terser", "tsx", "yaml"], "bin": { "vite": "bin/vite.js" } }, "sha512-yJ+Mp7OyV+4S+afWo+QyoL9jFWD11QFH0i5i7JypnfTcA1rmgxCbiA8WwAICDEtZ1Z1hzrVhN8R8rGTqkTY8ZQ=="],
@@ -802,6 +805,10 @@
     "svelte-sonner/runed": ["runed@0.28.0", "", { "dependencies": { "esm-env": "^1.0.0" }, "peerDependencies": { "svelte": "^5.7.0" } }, "sha512-k2xx7RuO9hWcdd9f+8JoBeqWtYrm5CALfgpkg2YDB80ds/QE4w0qqu34A7fqiAwiBBSBQOid7TLxwxVC27ymWQ=="],
 
     "tailwind-variants/tailwind-merge": ["tailwind-merge@3.0.2", "", {}, "sha512-l7z+OYZ7mu3DTqrL88RiKrKIqO3NcpEO8V/Od04bNpvk0kiIFndGEoqfuzvj4yuhRkHKjRkII2z+KS2HfPcSxw=="],
+
+    "vaul-svelte/runed": ["runed@0.23.4", "", { "dependencies": { "esm-env": "^1.0.0" }, "peerDependencies": { "svelte": "^5.7.0" } }, "sha512-9q8oUiBYeXIDLWNK5DfCWlkL0EW3oGbk845VdKlPeia28l751VpfesaB/+7pI6rnbx1I6rqoZ2fZxptOJLxILA=="],
+
+    "vaul-svelte/svelte-toolbelt": ["svelte-toolbelt@0.7.1", "", { "dependencies": { "clsx": "^2.1.1", "runed": "^0.23.2", "style-to-object": "^1.0.8" }, "peerDependencies": { "svelte": "^5.0.0" } }, "sha512-HcBOcR17Vx9bjaOceUvxkY3nGmbBmCBBbuWLLEWO6jtmWH8f/QoWmbyUfQZrpDINH39en1b8mptfPQT9VKQ1xQ=="],
 
     "wrap-ansi/ansi-styles": ["ansi-styles@6.2.1", "", {}, "sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug=="],
 

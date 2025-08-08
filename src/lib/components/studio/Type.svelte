@@ -9,7 +9,7 @@
 	import { capitalizeFirstLetter, changeType } from '@/hooks/functions';
 	import { m } from '@/paraglide/messages.js';
 	import { elementsStore, typesStore } from '@/hooks/store';
-	import { cn } from '@/hooks/utils';
+	import { cn } from '@/utils'
 	import Check from '@lucide/svelte/icons/check';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 	import { tick } from 'svelte';
