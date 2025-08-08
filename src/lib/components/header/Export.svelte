@@ -63,7 +63,7 @@
 		}
 
 		if (code_local) {
-		/*
+			/*
 			const data = await ofetch(`/codeblock`, {
 				method: 'POST',
 				headers: {
@@ -87,7 +87,7 @@
 
 {#if code}
 	<div
-		class="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-gray-900 bg-opacity-50"
+		class="bg-opacity-50 fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-gray-900"
 	>
 		<Card.Root>
 			<Card.Header>

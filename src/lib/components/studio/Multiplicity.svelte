@@ -13,7 +13,7 @@
 
 	let value = $state<string[]>([]);
 	let multiplicity: number;
-	let valueDisplayed: any = $state("");
+	let valueDisplayed: any = $state('');
 
 	let elements_local: IElement[];
 	elements.subscribe((v: IElement[]) => {
@@ -45,9 +45,7 @@
 
 <div class="flex flex-row items-center text-lg">
 	<div class="mx-1"><SquareM /></div>
-	<Select.Root type="single" name="multiplicity"
-		bind:value
-	>
+	<Select.Root type="single" name="multiplicity" bind:value>
 		<Select.Trigger class="w-[80px]">
 			{valueDisplayed}
 		</Select.Trigger>
