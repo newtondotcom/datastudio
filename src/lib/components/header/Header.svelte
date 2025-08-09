@@ -2,8 +2,7 @@
 <header class="flex flex-col bg-secondary">
 	<Drawer.Root>
 		<Drawer.Trigger class={cn(buttonVariants({ variant: "outline" }),"fixed top-4 left-4")}>
-			<ChevronDown class="mr-2 h-4 w-4" />
-			{m.actions()}
+			<Menu class="mr-2 h-4 w-4" />
 		</Drawer.Trigger>
 		<Drawer.Content>
 			<div
@@ -34,12 +33,12 @@
 
 import * as Drawer from "$lib/components/ui/drawer/index.js";
 	import { m } from '@/paraglide/messages.js';
-	import { Button, buttonVariants } from "$lib/components/ui/button";
+	import { buttonVariants } from "$lib/components/ui/button";
     import Export from '@/components/header/Export.svelte';
     import Import from '@/components/header/Import.svelte';
     import Save from '@/components/header/Save.svelte';
 	import { cn } from "@/utils";
-	import { ChevronDown } from "@lucide/svelte";
+	import { Menu } from "@lucide/svelte";
 	const exporttypesStore = [
 		{ type: 'header_uml' },
 		{ type: 'header_md' },
