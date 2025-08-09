@@ -22,7 +22,7 @@
 <header class="flex flex-col bg-secondary">
 	<Drawer.Root>
 		<Drawer.Trigger class={cn(buttonVariants({ variant: 'outline' }), 'fixed top-4 left-4')}>
-			<Menu class="mr-2 h-4 w-4" />
+			<Menu class="h-4 w-4" />
 		</Drawer.Trigger>
 		<Drawer.Content>
 			<div
