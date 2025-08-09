@@ -15,7 +15,7 @@
 
 	let { id }: Props = $props();
 
-	let desc: string = $state("");
+	let desc: string = $state('');
 
 	let elementsStore_local: IElement[];
 	elementsStore.subscribe((value: IElement[]) => {

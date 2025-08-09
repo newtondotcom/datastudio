@@ -47,25 +47,25 @@
 	}
 </script>
 
-	<Dialog.Root>
-		<Dialog.Trigger>
-			<Button>{m.header_load()}</Button>
-		</Dialog.Trigger>
-		<Dialog.Content class="sm:max-w-[425px]">
-			<Dialog.Header>
-				<Dialog.Title>{m.structure_title()}</Dialog.Title>
-				<Dialog.Description>{m.structure_desc()}</Dialog.Description>
-			</Dialog.Header>
-			<div class="grid gap-4 py-4">
-				<div class="grid grid-cols-4 items-center gap-4">
-					<Label for="username" class="text-right">{m.structure_file()}</Label>
-					<Input type="file" id="fileInput" accept=".json" class="col-span-3" />
-				</div>
+<Dialog.Root>
+	<Dialog.Trigger>
+		<Button>{m.header_load()}</Button>
+	</Dialog.Trigger>
+	<Dialog.Content class="sm:max-w-[425px]">
+		<Dialog.Header>
+			<Dialog.Title>{m.structure_title()}</Dialog.Title>
+			<Dialog.Description>{m.structure_desc()}</Dialog.Description>
+		</Dialog.Header>
+		<div class="grid gap-4 py-4">
+			<div class="grid grid-cols-4 items-center gap-4">
+				<Label for="username" class="text-right">{m.structure_file()}</Label>
+				<Input type="file" id="fileInput" accept=".json" class="col-span-3" />
 			</div>
-			<Dialog.Footer>
-				<Dialog.Close>
-					<Button onclick={load} type="submit">{m.submit()}</Button>
-				</Dialog.Close>
-			</Dialog.Footer>
-		</Dialog.Content>
-	</Dialog.Root>
+		</div>
+		<Dialog.Footer>
+			<Dialog.Close>
+				<Button onclick={load} type="submit">{m.submit()}</Button>
+			</Dialog.Close>
+		</Dialog.Footer>
+	</Dialog.Content>
+</Dialog.Root>

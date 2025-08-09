@@ -11,12 +11,12 @@
 	import { exportStructure } from '@/hooks/functions';
 	import { m } from '@/paraglide/messages.js';
 	import type { IStructure } from '@/hooks/types';
-  	import Highlight from "svelte-highlight";
-	import markdown from "svelte-highlight/languages/markdown";
-	import sql from "svelte-highlight/languages/sql";
-	import python from "svelte-highlight/languages/python";
-	import json from "svelte-highlight/languages/json";
-	import xml from "svelte-highlight/languages/xml";
+	import Highlight from 'svelte-highlight';
+	import markdown from 'svelte-highlight/languages/markdown';
+	import sql from 'svelte-highlight/languages/sql';
+	import python from 'svelte-highlight/languages/python';
+	import json from 'svelte-highlight/languages/json';
+	import xml from 'svelte-highlight/languages/xml';
 
 	interface Props {
 		button_content: string;
@@ -89,8 +89,7 @@
 				<Card.Description>{m.export_desc()}</Card.Description>
 			</Card.Header>
 			<Card.Content>
-				<Highlight
-					language={markdown} {code} />
+				<Highlight language={markdown} {code} />
 			</Card.Content>
 			<Card.Footer class="flex justify-end">
 				<Button

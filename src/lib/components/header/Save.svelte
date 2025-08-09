@@ -28,21 +28,21 @@
 	onMount(() => {
 		const manager = new ShortcutManager();
 		manager.register(
-			['Ctrl','S'],
+			['Ctrl', 'S'],
 			() => {
 				on_bind();
 			},
 			{
-				preventDefault : true
+				preventDefault: true
 			}
 		);
 		manager.register(
-			['Meta','S'],
+			['Meta', 'S'],
 			() => {
 				on_bind();
 			},
 			{
-				preventDefault : true
+				preventDefault: true
 			}
 		);
 	});

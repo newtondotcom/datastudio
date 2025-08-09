@@ -17,7 +17,7 @@
 		origins = value.filter((el: IElement) => el.indent === 0);
 	});
 
-	let name: string = $state("");
+	let name: string = $state('');
 
 	async function change() {
 		await change_colors();

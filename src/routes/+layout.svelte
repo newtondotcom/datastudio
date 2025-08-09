@@ -14,7 +14,7 @@
 </svelte:head>
 
 <Toaster />
-<Header /> 
+<Header />
 <div
 	class="flex h-full flex-col items-center justify-center overflow-scroll bg-secondary px-4 text-center align-middle"
 >
@@ -25,6 +25,6 @@
 +
 <div style="display:none">
 	{#each locales as locale}
-		 <a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
+		<a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
 	{/each}
 </div>

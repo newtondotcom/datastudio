@@ -9,7 +9,7 @@
 	import { capitalizeFirstLetter, changeType } from '@/hooks/functions';
 	import { m } from '@/paraglide/messages.js';
 	import { elementsStore, typesStore } from '@/hooks/store';
-	import { cn } from '@/utils'
+	import { cn } from '@/utils';
 	import Check from '@lucide/svelte/icons/check';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 	import { tick } from 'svelte';
@@ -23,9 +23,9 @@
 	let { id }: Props = $props();
 
 	let open = $state(false);
-	let selectedValue: string = $state("");
-	let search: string = $state("");
-	let name: string = $state("");
+	let selectedValue: string = $state('');
+	let search: string = $state('');
+	let name: string = $state('');
 	let struct: boolean = $state(false);
 
 	let elementsStore_local: IElement[];

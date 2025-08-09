@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 import type { IElement, IType } from '@/hooks/types';
 
-export const elementsStore = writable< IElement[]>([]);
+export const elementsStore = writable<IElement[]>([]);
 
 export const typesStore = writable<IType[]>([]);
 
@@ -10,7 +10,7 @@ export const timestamp = writable<Date>(new Date());
 elementsStore.set([
 	{
 		id: '3g2j075uy',
-		id_parent: "",
+		id_parent: '',
 		name: 'Car',
 		type: 'Car',
 		multiplicity: 0,
@@ -32,7 +32,7 @@ elementsStore.set([
 	},
 	{
 		id: 'tuobw7d2p',
-		id_parent: "",
+		id_parent: '',
 		name: 'Human',
 		type: 'Human',
 		multiplicity: 0,
@@ -65,7 +65,7 @@ elementsStore.set([
 	},
 	{
 		id: '1kpsy7tej',
-		id_parent: "",
+		id_parent: '',
 		name: 'Smartphone',
 		type: 'Smartphone',
 		multiplicity: 0,
